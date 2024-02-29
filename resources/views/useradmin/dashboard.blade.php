@@ -1,103 +1,197 @@
 <!DOCTYPE HTML>
 <html lang="en">
-    <head>
-        <!--=============== basic  ===============-->
-        <meta charset="UTF-8">
-        <title>Atito</title>
-        <meta name="robots" content="index, follow"/>
-        <meta name="keywords" content=""/>
-        <meta name="description" content=""/>
-        <!--=============== css  ===============-->	
-        <link type="text/css" rel="stylesheet" href="/css/plugins.css">
-        <link type="text/css" rel="stylesheet" href="/css/style.css">
-        <link type="text/css" rel="stylesheet" href="/css/dashboard-style.css">
-        <link type="text/css" rel="stylesheet" href="/css/color.css">
-        <!--=============== favicons ===============-->
-        <link rel="shortcut icon" href="/images/icone.png">
-    </head>
-    <body>
-        <!--loader-->
-        <div class="loader-wrap">
-            <div class="loader-inner">
-                <svg>
-                    <defs>
-                        <filter id="goo">
-                            <fegaussianblur in="SourceGraphic" stdDeviation="2" result="blur" />
-                            <fecolormatrix in="blur"  values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 5 -2" result="gooey" />
-                            <fecomposite in="SourceGraphic" in2="gooey" operator="atop"/>
-                        </filter>
-                    </defs>
-                </svg>
-            </div>
+
+<head>
+    <!--=============== basic  ===============-->
+    <meta charset="UTF-8">
+    <title>Atito</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <!--=============== css  ===============-->
+    <link type="text/css" rel="stylesheet" href="/css/plugins.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
+    <link type="text/css" rel="stylesheet" href="/css/dashboard-style.css">
+    <link type="text/css" rel="stylesheet" href="/css/color.css">
+
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/cssc/app-limit.css">
+    <link rel="stylesheet" href="/cssc/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/cssc/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/cssc/buttons.bootstrap4.min.css">
+    <!--=============== favicons ===============-->
+    <style>
+        #table1>thead:nth-child(1) {
+            display: none;
+        }
+
+        #table1>thead>tr:nth-child(1)>th,
+        #table1>thead>tr:nth-child(2)>th {
+            border-right: 0.5px solid gray !important;
+        }
+
+        #table1>tbody>tr:nth-child(1)>td,
+        #table1>tbody>tr:nth-child(2)>td {
+            border-right: 0.5px solid #eee !important;
+        }
+
+        #table1>tbody>tr>td {
+            text-align: center;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        #table1>tbody tr td:first-child {
+            /* Set the width of the first cell to cover both cells */
+            width: 50%;
+            /* Adjust this value based on your table layout */
+        }
+
+        #table1>tbody tr td:not(:first-child) {
+            /* Set the width of the first cell to cover both cells */
+            width: 25%;
+            /* Adjust this value based on your table layout */
+        }
+
+        #table1>tbody>tr>td>a,
+        #table1>tbody>tr>td button {
+            margin-top: 0;
+        }
+    </style>
+    <link rel="shortcut icon" href="/images/icone.png">
+</head>
+
+<body>
+    <!--loader-->
+    <div class="loader-wrap">
+        <div class="loader-inner">
+            <svg>
+                <defs>
+                    <filter id="goo">
+                        <fegaussianblur in="SourceGraphic" stdDeviation="2" result="blur" />
+                        <fecolormatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 5 -2" result="gooey" />
+                        <fecomposite in="SourceGraphic" in2="gooey" operator="atop" />
+                    </filter>
+                </defs>
+            </svg>
         </div>
-        <!--loader end-->
-        <!-- main -->
-        <div id="main">
-            <!-- header -->
-            <header class="main-header">
-                <!--  logo  -->
-                <div class="logo-holder"><a href="/"><img src="/images/logo-atito.png" alt=""></a></div>
-                <div class="show-reg-form dasbdord-submenu-open"><img src="{{asset('storage/'.str_replace('public/', '', auth()->user()->compte->photo))}}" alt=""></div>
-                <!--  login btn  end -->
-                <!--  dashboard-submenu-->
-                <div class="dashboard-submenu">
-                    <div class="dashboard-submenu-title fl-wrap">Bienvenue , <span>{{auth()->user()->name}}</span></div>
-                    <ul>
-                        <li><a href="/user-dashboard"><i class="fal fa-chart-line"></i>Accueil</a></li>
-                        <li><a href="/user-dashboard-profil"> <i class="fal fa-user-edit"></i>Votre profil</a></li>
-                        <li><a href="/user-dashboard-message"> <i class="fal fa-message"></i>Messages</a></li>
-                        <li><a href="/user-dashboard-annonce"> <i class="fal fa-user-edit"></i>Mes annonces</a></li>
-                        <li><a href="/user-dashboard-add-annonce"><i class="fal fa-plus"></i>Ajouter une annonce</a></li>
-                    </ul>
-                    <a href="/" class="color-bg db_log-out"><i class="far fa-power-off"></i>Déconnexion</a>
-                </div>
-                <!--  dashboard-submenu  end -->
-                <!--  navigation --> 
-                <div class="nav-holder main-menu">
-                    <nav>
-                    </nav>
-                </div>
-                <!-- navigation  end -->
-                <!-- header-search-wrapper -->
-                <div class="header-search-wrapper novis_search">
-                    <div class="header-serach-menu">
-                        <div class="custom-switcher fl-wrap">
-                            <div class="fieldset fl-wrap">
-                                <input type="radio" name="duration-1"  id="buy_sw" class="tariff-toggle" checked>
-                                <label for="buy_sw">Buy</label>
-                                <input type="radio" name="duration-1" class="tariff-toggle"  id="rent_sw">
-                                <label for="rent_sw" class="lss_lb">Rent</label>
-                                <span class="switch color-bg"></span>
-                            </div>
+    </div>
+    <!--loader end-->
+    <!-- main -->
+    <div id="main">
+        <!-- header -->
+        <header class="main-header">
+            <!--  logo  -->
+            <div class="logo-holder"><a href="/"><img src="/images/logo-atito.png" alt=""></a></div>
+            <div class="show-reg-form dasbdord-submenu-open"><img src="{{asset('storage/'.str_replace('public/', '', auth()->user()->compte->photo))}}" alt=""></div>
+            <!--  login btn  end -->
+            <!--  dashboard-submenu-->
+            <div class="dashboard-submenu">
+                <div class="dashboard-submenu-title fl-wrap">Bienvenue , <span>{{auth()->user()->name}}</span></div>
+                <ul>
+                    <li><a href="/user-dashboard"><i class="fal fa-chart-line"></i>Accueil</a></li>
+                    <li><a href="/user-dashboard-profil"> <i class="fal fa-user-edit"></i>Votre profil</a></li>
+                    <li><a href="/user-dashboard-message"> <i class="fal fa-message"></i>Messages</a></li>
+                    <li><a href="/user-dashboard-annonce"> <i class="fal fa-user-edit"></i>Mes annonces</a></li>
+                    <li><a href="/user-dashboard-add-annonce"><i class="fal fa-plus"></i>Ajouter une annonce</a></li>
+                </ul>
+                <a href="/" class="color-bg db_log-out"><i class="far fa-power-off"></i>Déconnexion</a>
+            </div>
+            <!--  dashboard-submenu  end -->
+            <!--  navigation -->
+            <div class="nav-holder main-menu">
+                <nav>
+                </nav>
+            </div>
+            <!-- navigation  end -->
+            <!-- header-search-wrapper -->
+            <div class="header-search-wrapper novis_search">
+                <div class="header-serach-menu">
+                    <div class="custom-switcher fl-wrap">
+                        <div class="fieldset fl-wrap">
+                            <input type="radio" name="duration-1" id="buy_sw" class="tariff-toggle" checked>
+                            <label for="buy_sw">Buy</label>
+                            <input type="radio" name="duration-1" class="tariff-toggle" id="rent_sw">
+                            <label for="rent_sw" class="lss_lb">Rent</label>
+                            <span class="switch color-bg"></span>
                         </div>
                     </div>
-                    <div class="custom-form">
-                    </div>
                 </div>
-                <!-- header-search-wrapper end  -->				
-                <!-- wishlist-wrap--> 
-                <div class="header-modal novis_wishlist tabs-act">
-                    <ul class="tabs-menu fl-wrap no-list-style">
-                        <li class="current"><a href="#tab-wish">  Wishlist <span>- 3</span></a></li>
-                        <li><a href="#tab-compare">  Compare <span>- 2</span></a></li>
-                    </ul>
-                    <!--tabs -->                       
-                    <div class="tabs-container">
+                <div class="custom-form">
+                </div>
+            </div>
+            <!-- header-search-wrapper end  -->
+            <!-- wishlist-wrap-->
+            <div class="header-modal novis_wishlist tabs-act">
+                <ul class="tabs-menu fl-wrap no-list-style">
+                    <li class="current"><a href="#tab-wish"> Wishlist <span>- 3</span></a></li>
+                    <li><a href="#tab-compare"> Compare <span>- 2</span></a></li>
+                </ul>
+                <!--tabs -->
+                <div class="tabs-container">
+                    <div class="tab">
+                        <!--tab -->
+                        <div id="tab-wish" class="tab-content first-tab">
+                            <!-- header-modal-container-->
+                            <div class="header-modal-container scrollbar-inner fl-wrap" data-simplebar>
+                                <!--widget-posts-->
+                                <div class="widget-posts  fl-wrap">
+                                    <ul class="no-list-style">
+                                        <li>
+                                            <div class="widget-posts-img"><a href="listing-single.html"><img src="/images/all/small/1.jpg" alt=""></a>
+                                            </div>
+                                            <div class="widget-posts-descr">
+                                                <h4><a href="listing-single.html">Affordable Urban Room</a></h4>
+                                                <div class="geodir-category-location fl-wrap"><a href="#"><i class="fas fa-map-marker-alt"></i> 40 Journal Square , NJ, USA</a></div>
+                                                <div class="widget-posts-descr-price"><span>Price: </span> $ 1500 / per month</div>
+                                                <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="widget-posts-img"><a href="listing-single.html"><img src="/images/all/small/1.jpg" alt=""></a>
+                                            </div>
+                                            <div class="widget-posts-descr">
+                                                <h4><a href="listing-single.html">Family House</a></h4>
+                                                <div class="geodir-category-location fl-wrap"><a href="#"><i class="fas fa-map-marker-alt"></i> 34-42 Montgomery St , NY, USA</a></div>
+                                                <div class="widget-posts-descr-price"><span>Price: </span> $ 50.000</div>
+                                                <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="widget-posts-img"><a href="listing-single.html"><img src="/images/all/small/1.jpg" alt=""></a>
+                                            </div>
+                                            <div class="widget-posts-descr">
+                                                <h4><a href="listing-single.html">Apartment to Rent</a></h4>
+                                                <div class="geodir-category-location fl-wrap"><a href="#"><i class="fas fa-map-marker-alt"></i>75 Prince St, NY, USA</a></div>
+                                                <div class="widget-posts-descr-price"><span>Price: </span> $100 / per night</div>
+                                                <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- widget-posts end-->
+                            </div>
+                            <!-- header-modal-container end-->
+                            <div class="header-modal-top fl-wrap">
+                                <div class="clear_wishlist color-bg"><i class="fal fa-trash-alt"></i> Clear all</div>
+                            </div>
+                        </div>
+                        <!--tab end -->
+                        <!--tab -->
                         <div class="tab">
-                            <!--tab -->
-                            <div id="tab-wish" class="tab-content first-tab">
-                                <!-- header-modal-container--> 
+                            <div id="tab-compare" class="tab-content">
+                                <!-- header-modal-container-->
                                 <div class="header-modal-container scrollbar-inner fl-wrap" data-simplebar>
                                     <!--widget-posts-->
                                     <div class="widget-posts  fl-wrap">
                                         <ul class="no-list-style">
                                             <li>
-                                                <div class="widget-posts-img"><a href="listing-single.html"><img src="/images/all/small/1.jpg" alt=""></a>  
+                                                <div class="widget-posts-img"><a href="listing-single.html"><img src="/images/all/small/1.jpg" alt=""></a>
                                                 </div>
                                                 <div class="widget-posts-descr">
-                                                    <h4><a href="listing-single.html">Affordable Urban Room</a></h4>
-                                                    <div class="geodir-category-location fl-wrap"><a href="#"><i class="fas fa-map-marker-alt"></i> 40 Journal Square  , NJ, USA</a></div>
-                                                    <div class="widget-posts-descr-price"><span>Price: </span> $ 1500 / per month</div>
+                                                    <h4><a href="listing-single.html">Gorgeous house for sale</a></h4>
+                                                    <div class="geodir-category-location fl-wrap"><a href="#"><i class="fas fa-map-marker-alt"></i> 70 Bright St New York, USA </a></div>
+                                                    <div class="widget-posts-descr-price"><span>Price: </span> $ 52.100</div>
                                                     <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
                                                 </div>
                                             </li>
@@ -105,19 +199,9 @@
                                                 <div class="widget-posts-img"><a href="listing-single.html"><img src="/images/all/small/1.jpg" alt=""></a>
                                                 </div>
                                                 <div class="widget-posts-descr">
-                                                    <h4><a href="listing-single.html">Family House</a></h4>
-                                                    <div class="geodir-category-location fl-wrap"><a href="#"><i class="fas fa-map-marker-alt"></i> 34-42 Montgomery St , NY, USA</a></div>
-                                                    <div class="widget-posts-descr-price"><span>Price: </span> $ 50.000</div>
-                                                    <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="widget-posts-img"><a href="listing-single.html"><img src="/images/all/small/1.jpg" alt=""></a>
-                                                </div>
-                                                <div class="widget-posts-descr">
-                                                    <h4><a href="listing-single.html">Apartment to Rent</a></h4>
-                                                    <div class="geodir-category-location fl-wrap"><a href="#"><i class="fas fa-map-marker-alt"></i>75 Prince St, NY, USA</a></div>
-                                                    <div class="widget-posts-descr-price"><span>Price: </span> $100 / per night</div>
+                                                    <h4><a href="listing-single.html">Family Apartments</a></h4>
+                                                    <div class="geodir-category-location fl-wrap"><a href="#"><i class="fas fa-map-marker-alt"></i> W 85th St, New York, USA </a></div>
+                                                    <div class="widget-posts-descr-price"><span>Price: </span> $ 72.400</div>
                                                     <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
                                                 </div>
                                             </li>
@@ -125,59 +209,21 @@
                                     </div>
                                     <!-- widget-posts end-->
                                 </div>
-                                <!-- header-modal-container end--> 
+                                <!-- header-modal-container end-->
                                 <div class="header-modal-top fl-wrap">
-                                    <div class="clear_wishlist color-bg"><i class="fal fa-trash-alt"></i> Clear all</div>
+                                    <a class="clear_wishlist color-bg" href="compare.html"><i class="fal fa-random"></i> Compare</a>
                                 </div>
                             </div>
-                            <!--tab end -->
-                            <!--tab -->
-                            <div class="tab">
-                                <div id="tab-compare" class="tab-content">
-                                    <!-- header-modal-container--> 
-                                    <div class="header-modal-container scrollbar-inner fl-wrap" data-simplebar>
-                                        <!--widget-posts-->
-                                        <div class="widget-posts  fl-wrap">
-                                            <ul class="no-list-style">
-                                                <li>
-                                                    <div class="widget-posts-img"><a href="listing-single.html"><img src="/images/all/small/1.jpg" alt=""></a>  
-                                                    </div>
-                                                    <div class="widget-posts-descr">
-                                                        <h4><a href="listing-single.html">Gorgeous house for sale</a></h4>
-                                                        <div class="geodir-category-location fl-wrap"><a href="#"><i class="fas fa-map-marker-alt"></i>  70 Bright St New York, USA </a></div>
-                                                        <div class="widget-posts-descr-price"><span>Price: </span> $ 52.100</div>
-                                                        <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="widget-posts-img"><a href="listing-single.html"><img src="/images/all/small/1.jpg" alt=""></a>
-                                                    </div>
-                                                    <div class="widget-posts-descr">
-                                                        <h4><a href="listing-single.html">Family Apartments</a></h4>
-                                                        <div class="geodir-category-location fl-wrap"><a href="#"><i class="fas fa-map-marker-alt"></i> W 85th St, New York, USA </a></div>
-                                                        <div class="widget-posts-descr-price"><span>Price: </span> $ 72.400</div>
-                                                        <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- widget-posts end-->
-                                    </div>
-                                    <!-- header-modal-container end--> 										
-                                    <div class="header-modal-top fl-wrap">
-                                        <a class="clear_wishlist color-bg" href="compare.html"><i class="fal fa-random"></i> Compare</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--tab end -->
                         </div>
-                        <!--tabs end -->							
+                        <!--tab end -->
                     </div>
+                    <!--tabs end -->
                 </div>
-                <!--wishlist-wrap end -->                            
-                <!--header-opt-modal-->  
-                <div class="header-opt-modal novis_header-mod">
-                    <!-- <div class="header-opt-modal-container hopmc_init">
+            </div>
+            <!--wishlist-wrap end -->
+            <!--header-opt-modal-->
+            <div class="header-opt-modal novis_header-mod">
+                <!-- <div class="header-opt-modal-container hopmc_init">
                         <div class="header-opt-modal-item lang-item fl-wrap">
                             <h4>Language: <span>EN</span></h4>
                             <div class="header-opt-modal-list fl-wrap">
@@ -201,141 +247,170 @@
                             </div>
                         </div>
                     </div> -->
-                </div>
-                <!--header-opt-modal end -->  
-            </header>
-            <!-- header end  -->	
-            <!-- wrapper  -->	
-            <div id="wrapper">
-                <!-- dashbard-menu-wrap -->	
-                <div class="dashbard-menu-overlay"></div>
-                <div class="dashbard-menu-wrap">
-                    <div class="dashbard-menu-close"><i class="fal fa-times"></i></div>
-                    <div class="dashbard-menu-container">
-                        <!-- user-profile-menu-->
-                        <div class="user-profile-menu">
-                            <h3>MENU</h3>
-                            <ul class="no-list-style">
-                                <li><a href="/user-dashboard" class="user-profile-act"><i class="fal fa-chart-line"></i>Accueil</a></li>
-                                <li><a href="/user-dashboard-profil"><i class="fal fa-user-edit"></i> Votre profil</a></li>
-                                <li><a href="/user-dashboard-message"><i class="fal fa-envelope"></i> Messages</a></li>
-                                <li><a href="/user-dashboard-annonce"><i class="fal fa-users"></i>Mes annonces</a></li>
-                                <li>
-                                    <a href="/user-dashboard-add-annonce"><i class="fal fa-plus"></i>Ajouter une annonce</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- user-profile-menu end-->
-                        <!-- user-profile-menu-->
-                        <div class="user-profile-menu">
-                            <h3>MES DONNÉES</h3>
-                            <ul  class="no-list-style">
+            </div>
+            <!--header-opt-modal end -->
+        </header>
+        <!-- header end  -->
+        <!-- wrapper  -->
+        <div id="wrapper">
+            <!-- dashbard-menu-wrap -->
+            <div class="dashbard-menu-overlay"></div>
+            <div class="dashbard-menu-wrap">
+                <div class="dashbard-menu-close"><i class="fal fa-times"></i></div>
+                <div class="dashbard-menu-container">
+                    <!-- user-profile-menu-->
+                    <div class="user-profile-menu">
+                        <h3>MENU</h3>
+                        <ul class="no-list-style">
+                            <li><a href="/user-dashboard" class="user-profile-act"><i class="fal fa-chart-line"></i>Accueil</a></li>
+                            <li><a href="/user-dashboard-profil"><i class="fal fa-user-edit"></i> Votre profil</a></li>
+                            <li><a href="/user-dashboard-message"><i class="fal fa-envelope"></i> Messages</a></li>
+                            <li><a href="/user-dashboard-annonce"><i class="fal fa-users"></i>Mes annonces</a></li>
+                            <li>
+                                <a href="/user-dashboard-add-annonce"><i class="fal fa-plus"></i>Ajouter une annonce</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- user-profile-menu end-->
+                    <!-- user-profile-menu-->
+                    <div class="user-profile-menu">
+                        <h3>MES DONNÉES</h3>
+                        <ul class="no-list-style">
                             <li><a href="/user-dashboard-annonce"><i class="fal fa-th-list"></i> Annonce <span>{{auth()->user()->compte->salles->count()}}</span></a></li>
                             <li><a href="/user-dashboard-message"> <i class="fal fa-th-list"></i> Message <span>{{App\Models\Contact::where("compte_id", auth()->user()->compte->id)->count()}}</span></a></li>
                             <li><a href="/user-dashboard-annonce-photo"><i class="fal fa-th-list"></i> Photo <span>{{auth()->user()->compte->salles()->withCount("photosSalles")->get()->sum("photos_salles_count")}}</span></a></li>
                             <li><a href="/user-dashboard-annonce-video"><i class="fal fa-th-list"></i> Video <span>{{auth()->user()->compte->salles()->withCount("videoSalles")->get()->sum("video_salles_count")}}</span></a></li>
-                            </ul>
-                        </div>
-                        <!-- user-profile-menu end--> 
+                        </ul>
                     </div>
-                    <div class="dashbard-menu-footer">© Atito 2024 Tous droits réservés!</div>
+                    <!-- user-profile-menu end-->
                 </div>
-                <!-- dashbard-menu-wrap end  -->		
-                <!-- content -->	
-                <div class="dashboard-content">
-                    <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Menu Accueil</div>
-                    <div class="container dasboard-container">
-                        <!-- dashboard-title -->	
-                        <div class="dashboard-title fl-wrap">
-                            <div class="dashboard-title-item"><span>Accueil</span></div>
-                            <div class="dashbard-menu-header">
-                                <div class="dashbard-menu-avatar fl-wrap">
-                                    <img src="{{asset('storage/'.str_replace('public/', '', auth()->user()->compte->photo))}}" alt="">
-                                    <h4>Bienvenue, <span>{{auth()->user()->name}}</span></h4>
-                                </div>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.querySelector('#logout-form').submit();" class="log-out-btn   tolt" data-microtip-position="bottom"  data-tooltip="Deconnexion"><i class="far fa-power-off"></i></a>
+                <div class="dashbard-menu-footer">© Atito 2024 Tous droits réservés!</div>
+            </div>
+            <!-- dashbard-menu-wrap end  -->
+            <!-- content -->
+            <div class="dashboard-content">
+                <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Menu Accueil</div>
+                <div class="container dasboard-container">
+                    <!-- dashboard-title -->
+                    <div class="dashboard-title fl-wrap">
+                        <div class="dashboard-title-item"><span>Accueil</span></div>
+                        <div class="dashbard-menu-header">
+                            <div class="dashbard-menu-avatar fl-wrap">
+                                <img src="{{asset('storage/'.str_replace('public/', '', auth()->user()->compte->photo))}}" alt="">
+                                <h4>Bienvenue, <span>{{auth()->user()->name}}</span></h4>
                             </div>
-                            <!--Tariff Plan menu-->
-                            <!-- <div class="tfp-det-container">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.querySelector('#logout-form').submit();" class="log-out-btn   tolt" data-microtip-position="bottom" data-tooltip="Deconnexion"><i class="far fa-power-off"></i></a>
+                        </div>
+                        <!--Tariff Plan menu-->
+                        <!-- <div class="tfp-det-container">
                                 <div   class="tfp-btn"><span>Your Tariff Plan : </span> <strong>Extended</strong></div>
                                 <div class="tfp-det">
                                     <p>You Are on <a href="#">Extended</a> . Use link bellow to view details or upgrade. </p>
                                     <a href="#" class="tfp-det-btn color-bg">Details</a>
                                 </div>
                             </div> -->
-                            <!--Tariff Plan menu end-->						
-                        </div>
-                        <!-- dashboard-title end -->		
-                        <div class="dasboard-wrapper fl-wrap no-pag">
-                            <div class="dashboard-stats-container fl-wrap">
-                                <div class="row">
-                                    <!--dashboard-stats-->
-                                    <div class="col-md-3">
-                                        <div class="dashboard-stats fl-wrap">
-                                            <i class="fal fa-map-marked"></i>
-                                            <h4>Annonces</h4>
-                                            <div class="dashboard-stats-count">{{ auth()->user()->compte->salles()->count() }}</div>
-                                        </div>
+                        <!--Tariff Plan menu end-->
+                    </div>
+                    <!-- dashboard-title end -->
+                    <div class="dasboard-wrapper fl-wrap no-pag">
+                        <div class="dashboard-stats-container fl-wrap">
+                            <div class="row">
+                                <!--dashboard-stats-->
+                                <div class="col-md-3">
+                                    <div class="dashboard-stats fl-wrap">
+                                        <i class="fal fa-map-marked"></i>
+                                        <h4>Annonces</h4>
+                                        <div class="dashboard-stats-count">{{ auth()->user()->compte->salles()->count() }}</div>
                                     </div>
-                                    <!-- dashboard-stats end -->
-                                    <!--dashboard-stats-->
-                                    <div class="col-md-3">
-                                        <div class="dashboard-stats fl-wrap">
-                                            <i class="fal fa-chart-bar"></i>
-                                            <h4>Messages</h4>
-                                            <div class="dashboard-stats-count">{{ auth()->user()->compte->contacts()->count() }}</div>
-                                        </div>
+                                </div>
+                                <!-- dashboard-stats end -->
+                                <!--dashboard-stats-->
+                                <div class="col-md-3">
+                                    <div class="dashboard-stats fl-wrap">
+                                        <i class="fal fa-chart-bar"></i>
+                                        <h4>Messages</h4>
+                                        <div class="dashboard-stats-count">{{ auth()->user()->compte->contacts()->count() }}</div>
                                     </div>
-                                    <!-- dashboard-stats end -->
-                                    <!--dashboard-stats-->
-                                    <div class="col-md-3">
-                                        <div class="dashboard-stats fl-wrap">
-                                            <i class="fal fa-comments-alt"></i>
-                                            <h4>Visites</h4>
-                                            <div class="dashboard-stats-count">{{ auth()->user()->compte->salles()->with("visites")->get()->flatMap(function ($salle) { return $salle->visites->pluck('counter'); })->sum() }}</div>
-                                        </div>
+                                </div>
+                                <!-- dashboard-stats end -->
+                                <!--dashboard-stats-->
+                                <div class="col-md-3">
+                                    <div class="dashboard-stats fl-wrap">
+                                        <i class="fal fa-comments-alt"></i>
+                                        <h4>Visites</h4>
+                                        <div class="dashboard-stats-count">{{ auth()->user()->compte->salles()->with("visites")->get()->flatMap(function ($salle) { return $salle->visites->pluck('counter'); })->sum() }}</div>
                                     </div>
+                                </div>
 
-                                    <div class="col-md-3">
-                                        <a href="/user-dashboard-add-annonce" class="">
-                                            <div class="dashboard-stats fl-wrap" style="padding:15px 15px; background: linear-gradient(to right, #3C6AFD, #57C7FA);">
-                                                <i class="fal fa-plus"></i>
-                                                <h4 class="white-color" style="color: #ffffff;">Ajouter <br> une annonce</h4>
-                                            </div>
-                                        </a>
-                                        
+                                <div class="col-md-3">
+                                    <a href="/user-dashboard-add-annonce" class="">
+                                        <div class="dashboard-stats fl-wrap" style="padding:15px 15px; background: linear-gradient(to right, #3C6AFD, #57C7FA);">
+                                            <i class="fal fa-plus"></i>
+                                            <h4 class="white-color" style="color: #ffffff;">Ajouter <br> une annonce</h4>
+                                        </div>
+                                    </a>
+
+                                </div>
+                                <!-- dashboard-stats end -->
+
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="dashboard-title fl-wrap">
+                            <div class="dashboard-title-item"><span>Rechercher une annonces</span></div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="dashboard-stats-container fl-wrap">
+                                <iframe id="iframeResize1" src="/annonces/datatable/2" onload="resizeIframe('iframeResize1')" scrollbar="no" frameborder="0" style="width:100%;display: block; background-color:transparent;"></iframe>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="dashboard-title fl-wrap">
+                            <div class="dashboard-title-item"><span>Mes annonces</span></div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="card">
+                                <div class="">
+
+                                    <div class="table-responsive" style="overflow-x: hidden;">
+                                        <table id="table1" class="table" style="margin: 0px 0px !important; width:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">
+
+                                                    </th>
+                                                    <th class="text-center">
+
+                                                    </th>
+                                                    <th class="text-right">
+
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                            <tfoot>
+
+                                            </tfoot>
+                                        </table>
                                     </div>
-                                    <!-- dashboard-stats end -->
-                                
                                 </div>
                             </div>
-                            <div class="clearfix"></div>
-                            <div class="dashboard-title fl-wrap">
-                                <div class="dashboard-title-item"><span>Rechercher une annonces</span></div>
-                                <br>
-                                <br>
-                                <br>
-                                <div class="dashboard-stats-container fl-wrap">
-                                    <iframe id="iframeResize1" src="/annonces/datatable/2" onload="resizeIframe('iframeResize1')" scrollbar="no" frameborder="0" style="width:100%;display: block; background-color:transparent;"></iframe>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="dashboard-title fl-wrap">
-                                <div class="dashboard-title-item"><span>Mes annonces</span></div>
-                                <br>
-                                <br>
-                                <br>
-                                <div class="dashboard-stats-container fl-wrap">
+                            <!-- <div class="dashboard-stats-container fl-wrap">
                                     <iframe id="iframeResize2" src="/annonces/datatable/1" onload="resizeIframe2('iframeResize2')" scrollbar="no" frameborder="0" style="width:100%;display: block; background-color:transparent;"></iframe>
-                                </div>
-                            </div>
+                                </div> -->
                         </div>
                     </div>
-                    <!-- dashboard-footer -->
-                    <!-- <div class="dashboard-footer">
+                </div>
+                <!-- dashboard-footer -->
+                <!-- <div class="dashboard-footer">
                         <div class="dashboard-footer-links fl-wrap">
                             <span>Helpfull Links:</span>
                             <ul>
@@ -348,59 +423,172 @@
                         </div>
                         <a href="#main" class="dashbord-totop  custom-scroll-link"><i class="fas fa-caret-up"></i></a>
                     </div> -->
-                    <!-- dashboard-footer end -->				
-                </div>
-                <!-- content end -->	
-                <div class="dashbard-bg gray-bg"></div>
+                <!-- dashboard-footer end -->
             </div>
-            <!-- wrapper end -->
+            <!-- content end -->
+            <div class="dashbard-bg gray-bg"></div>
         </div>
-        <!-- Main end -->
-        <script>
-            function resizeIframe(iframename) {
-                var iframe = document.getElementById(iframename);
-                var contentWindow = iframe.contentWindow || iframe.contentDocument;
+        <!-- wrapper end -->
 
-                //console.log("SHOW ITEMS", iframe)
-                if (contentWindow.document) {
-                    var contentHeight = contentWindow.document.documentElement.scrollHeight || contentWindow.document.body.scrollHeight;
-                    //console.log("SHOW ITEMS", contentHeight)
-                    iframe.style.height = (contentHeight+20) + 'px';
-                }
+    </div>
+    <!-- Main end -->
+    <script>
+        function resizeIframe(iframename) {
+            var iframe = document.getElementById(iframename);
+            var contentWindow = iframe.contentWindow || iframe.contentDocument;
+
+            //console.log("SHOW ITEMS", iframe)
+            if (contentWindow.document) {
+                var contentHeight = contentWindow.document.documentElement.scrollHeight || contentWindow.document.body.scrollHeight;
+                //console.log("SHOW ITEMS", contentHeight)
+                iframe.style.height = (contentHeight + 20) + 'px';
             }
+        }
 
-            function resizeIframe2(iframename) {
-                var iframe = document.getElementById(iframename);
-                var contentWindow = iframe.contentWindow || iframe.contentDocument;
+        function resizeIframe2(iframename) {
+            var iframe = document.getElementById(iframename);
+            var contentWindow = iframe.contentWindow || iframe.contentDocument;
 
-                //console.log("SHOW ITEMS", iframe)
-                if (contentWindow.document) {
-                    var contentHeight = contentWindow.document.documentElement.scrollHeight || contentWindow.document.body.scrollHeight;
-                    //console.log("SHOW ITEMS", contentHeight)
-                    iframe.style.height = (contentHeight+20) + 'px';
-                }
+            //console.log("SHOW ITEMS", iframe)
+            if (contentWindow.document) {
+                var contentHeight = contentWindow.document.documentElement.scrollHeight || contentWindow.document.body.scrollHeight;
+                //console.log("SHOW ITEMS", contentHeight)
+                iframe.style.height = (contentHeight + 20) + 'px';
             }
+        }
 
-            // Listen for messages from the iframe
-            // window.addEventListener('message', function(event) {
-            //     if (event.data && event.data.hasOwnProperty('iframeHeight')) {
-            //         document.getElementById('iframeResize1').style.height = event.data.iframeHeight + 'px';
-            //     }
-            // });
-        </script>
+        // Listen for messages from the iframe
+        // window.addEventListener('message', function(event) {
+        //     if (event.data && event.data.hasOwnProperty('iframeHeight')) {
+        //         document.getElementById('iframeResize1').style.height = event.data.iframeHeight + 'px';
+        //     }
+        // });
+    </script>
 
-        <!--=============== scripts  ===============-->
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/plugins.js"></script>
-        <script src="/js/scripts.js"></script>
-        <script src="/js/charts.js"></script>
-        <script src="/js/dashboard.js"></script>
+    <div class="modal fade" id="modalGallerySalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalCenterTitle">LISTE D'IMAGE DE VOTRE ANNONCE</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="photo-atito-content" class="modal-content lightgallery">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--=============== scripts  ===============-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/charts.js"></script>
+    <script src="/js/dashboard.js"></script>
 
-        <script>
-            $(document).ready((e)=>{
-                console.log("SIZE DONE")
-                updateCardHeight();
-            })
-        </script>
-    </body>
+    <script src="/jsc/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="/jsc/jquery.dataTables.min.js"></script>
+    <script src="/jsc/dataTables.bootstrap4.min.js"></script>
+    <script src="/jsc/dataTables.responsive.min.js"></script>
+    <script src="/jsc/responsive.bootstrap4.min.js"></script>
+    <script src="/jsc/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
+    <script src="/jsc/buttons.bootstrap4.min.js"></script>
+    <script src="/jsc/jszip.min.js"></script>
+    <script src="/jsc/pdfmake.min.js"></script>
+    <script src="/jsc/vfs_fonts.js"></script>
+    <script src="/jsc/buttons.html5.min.js"></script>
+    <script src="/jsc/buttons.print.min.js"></script>
+    <script src="/jsc/buttons.colVis.min.js"></script>
+    <script>
+        $(function() {
+
+            var table = $('#table1').DataTable({
+                dom: '',
+                info: false,
+                bInfo: false,
+                initComplete: function() {
+                    $('.btnshowsallephoto').on('click', function(e) {
+                        console.log(e);
+                        let salleId = $(e.target).data("salleid"); // Change this to the actual salle_id value you want to pass
+                        console.log(salleId);
+                        $.ajax({
+                            url: '/api/render/photo/salles?salle_id=' + salleId,
+                            method: 'GET',
+                            success: function(data) {
+                                // Handle successful response
+                                $("#photo-atito-content").html(data);
+                            },
+                            error: function(xhr, status, error) {
+                                // Handle error
+                                console.error(xhr.responseText);
+                            }
+                        });
+                    });
+                },
+                processing: true,
+                serverSide: true,
+                ajax: "/annonces/0/data",
+                columns: [{
+                        data: 'nom_salle',
+                        name: 'nom_salle'
+                    },
+                    {
+                        data: 'createdat',
+                        name: 'createdat'
+                    },
+                    {
+                        data: 'actions',
+                        name: 'actions'
+                    },
+                ],
+                columnDefs: [{
+                        "targets": [0],
+                        "rowspan": 4
+                    },
+                    {
+                        "targets": [1],
+                        "colspan": 1
+                    },
+                    {
+                        "targets": [2],
+                        "rowspan": 1
+                    }
+                ],
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/fr-FR.json',
+                },
+                buttons: [],
+                // searching: true,
+                order: [
+                    [0, 'desc']
+                ],
+                responsive: true,
+            }).buttons().container().enable();
+
+        });
+    </script>
+
+
+    <script src="/js/scripts.js"></script>
+
+    <script>
+        $(document).ready((e) => {
+            console.log("SIZE DONE")
+            updateCardHeight();
+        })
+
+        function reloadJSFile(url) {
+            // Remove existing script element
+            $.get(url, function(data) {
+                console.log(data)
+                // Evaluate the content of the JavaScript file using eval()
+                eval(data);
+            });
+        }
+    </script>
+
+
+</body>
+
 </html>

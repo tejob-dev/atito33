@@ -3641,7 +3641,7 @@ section.single-par2  .scroll-down-wrap{
 .inline-facts-wrap {
 	width:25%;
 	float:left;
-	padding:30px 0;
+	padding:16px 0;
 	border-left:1px solid #e2e2e2;
 	box-sizing:border-box;
 	background:#f9f9f9;
@@ -3987,8 +3987,8 @@ section.single-par2  .scroll-down-wrap{
 }
 .gal-link {
     position:absolute;
-    right: 30px;
-    top: 30px;
+    right: 30%;
+    top: 30%;
     border-radius: 50%;
     z-index: 10;
     width: 40px;

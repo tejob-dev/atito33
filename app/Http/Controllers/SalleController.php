@@ -12,6 +12,7 @@ use App\Models\TypeSalle;
 use App\Models\VideoSalle;
 use App\Models\PhotosSalle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SalleStoreRequest;
 use App\Http\Requests\SalleUpdateRequest;
@@ -27,7 +28,7 @@ class SalleController extends Controller
         
         $del = '<form action="/salles/';
         $token = csrf_token();
-        $del2 = '" method="POST" onsubmit="return confirm(\'Voulez-vous vraiment supprimé?\')"><input type="hidden" name="_token" value="'.$token.'"> <input type="hidden" name="_method" value="DELETE"> <button type="submit" class="btn btn-light text-danger"><i class="icon ion-md-trash"></i></button></form>';
+        $del2 = '" method="POST" style="display: contents;" onsubmit="return confirm(\'Voulez-vous vraiment supprimé?\')"><input type="hidden" name="_token" value="'.$token.'"> <input type="hidden" name="_method" value="DELETE"> <button type="submit" class="btn btn-light text-danger"><i class="icon ion-md-trash"></i></button></form>';
         
         if ($request->ajax()) {
             if($single == 0){
@@ -37,9 +38,15 @@ class SalleController extends Controller
             }
             return DataTables::of($salles)
                 ->addIndexColumn()
+                ->addColumn('createdat', function($row){
+                    return Carbon::parse($row->created_at)->diffForHumans();
+                })
                 ->addColumn('actions', function($row) use($del, $del2, $single){
                     if($single == 0){
-                        $actionBtn = ''.$del.$row->id.$del2;
+                        $phototag = '<a class="btnshowsallephoto btn btn-light text-info" data-salleid="'.$row->id.'" data-toggle="modal" data-target="#modalGallerySalle"><i class="icon ion-md-images" data-salleid="'.$row->id.'"></i></a>&nbsp;';
+                        $videotag = '<a href="" class="btn btn-light text-info"><i class="icon ion-md-videocam"></i></a>&nbsp;';
+                        $edittag = '&nbsp;<a href="" class="btn btn-light text-warning"><i class="icon ion-md-brush"></i></a>';
+                        $actionBtn = $phototag.$videotag.''.$del.$row->id.$del2.$edittag;
                     }else $actionBtn = "";
                     return $actionBtn;
                 })

@@ -55,12 +55,20 @@ use App\Http\Controllers\Api\photos_salle_salleController;
 |
 */
 
+Route::name('api.')->middleware(['auth:sanctum', 'verified'])->group(function () {
+
+});
+
 Route::name('api.')->group(function () {
     // Route::apiResource('roles', RoleController::class);
     // Route::apiResource('permissions', PermissionController::class);
-
+    
+    Route::post("/delete/photosalle", [PhotosSalleController::class, "delete_photosalle"]);
+    Route::get("/render/photo/salles", [PhotosSalleController::class, "render_photo_salle"]);
     Route::post("/make/view/annonce", [SalleController::class, "make_view_grow"]);
     Route::get("/typesalle", [TypeSalleController::class, "api_quartiersalle"]);
+    
+    Route::post("/upload/photosalle", [PhotosSalleController::class, "upload_photosalle"]);
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name(

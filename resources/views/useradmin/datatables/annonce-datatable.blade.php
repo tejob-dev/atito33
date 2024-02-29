@@ -18,20 +18,38 @@
         <link rel="stylesheet" href="/cssc/buttons.bootstrap4.min.css">
 
         <style>
+            </style>
+
+        <style>
             #table1 > thead:nth-child(1) {
                 display: none;
             }
-        </style>
-
-        <style>
             #table1 > thead > tr:nth-child(1) > th,
             #table1 > thead > tr:nth-child(2) > th{
-                border: none !important;
+                border-right: 0.5px solid gray !important;
+            }
+
+            #table1 > tbody > tr:nth-child(1) > td,
+            #table1 > tbody > tr:nth-child(2) > td{
+                border-right: 0.5px solid #eee !important;
+            }
+
+            #table1 > tbody > tr > td {
+                text-align: center;
+            }
+            
+            #table1 > tbody tr td:first-child {
+                /* Set the width of the first cell to cover both cells */
+                width: 50%; /* Adjust this value based on your table layout */
+            }
+
+            #table1 > tbody tr td:not(:first-child) {
+                /* Set the width of the first cell to cover both cells */
+                width: 25%; /* Adjust this value based on your table layout */
             }
         </style>
     </head>
     <body>
-        <div class="">
 
             <div class="card">
                 <div class="">
@@ -40,13 +58,13 @@
                         <table id="table1" class="table" style="margin: 0px 0px !important; width:100%;">
                             <thead>
                                 <tr>
-                                    <th class="text-left">
+                                    <th class="text-center">
                                         
                                     </th>
-                                    <th class="text-left">
+                                    <th class="text-center">
                                         
                                     </th>
-                                    <th class="text-left">
+                                    <th class="text-right">
                                         
                                     </th>
                                     
@@ -152,8 +170,22 @@
                     ajax: "/annonces/0/data",
                     columns: [
                         {data: 'nom_salle', name: 'nom_salle'},
-                        {data: 'adresse_salle', name: 'adresse_salle'},
-                        {data: 'tarif_salle', name: 'tarif_salle'},
+                        {data: 'createdat', name: 'createdat'},
+                        {data: 'actions', name: 'actions'},
+                    ],
+                    columnDefs: [
+                        {
+                            "targets": [0],
+                            "rowspan": 4
+                        },
+                        {
+                            "targets": [1],
+                            "colspan": 1
+                        },
+                        {
+                            "targets": [2],
+                            "rowspan": 1
+                        }
                     ],
                     language: {
                         url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/fr-FR.json',

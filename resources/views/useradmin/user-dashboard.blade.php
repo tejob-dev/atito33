@@ -9,6 +9,11 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <!--=============== css  ===============-->
+    <link rel="stylesheet" href="/cssc/app.css">
+    <link rel="stylesheet" href="/cssc/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/cssc/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/cssc/buttons.bootstrap4.min.css">
+
     <link type="text/css" rel="stylesheet" href="/css/plugins.css">
     <link type="text/css" rel="stylesheet" href="/css/style.css">
     <link type="text/css" rel="stylesheet" href="/css/dashboard-style.css">
