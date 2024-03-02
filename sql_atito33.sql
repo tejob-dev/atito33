@@ -71,11 +71,10 @@ CREATE TABLE IF NOT EXISTS `comodite_salle` (
   CONSTRAINT `comodite_salle_salle_id_foreign` FOREIGN KEY (`salle_id`) REFERENCES `salles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table atitodb3.comodite_salle : ~2 rows (environ)
+-- Listage des données de la table atitodb3.comodite_salle : ~5 rows (environ)
 INSERT INTO `comodite_salle` (`salle_id`, `comodite_id`) VALUES
-	(16, 10),
-	(16, 12),
-	(16, 11);
+	(21, 10),
+	(21, 11);
 
 -- Listage de la structure de table atitodb3. comptes
 CREATE TABLE IF NOT EXISTS `comptes` (
@@ -100,9 +99,9 @@ CREATE TABLE IF NOT EXISTS `comptes` (
   CONSTRAINT `comptes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table atitodb3.comptes : ~1 rows (environ)
+-- Listage des données de la table atitodb3.comptes : ~4 rows (environ)
 INSERT INTO `comptes` (`id`, `nom_compte`, `prenom_compte`, `telephone_compte`, `whatsapp_compte`, `adresse_compte`, `localisation_compte`, `nom_entreprise`, `siteweb_compte`, `activite_compte`, `description_compte`, `logo_entreprise`, `photo`, `user_id`, `created_at`, `updated_at`) VALUES
-	(6, 'Gohore', 'Thiery M', '0749402879', '0749402879', 'Abobo cote stade', NULL, 'ATITO GROUP', 'www.monsite.com', 'Infographe', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nostrum magnam nihil velit culpa porro atque fugit, totam, facere ex nam et laborum, ducimus tenetur aspernatur delectus facilis consectetur vero.', 'public/FC89kdwgZkbaRxq5dfuXcHUwJTYLaq30oPBOrK0z.png', 'public/AcUOl8FKrnxWnqpoJmnGKYGDvTADu5bKQtN4Lhsy.png', 2, '2023-12-01 14:32:07', '2024-02-03 14:11:29'),
+	(6, 'Gohore', 'Thiery M', '0749402879', '0749402879', 'Abobo cote stade', NULL, 'ATITO GROUP', 'www.monsite.com', 'Infographe', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nostrum magnam nihil velit culpa porro atque fugit, totam, facere ex nam et laborum, ducimus tenetur aspernatur delectus facilis consectetur vero.', 'public/FC89kdwgZkbaRxq5dfuXcHUwJTYLaq30oPBOrK0z.png', 'public/AcUOl8FKrnxWnqpoJmnGKYGDvTADu5bKQtN4Lhsy.png', 2, '2023-12-01 14:32:07', '2024-03-01 09:35:55'),
 	(8, 'TCHIMOU', 'Junior', '+2250747687857', '0707070808', 'Riviera 2', NULL, 'IZI GROUP', 'https://otakufr.co/episode/chiyu-mahou-no-machigatta-tsukaikata-05-vostfr/', 'Demarcheur Maison', NULL, 'public/1UJH8YubI7zJCpIJwfMRH6GLSJKz960bUM1VbBuz.png', 'public/2GHHodxfxJu1VfX5c9nm5D0EJH3euCkzPiFWijJC.png', 13, '2024-02-08 20:08:39', '2024-02-09 09:45:04'),
 	(9, 'Jathniel', 'Achi', '0708839761', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/cover.jpg', 'public/profile.png', 14, '2024-02-09 09:41:14', '2024-02-09 09:41:14'),
 	(10, 'GOHORE', 'THIERY', '0749402879', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'public/cover.jpg', 'public/profile.png', 15, '2024-02-09 17:45:34', '2024-02-09 17:45:34');
@@ -166,9 +165,7 @@ CREATE TABLE IF NOT EXISTS `info_user_salle` (
   CONSTRAINT `info_user_salle_salle_id_foreign` FOREIGN KEY (`salle_id`) REFERENCES `salles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table atitodb3.info_user_salle : ~3 rows (environ)
-INSERT INTO `info_user_salle` (`info_user_id`, `salle_id`) VALUES
-	(8, 16);
+-- Listage des données de la table atitodb3.info_user_salle : ~2 rows (environ)
 
 -- Listage de la structure de table atitodb3. info_user_ville
 CREATE TABLE IF NOT EXISTS `info_user_ville` (
@@ -369,9 +366,9 @@ CREATE TABLE IF NOT EXISTS `photos_salles` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table atitodb3.photos_salles : ~13 rows (environ)
+-- Listage des données de la table atitodb3.photos_salles : ~23 rows (environ)
 INSERT INTO `photos_salles` (`id`, `titre_image`, `description_image`, `photo`, `user_id`, `created_at`, `updated_at`) VALUES
 	(6, 'Bella salle', 'Différentiel de durabilité', 'public/GAnZSk9ZL4ZnHAfdYrvMJsTibeAbgVEmqryAINwI.jpg', NULL, '2023-12-01 14:09:17', '2023-12-01 14:09:17'),
 	(7, 'Room principal', 'Une fois que vous avez installé le client Zoom, cliquez ci-dessous sur', 'public/vz8LUnzdSAxyW4cdVIRroOQzyY9i1t1AbDGyNek0.jpg', NULL, '2023-12-01 14:11:41', '2023-12-01 14:11:41'),
@@ -383,9 +380,19 @@ INSERT INTO `photos_salles` (`id`, `titre_image`, `description_image`, `photo`, 
 	(14, 'Image 26', 'Image 26', 'public/ElOEDwZ9fGBWKdzr3fmDTLUCHn57l8IM87Za4dm5.png', NULL, '2024-01-27 13:43:37', '2024-01-27 13:43:37'),
 	(16, 'Image 27', 'Image 27', 'public/mJNWGoIkMv9YiHGUMDLsql5fhJFIWiDUTI9EipRN.png', NULL, '2024-01-27 13:45:16', '2024-01-27 13:45:16'),
 	(17, 'Image 266', 'Ok', 'public/JBGNpoHK2VUZN8R8idMNCtadKakva0N4y6uecsfk.jpg', NULL, '2024-01-27 17:44:19', '2024-01-27 17:44:19'),
-	(18, 'IMG2', 'premiere 1', 'public/m4HCj3WEyaDVMsi5jKop0NjcttYdRXZrQN82ByQi.jpg', NULL, '2024-02-09 11:43:05', '2024-02-09 11:43:05'),
-	(19, 'IMG3', 'premiere 2', 'public/flpY6VOdnCEdU78I0NrFI30s7icPjiDtcDAoSRwn.jpg', NULL, '2024-02-09 11:43:33', '2024-02-09 11:43:33'),
-	(20, 'IMG4', 'premiere 4', 'public/KjC5ftC9tfZtd0nmz8EVjpCWl7kKQQHvk9pK7OdV.jpg', NULL, '2024-02-09 11:43:57', '2024-02-09 11:43:57');
+	(21, 'Capture d’écran 2023-10-08 112519.png', 'Pas de description', 'public/3r1BQ4k2rIojH9ZwmSLhcN4S11KrYoThborqrW7W.png', NULL, '2024-02-29 19:23:32', '2024-02-29 19:23:32'),
+	(22, 'Capture d’écran 2023-09-23 204338.png', 'Pas de description', 'public/cgNv5Pf2qin76riWk8LjjP8of2JIpjAuyhYJ9FAy.png', NULL, '2024-02-29 19:25:13', '2024-02-29 19:25:13'),
+	(23, 'Capture d’écran 2023-10-08 112519.png', 'Pas de description', 'public/SNWIHjcNE5LQTIHQtC5Di54MNwsUu5mWMnK66Wmx.png', NULL, '2024-02-29 19:25:56', '2024-02-29 19:25:56'),
+	(24, 'CalendarCapture d’écran 2023-08-29 111602.png', 'Pas de description', 'public/IsGa636jextnfl7tzmth0EBtrce32h0Nz9deHrID.png', NULL, '2024-02-29 19:26:31', '2024-02-29 19:26:31'),
+	(25, 'CalendarCapture d’écran 2023-08-29 111602.png', 'Pas de description', 'public/BtU3i98B207Ynokwky3OX8BVDGDqXcbzIcpveUuf.png', NULL, '2024-02-29 19:31:24', '2024-02-29 19:31:24'),
+	(31, 'Capture d’écran 2023-10-08 112519.png', 'Pas de description', 'public/LK26oOfv9ZCMHaoW7RPlVn05FDIzVo2OKCkp1gM0.png', NULL, '2024-03-01 09:10:30', '2024-03-01 09:10:30'),
+	(33, 'Capture d’écran 2023-10-11 234034.png', 'Pas de description', 'public/t5hAjcOvbEQRkdywzYPGnpEG0uOXW8Ct7XCJGW5u.png', NULL, '2024-03-01 09:12:17', '2024-03-01 09:12:17'),
+	(34, 'Capture d’écran 2023-08-16 180854.png', 'Pas de description', 'public/oigAnxB9FKZUuGJ5edhIUrU9uj2pVxFbmAfVIPHf.png', NULL, '2024-03-01 09:13:52', '2024-03-01 09:13:52'),
+	(38, 'Capture d’écran 2023-09-16 202556.png', 'Pas de description', 'public/ngNLEMT2k9TFhiIiDs0JWz4g3xClzR4zVJCsAfce.png', NULL, '2024-03-01 15:02:10', '2024-03-01 15:02:10'),
+	(40, '305698651_393821429573140_1769124855558658152_n.jpg', 'Pas de description', 'public/q9XNfRiQQu7fAJk78iE5d57VmVapS5t7Wf29M9gE.jpg', NULL, '2024-03-01 20:30:54', '2024-03-01 20:30:54'),
+	(41, '305974661_393821509573132_4293377364926495287_n.jpg', 'Pas de description', 'public/9NJU98GZFowheHC2spvS75dvlmrLQfqGINeYxke3.jpg', NULL, '2024-03-01 20:30:59', '2024-03-01 20:30:59'),
+	(42, '306071106_393821469573136_6103260892326224125_n.jpg', 'Pas de description', 'public/LWRnv6jNryuzw5M6PnG6FOChnKk5GSyKKQWMVsBR.jpg', NULL, '2024-03-01 20:31:05', '2024-03-01 20:31:05'),
+	(43, '306152825_393821549573128_8364441834655653454_n.jpg', 'Pas de description', 'public/FbKDuNM6pR4tQczAGpcZLEqPfV9OysiIfkUyy81e.jpg', NULL, '2024-03-01 20:31:10', '2024-03-01 20:31:10');
 
 -- Listage de la structure de table atitodb3. photos_salle_salle
 CREATE TABLE IF NOT EXISTS `photos_salle_salle` (
@@ -397,11 +404,7 @@ CREATE TABLE IF NOT EXISTS `photos_salle_salle` (
   CONSTRAINT `photos_salle_salle_salle_id_foreign` FOREIGN KEY (`salle_id`) REFERENCES `salles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table atitodb3.photos_salle_salle : ~2 rows (environ)
-INSERT INTO `photos_salle_salle` (`photos_salle_id`, `salle_id`) VALUES
-	(18, 16),
-	(19, 16),
-	(20, 16);
+-- Listage des données de la table atitodb3.photos_salle_salle : ~4 rows (environ)
 
 -- Listage de la structure de table atitodb3. quartiers
 CREATE TABLE IF NOT EXISTS `quartiers` (
@@ -610,11 +613,11 @@ CREATE TABLE IF NOT EXISTS `salles` (
   CONSTRAINT `salles_commune_id_foreign` FOREIGN KEY (`commune_id`) REFERENCES `communes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `salles_quartier_id_foreign` FOREIGN KEY (`quartier_id`) REFERENCES `quartiers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `salles_ville_id_foreign` FOREIGN KEY (`ville_id`) REFERENCES `villes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table atitodb3.salles : ~1 rows (environ)
 INSERT INTO `salles` (`id`, `type`, `nom_salle`, `adresse_salle`, `presentation_salle`, `capacite_salle`, `tarif_salle`, `acces_salle`, `logistique_salle`, `telephone`, `tel_whatsapp`, `email_salle`, `facebook_salle`, `site_internet`, `photo`, `date_salle`, `user_id`, `commune_id`, `ville_id`, `quartier_id`, `validated`, `promoted`, `created_at`, `updated_at`) VALUES
-	(16, NULL, 'Odace Consulting', '@Odace Consult Abidjan - Plateau Face BGFI BanK', '𝐍𝐄𝐅𝐄𝐑𝐓𝐈𝐓𝐈 - Son aura vous porte, vous transcende lors de vos speechs… \r\nElle porte bien son nom, 𝐍𝐄𝐅𝐄𝐑𝐓𝐈𝐓𝐈. Reine ou Roi, elle offre à votre auditoire une vue pleine sur vos présentations ou formations afin qu’il ne s’en détourne pas.', 150, '200000', NULL, NULL, '+225 07 89 41 42 42', '+225 07 89 41 42 42', 'contact@odaceconsulting.com', 'https://www.facebook.com/odaceconsulting', 'https://www.facebook.com/odaceconsulting', NULL, '2024-02-16 00:00:00', NULL, 21, 31, 11, 1, 0, '2024-02-09 11:33:51', '2024-02-16 18:59:21');
+	(21, NULL, 'SPACE BET', 'JMK Consulting Company Angré 8e tranche face King Deco', 'Quelques descriptions', 100, NULL, NULL, NULL, '+2250747687857', '070747687857', 'tchimouj66@gmail.com', 'Other', 'facebook.vom?=070747687857', NULL, NULL, NULL, 21, 31, 11, 0, 0, '2024-03-02 22:30:04', '2024-03-02 22:30:04');
 
 -- Listage de la structure de table atitodb3. salle_type_salle
 CREATE TABLE IF NOT EXISTS `salle_type_salle` (
@@ -626,13 +629,9 @@ CREATE TABLE IF NOT EXISTS `salle_type_salle` (
   CONSTRAINT `salle_type_salle_type_salle_id_foreign` FOREIGN KEY (`type_salle_id`) REFERENCES `type_salles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table atitodb3.salle_type_salle : ~7 rows (environ)
+-- Listage des données de la table atitodb3.salle_type_salle : ~6 rows (environ)
 INSERT INTO `salle_type_salle` (`type_salle_id`, `salle_id`) VALUES
-	(8, 16),
-	(9, 16),
-	(10, 16),
-	(12, 16),
-	(11, 16);
+	(9, 21);
 
 -- Listage de la structure de table atitodb3. salle_video_salle
 CREATE TABLE IF NOT EXISTS `salle_video_salle` (
@@ -644,9 +643,7 @@ CREATE TABLE IF NOT EXISTS `salle_video_salle` (
   CONSTRAINT `salle_video_salle_video_salle_id_foreign` FOREIGN KEY (`video_salle_id`) REFERENCES `video_salles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table atitodb3.salle_video_salle : ~1 rows (environ)
-INSERT INTO `salle_video_salle` (`video_salle_id`, `salle_id`) VALUES
-	(6, 16);
+-- Listage des données de la table atitodb3.salle_video_salle : ~2 rows (environ)
 
 -- Listage de la structure de table atitodb3. sessions
 CREATE TABLE IF NOT EXISTS `sessions` (
@@ -661,12 +658,9 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table atitodb3.sessions : ~4 rows (environ)
+-- Listage des données de la table atitodb3.sessions : ~3 rows (environ)
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('6cInctVd6MzodSpynmIDqDT4BoTsOaBd772vcSCc', NULL, '192.168.1.6', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMFhsZkZTZ1R6Sk4ycWd3TzZmSFlWendNc2FTSkNUdEUzWm55QUFOciI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjM6Imh0dHA6Ly8xOTIuMTY4LjEuNjozMDAwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1708186904),
-	('hsGKHf9hXsJajr0quLK96dmN6dLpJN8PkiOGT1sF', 2, '192.168.1.4', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoicEdzM2xlWWJ6Y3lXWllZblJibjVMSW94ZlVNREVQUHQyUEJBMEpHUSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDU6Imh0dHA6Ly8xOTIuMTY4LjEuNjozMDAwL3VzZXItZGFzaGJvYXJkLXByb2ZpbCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1708192761),
-	('IJkiGCjL79N66jdYI9S6nJMqcKrvT6V2MmPCZN3Z', NULL, '192.168.1.6', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTWc2UDR3bkdEUm90YkNaZGpNcG11NU5xVjBTdzFId2N6OTZsVUQ1NiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjM6Imh0dHA6Ly8xOTIuMTY4LjEuNjozMDAwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1708189835),
-	('UZnQythz0kMghEMS9npf0K0iEkG3oVhoWEyT0NzF', 1, '192.168.1.4', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoid3RITTdtRHI4NE5GZFRRbk5acDF3YTA3RmJWWkZlZ2lEZm9nSTNtaCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xOTIuMTY4LjEuNjozMDAwL3NhbGxlcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1708192950);
+	('bZ872LvrvM3r3Y9Adv2jaceJAqJ3sic1DLuWNPeM', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoienRIOTlEQWVweXpkMkZUYklrUnp0SndBUXE2V012MXNhSzhkckE3OSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly9hdGl0bzMzLnRlc3QvYWRtaW5pc3RyYXRpb24iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1709422900);
 
 -- Listage de la structure de table atitodb3. texte_jours
 CREATE TABLE IF NOT EXISTS `texte_jours` (
@@ -724,8 +718,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 -- Listage des données de la table atitodb3.users : ~5 rows (environ)
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'M Brou', 'admin@admin.com', '2023-11-28 14:12:11', '$2y$10$IEyru7R76F0xiIDEmf0aAuCqOVFNIkgDU6IAjzL.9gnMypx2ulTxy', 'svfZeZJEWTaduTicNHSF3d8Pdy4cClBpLMc7WO09bB47j3S4K0NXcFzmop47', '2023-11-28 14:12:11', '2023-12-05 11:47:00'),
-	(2, 'Gohoure', 'usertest@dom.test', '2023-11-28 14:12:14', '$2y$10$IEyru7R76F0xiIDEmf0aAuCqOVFNIkgDU6IAjzL.9gnMypx2ulTxy', 'nWEtWK86ZZPBsuUPyJghKtCbCEO9adL0d2NudmDxJTf60ral1Dn5z9KUzcV4', '2023-11-28 14:12:14', '2024-02-03 14:08:18'),
+	(1, 'M Brou', 'admin@admin.com', '2023-11-28 14:12:11', '$2y$10$IEyru7R76F0xiIDEmf0aAuCqOVFNIkgDU6IAjzL.9gnMypx2ulTxy', 'rp9Vmlw05c6jfNdItn7Xr3sg4awEESFUaF8wdHsKPv8uafT2WytNBeSXTmna', '2023-11-28 14:12:11', '2023-12-05 11:47:00'),
+	(2, 'Gohoure', 'usertest@dom.test', '2023-11-28 14:12:14', '$2y$10$IEyru7R76F0xiIDEmf0aAuCqOVFNIkgDU6IAjzL.9gnMypx2ulTxy', 'Sx4hiLD8QS4I4aiZdh6i8TapUJlW462CxtlsuDttrgmGots2qhs5vtqvQc8B', '2023-11-28 14:12:14', '2024-02-03 14:08:18'),
 	(13, 'TCHIMOU Junior', 'tchimouj66@gmail.com', NULL, '$2y$10$9YiHnxGTAW8I4zwi2Fis8eORz/1qOjyTo8MvM8AmRBTwyBIL6.CKK', '6p75wqF1hCLBpWCfG2gPAysxerFTlBJqj48xgqIolZy7U24EuqA3pKKjEelU', '2024-02-08 20:08:39', '2024-02-08 20:08:39'),
 	(14, 'Jathniel Achi', 'achijathi@gmail.com', NULL, '$2y$10$paUMnIk.raYGxbh2We7OjOjzhjvHghG2.AmJGsr14IusLWyTTB4cq', NULL, '2024-02-09 09:41:14', '2024-02-09 09:41:14'),
 	(15, 'GOHORE THIERY', 'goorebis@gmail.com', NULL, '$2y$10$zaulQMQIyVuaTze8.sgd9.P5r73RK02I5JF9aTgaVrPjNB7ZyYiYm', 'PMtAhEhZblHpFA58sTBViofbc9eGBm4vHAUKg00oudOPmQUbHyvuMRK8jmXf', '2024-02-09 17:45:34', '2024-02-09 17:45:34');
@@ -739,11 +733,15 @@ CREATE TABLE IF NOT EXISTS `video_salles` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table atitodb3.video_salles : ~1 rows (environ)
+-- Listage des données de la table atitodb3.video_salles : ~4 rows (environ)
 INSERT INTO `video_salles` (`id`, `lien_video`, `photo`, `user_id`, `created_at`, `updated_at`) VALUES
-	(6, 'https://youtu.be/KVgHVUa_Vvk?si=PE67BjwXRhk9wyh_', 'public/dPJdjYLyvz9QYgba0rCHASIk1oZKPau1zKlmUgMB.jpg', NULL, '2023-12-01 14:30:12', '2023-12-01 14:30:12');
+	(6, 'https://youtu.be/KVgHVUa_Vvk?si=PE67BjwXRhk9wyh_', 'public/dPJdjYLyvz9QYgba0rCHASIk1oZKPau1zKlmUgMB.jpg', NULL, '2023-12-01 14:30:12', '2023-12-01 14:30:12'),
+	(8, 'https://www.youtube.com/watch?v=zQPS6qrAC6k', 'public/tnOMQ13NRpN0wK3kkr82WusxQnjFX7FjXApnPxEF.png', NULL, '2024-03-01 11:59:57', '2024-03-01 11:59:57'),
+	(9, 'https://www.youtube.com/watch?v=zQPS6qrAC6k', 'public/tnOMQ13NRpN0wK3kkr82WusxQnjFX7FjXApnPxEF.png', NULL, '2024-03-01 12:01:06', '2024-03-01 12:01:06'),
+	(25, 'https://www.youtube.com/watch?v=pxalC4IZb4k', 'public/ngNLEMT2k9TFhiIiDs0JWz4g3xClzR4zVJCsAfce.png', NULL, '2024-03-01 15:03:09', '2024-03-01 15:03:09'),
+	(26, 'https://www.youtube.com/watch?v=k-SM7b_OmbI', 'public/q9XNfRiQQu7fAJk78iE5d57VmVapS5t7Wf29M9gE.jpg', NULL, '2024-03-01 20:32:02', '2024-03-01 20:32:02');
 
 -- Listage de la structure de table atitodb3. villes
 CREATE TABLE IF NOT EXISTS `villes` (
@@ -831,11 +829,9 @@ CREATE TABLE IF NOT EXISTS `visites` (
   PRIMARY KEY (`id`),
   KEY `visites_salle_id_foreign` (`salle_id`),
   CONSTRAINT `visites_salle_id_foreign` FOREIGN KEY (`salle_id`) REFERENCES `salles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table atitodb3.visites : ~3 rows (environ)
-INSERT INTO `visites` (`id`, `counter`, `salle_id`, `created_at`, `updated_at`) VALUES
-	(10, 4, 16, '2024-02-16 16:29:44', '2024-02-17 17:55:12');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
