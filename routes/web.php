@@ -35,6 +35,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 */
 
 Route::get('/', function () {
+    if(!empty(auth()->user())){
+        
+        return redirect("/administration");
+
+    }
     return view('welcome');
 });
 
@@ -68,6 +73,11 @@ Route::prefix('/')
     ->group(function () {
         Route::get('/user-dashboard', [UserDashboardController::class, "index"]);
         Route::get('/user-dashboard-profil', function(){
+            if(!empty(auth()->user())){
+        
+                return redirect("/administration");
+        
+            }
             return view("useradmin.dashboard-myprofile");
         });
         Route::get('/user-dashboard-edit-profil', function(){
