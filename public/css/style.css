@@ -4082,6 +4082,24 @@ section.single-par2  .scroll-down-wrap{
 	width: 50%;
 	z-index: 15;
 }
+.popup-corou-info 
+{
+	float: right;
+	font-weight: 600;
+	position: absolute;
+	top: 5%;
+	right: 3.5%;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 50%;
+	color: #fff;
+	cursor: pointer;
+	box-shadow: 0px 0px 0px 4px rgba(255,255,255,0.4);
+	opacity: 0;
+	transition: all 200ms linear;
+}
+
 .show-info span {
 	float: right;
 	font-weight: 600;

@@ -63,7 +63,7 @@
             success: function(response) {
                 // Handle success response
                 $.ajax({
-                    url: '/api/render/photo/salles?salle_id=' + salleId,
+                    url: '/api/render/photo/salles?salle_id=' + salleId+'&u_id={{$authuser}}',
                     method: 'GET',
                     success: function(data) {
                         // Handle successful response
@@ -102,13 +102,14 @@
                     data: {
                         "_token": "{{csrf_token()}}",
                         photoId: photoId,
-                        salleId: salleId
+                        salleId: salleId,
+                        uid: "{{$authuser}}",
                     },
                     success: function(response) {
                         // Handle success response
                         //console.log('Request sent successfully:', response);
                         $.ajax({
-                            url: '/api/render/photo/salles?salle_id=' + salleId,
+                            url: '/api/render/photo/salles?salle_id=' + salleId+'&u_id={{$authuser}}',
                             method: 'GET',
                             success: function(data) {
                                 // Handle successful response

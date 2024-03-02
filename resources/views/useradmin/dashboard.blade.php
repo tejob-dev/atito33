@@ -480,6 +480,22 @@
             </div>
         </div>
     </div>
+    
+    <div class="modal fade" id="modalVideoSalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalCenterTitle">VIDEO D'ANNONCE</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="video-atito-content" class="modal-content">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
     <!--=============== scripts  ===============-->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/charts.js"></script>
@@ -513,11 +529,28 @@
                         let salleId = $(e.target).data("salleid"); // Change this to the actual salle_id value you want to pass
                         console.log(salleId);
                         $.ajax({
-                            url: '/api/render/photo/salles?salle_id=' + salleId,
+                            url: '/api/render/photo/salles?salle_id=' + salleId+'&u_id={{auth()->user()->id}}',
                             method: 'GET',
                             success: function(data) {
                                 // Handle successful response
                                 $("#photo-atito-content").html(data);
+                            },
+                            error: function(xhr, status, error) {
+                                // Handle error
+                                console.error(xhr.responseText);
+                            }
+                        });
+                    });
+                    $('.btnshowsvideo').on('click', function(e) {
+                        console.log(e);
+                        let salleId = $(e.target).data("salleid"); // Change this to the actual salle_id value you want to pass
+                        console.log(salleId);
+                        $.ajax({
+                            url: '/api/render/video/salles?salle_id=' + salleId+'&u_id={{auth()->user()->id}}',
+                            method: 'GET',
+                            success: function(data) {
+                                // Handle successful response
+                                $("#video-atito-content").html(data);
                             },
                             error: function(xhr, status, error) {
                                 // Handle error

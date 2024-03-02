@@ -55,7 +55,7 @@
             <!--  add new  btn -->
             @if(auth()->user())
             <div class="add-list_wrap">
-                <a href="/user-dashboard-profil" class="add-list color-bg" style="background-color: white;color: black;border: 1px solid;padding: 0px 3px;">
+                <a href="#" class="add-list color-bg" style="background-color: white;color: black;border: 1px solid;padding: 0px 3px;">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
@@ -371,7 +371,7 @@
                                     </div>
                                     <div class="geodir-category-content fl-wrap">
                                         <h3 class="title-sin_item"><a href="/voir/detail/{{$annonce->id}}/annonce">{{$annonce->nom_salle}}</a></h3>
-                                        <div class="geodir-category-content_price">{{$annonce->tarif_salle}} Fcfa</div>
+                                        <div class="geodir-category-content_price">{{empty($annonce->tarif_salle)?"NOUS CONSULTEZ !":$annonce->tarif_salle." FCFA"}}</div>
                                         <p>{{substr($annonce->presentation_salle, 0, 150)}}</p>
                                         <div class="geodir-category-content-details">
                                             <ul>

@@ -62,9 +62,12 @@ Route::name('api.')->middleware(['auth:sanctum', 'verified'])->group(function ()
 Route::name('api.')->group(function () {
     // Route::apiResource('roles', RoleController::class);
     // Route::apiResource('permissions', PermissionController::class);
+    Route::post("/validate/videosalle", [VideoSalleController::class, "validate_videosalle"]);
+    Route::post("/delete/videosalle", [VideoSalleController::class, "delete_videosalle"]);
     
     Route::post("/delete/photosalle", [PhotosSalleController::class, "delete_photosalle"]);
     Route::get("/render/photo/salles", [PhotosSalleController::class, "render_photo_salle"]);
+    Route::get("/render/video/salles", [PhotosSalleController::class, "render_video_salle"]);
     Route::post("/make/view/annonce", [SalleController::class, "make_view_grow"]);
     Route::get("/typesalle", [TypeSalleController::class, "api_quartiersalle"]);
     

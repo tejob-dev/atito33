@@ -44,9 +44,9 @@ class SalleController extends Controller
                 ->addColumn('actions', function($row) use($del, $del2, $single){
                     if($single == 0){
                         $phototag = '<a class="btnshowsallephoto btn btn-light text-info" data-salleid="'.$row->id.'" data-toggle="modal" data-target="#modalGallerySalle"><i class="icon ion-md-images" data-salleid="'.$row->id.'"></i></a>&nbsp;';
-                        $videotag = '<a href="" class="btn btn-light text-info"><i class="icon ion-md-videocam"></i></a>&nbsp;';
-                        $edittag = '&nbsp;<a href="" class="btn btn-light text-warning"><i class="icon ion-md-brush"></i></a>';
-                        $actionBtn = $phototag.$videotag.''.$del.$row->id.$del2.$edittag;
+                        $videotag = '<a href="" data-salleid="'.$row->id.'" class="btnshowsvideo btn btn-light text-info" data-toggle="modal" data-target="#modalVideoSalle"><i class="icon ion-md-videocam" data-salleid="'.$row->id.'"></i></a>&nbsp;';
+                        $edittag = '&nbsp;<a href="/user-annonce-detail/'.$row->id.'" class="btn btn-light text-warning"><i class="icon ion-md-brush"></i></a>';
+                        $actionBtn = $phototag.$videotag.$edittag.''.$del.$row->id.$del2;
                     }else $actionBtn = "";
                     return $actionBtn;
                 })
@@ -58,6 +58,7 @@ class SalleController extends Controller
 
     public function detail_annonce(Request $request, $salle){
 
+        //$salleid = Salle::findOrFail($salle);
         $salleid = $salle;
 
         return view("frontend.deatilannonce", compact("salleid"));
@@ -439,7 +440,28 @@ class SalleController extends Controller
 
             $this->authorize('update', $salle);
 
-            $validated = $request->validated();
+            $validated = $request->validate([
+                'typesalle_id' => ['required', 'max:255', 'string'],
+                'nom_salle' => ['required', 'max:255', 'string'],
+                'adresse_salle' => ['required', 'max:255', 'string'],
+                'presentation_salle' => ['required', 'string'],
+                'capacite_salle' => ['required', 'numeric'],
+                'telephone' => ['required', 'max:255', 'string'],
+                'email_salle' => ['required', 'max:255', 'string'],
+                'tarif_salle' => ['nullable', 'max:255', 'string'],
+                'tel_whatsapp' => ['required', 'max:255', 'string'],
+                'facebook_salle' => ['required', 'max:255', 'string'],
+                'site_internet' => ['required', 'max:255', 'string'],
+                'photo' => ['image', 'nullable'],
+                'commune_id' => ['required', 'exists:communes,id'],
+                'ville_id' => ['required', 'exists:villes,id'],
+                'quartier_id' => ['nullable', 'exists:quartiers,id'],
+                'comodite' => ['required', 'max:255', 'array'],
+                'type' => ['nullable', 'max:255', 'string'],
+                'acces_salle' => ['nullable', 'max:255', 'string'],
+                'logistique_salle' => ['nullable', 'max:255', 'string'],
+                'date_salle' => ['nullable', 'date'],
+            ]);
 
             if ($request->hasFile('photo')) {
                 if ($salle->photo) {
@@ -449,24 +471,108 @@ class SalleController extends Controller
                 $validated['photo'] = $request->file('photo')->store('public');
             }
 
-            $validated["user_id"] = $request->user_id;
+            ///$validated["user_id"] = $request->user_id;
+            $data = collect($validated)->only([
+                'nom_salle',
+                'adresse_salle',
+                'presentation_salle',
+                'capacite_salle',
+                'telephone',
+                'email_salle',
+                'tarif_salle',
+                'tel_whatsapp',
+                'facebook_salle',
+                'site_internet',
+                'photo',
+                'commune_id',
+                'ville_id',
+                'quartier_id',
+                ])->all();
+
+               // dd($data);
+            
+            if ($request->has('typesalle_id')) {
+                $lidata = $salle->typeSalles->pluck("id")->toArray();
+                $salle->typeSalles()->detach($lidata);
+                $salle->typeSalles()->attach($request->typesalle_id, []);
+            }
+            
+            if ($request->has('comodite')) {
+                $lidata = $salle->comodites->pluck("id")->toArray();
+                $salle->comodites()->detach($lidata);
+                if(sizeof($request->comodite) > 0){
+                    $salle->comodites()->attach($request->comodite, []);
+                }
+            }
     
-            $salle->update($validated);
+            $salle->update($data);
 
             return redirect()->back();
         }
 
         $this->authorize('create', Salle::class);
 
-        $validated = $request->validated();
+        //dd($request->all());
 
+        $validated = $request->validate([
+            'typesalle_id' => ['required', 'max:255', 'string'],
+            'nom_salle' => ['required', 'max:255', 'string'],
+            'adresse_salle' => ['required', 'max:255', 'string'],
+            'presentation_salle' => ['required', 'string'],
+            'capacite_salle' => ['required', 'numeric'],
+            'telephone' => ['required', 'max:255', 'string'],
+            'email_salle' => ['required', 'max:255', 'string'],
+            'tarif_salle' => ['nullable', 'max:255', 'string'],
+            'tel_whatsapp' => ['required', 'max:255', 'string'],
+            'facebook_salle' => ['required', 'max:255', 'string'],
+            'site_internet' => ['required', 'max:255', 'string'],
+            'photo' => ['image', 'nullable'],
+            'commune_id' => ['required', 'exists:communes,id'],
+            'ville_id' => ['required', 'exists:villes,id'],
+            'quartier_id' => ['nullable', 'exists:quartiers,id'],
+            'comodite' => ['required', 'max:255', 'array'],
+            'type' => ['nullable', 'max:255', 'string'],
+            'acces_salle' => ['nullable', 'max:255', 'string'],
+            'logistique_salle' => ['nullable', 'max:255', 'string'],
+            'date_salle' => ['nullable', 'date'],
+        ]);
+
+        //dd($validated);
+        
         if ($request->hasFile('photo')) {
             $validated['photo'] = $request->file('photo')->store('public');
         }
+        
+        //$validated["user_id"] = $request->user_id;
+        
+        $data = collect($validated)->only([
+            'nom_salle',
+            'adresse_salle',
+            'presentation_salle',
+            'capacite_salle',
+            'telephone',
+            'email_salle',
+            'tarif_salle',
+            'tel_whatsapp',
+            'facebook_salle',
+            'site_internet',
+            'photo',
+            'commune_id',
+            'ville_id',
+            'quartier_id',
+            ])->all();
 
-        $validated["user_id"] = $request->user_id;
-
-        $salle = Salle::create($validated);
+        $salle = Salle::create($data);
+        
+        if ($request->has('typesalle_id')) {
+            $salle->typeSalles()->attach($request->typesalle_id, []);
+        }
+        
+        if ($request->has('comodite')) {
+            if(sizeof($request->comodite) > 0){
+                $salle->comodites()->attach($request->comodite, []);
+            }
+        }
 
         auth()->user()->compte->salles()->attach($salle->id);
 
@@ -580,6 +686,10 @@ class SalleController extends Controller
 
         $validated = $request->validated();
 
+        if ($request->hasFile('photo')) {
+            $validated['photo'] = $request->file('photo')->store('public');
+        }
+
         $salle = Salle::create($validated);
 
         return redirect()
@@ -623,11 +733,40 @@ class SalleController extends Controller
      * @param \App\Models\Salle $salle
      * @return \Illuminate\Http\Response
      */
-    public function update(SalleUpdateRequest $request, Salle $salle)
+    public function update(Request $request, Salle $salle)
     {
         $this->authorize('update', $salle);
 
-        $validated = $request->validated();
+        $validated = $request->validate([
+            'type' => ['nullable', 'max:255', 'string'],
+            'nom_salle' => ['required', 'max:255', 'string'],
+            'adresse_salle' => ['required', 'max:255', 'string'],
+            'presentation_salle' => ['nullable', 'max:255', 'string'],
+            'capacite_salle' => ['required', 'numeric'],
+            'tarif_salle' => ['nullable', 'max:255', 'string'],
+            'acces_salle' => ['nullable', 'max:255', 'string'],
+            'logistique_salle' => ['nullable', 'max:255', 'string'],
+            'telephone' => ['nullable', 'max:255', 'string'],
+            'tel_whatsapp' => ['nullable', 'max:255', 'string'],
+            'email_salle' => ['nullable', 'max:255', 'string'],
+            'facebook_salle' => ['nullable', 'max:255', 'string'],
+            'site_internet' => ['nullable', 'max:255', 'string'],
+            'date_salle' => ['nullable', 'date'],
+            'validated' => ['nullable', 'max:255', 'string'],
+            'promoted' => ['nullable', 'max:255', 'string'],
+            'photo' => ['nullable'],
+            'commune_id' => ['nullable', 'exists:communes,id'],
+            'ville_id' => ['nullable', 'exists:villes,id'],
+            'quartier_id' => ['nullable', 'exists:quartiers,id'],
+        ]);
+
+        if ($request->hasFile('photo')) {
+            dd($request->photo);
+            if ($salle->photo) {
+                Storage::delete($salle->photo);
+            }
+            $validated['photo'] = $request->file('photo')->store('public');
+        }
 
         $salle->update($validated);
 

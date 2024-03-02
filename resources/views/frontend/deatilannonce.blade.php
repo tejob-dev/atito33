@@ -53,7 +53,7 @@
                 <!--  add new  btn -->
                 @if(auth()->user())
                 <div class="add-list_wrap">
-                    <a href="/user-dashboard-profil" class="add-list color-bg" style="background-color: white;color: black;border: 1px solid;padding: 0px 3px;">
+                    <a href="#" class="add-list color-bg" style="background-color: white;color: black;border: 1px solid;padding: 0px 3px;">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
@@ -175,7 +175,7 @@
                             <div class="slick-slide-item">
                                 <div class="box-item">
                                     <img  src="{{ asset('storage/'.str_replace('public/', '', $sallephoto->photo)) }}"   alt="photos de la salles">
-                                    <a href="{{ asset('storage/'.str_replace('public/', '', $sallephoto->photo)) }}" class="gal-link popup-image">
+                                    <a href="{{ asset('storage/'.str_replace('public/', '', $sallephoto->photo)) }}" class="gal-link popup-image popup-corou-info ">
                                         <i class="far fa-search-plus"  ></i></a>
                                     <div class="show-info">
                                         <span><i class="fas fa-info"></i></span>
@@ -276,11 +276,11 @@
                                                 </div>
                                             </div>
                                             <div class="list-single-header-footer fl-wrap">
-                                                <div class="list-single-header-price" data-propertyprise=""><strong>Forfait dès:</strong>{{$currentSalle->tarif_salle}} FCFA</div>
+                                                <div class="list-single-header-price" data-propertyprise=""><strong>Forfait dès:</strong>{{empty($currentSalle->tarif_salle)?"NOUS CONSULTEZ !":$currentSalle->tarif_salle." FCFA"}}</div>
                                                 <div class="list-single-header-date"><span>Date de poste:</span>{{ Carbon\Carbon::parse($currentSalle->created_date)->format("d/m/Y") }}</div>
                                                 <div class="list-single-stats">
                                                     <ul class="no-list-style">
-                                                        <li><span class="viewed-counter"><i class="fas fa-eye"></i> Visites -  {{ optional(optional($currentSalle->visites)->first())->counter??'0' }} </span></li>
+                                                        @if( (optional(optional($currentSalle->visites)->first())->counter??0) > 50 ) <li><span class="viewed-counter"><i class="fas fa-eye"></i> Visites :  {{ optional(optional($currentSalle->visites)->first())->counter??'0' }} </span></li> @endif
                                                         <!-- <li><span class="bookmark-counter"><i class="fas fa-heart"></i> Bookmark -  24 </span></li> -->
                                                     </ul>
                                                 </div>
@@ -603,7 +603,7 @@
                                                 </div>
                                                 <div class="geodir-category-content fl-wrap">
                                                     <h3 class="title-sin_item"><a href="/voir/detail/{{$itemsc->id}}/annonce">{{$itemsc->nom_salle}}</a></h3>
-                                                    <div class="geodir-category-content_price">{{$itemsc->tarif_salle}},OO FCFA</div>
+                                                    <div class="geodir-category-content_price">{{empty($itemsc->tarif_salle)?"NOUS CONSULTEZ !":$itemsc->tarif_salle." FCFA"}}</div>
                                                     <p>{{$itemsc->presentation_salle}}</p>
                                                     
                                                     

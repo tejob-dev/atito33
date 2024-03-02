@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
-
+        //dd($request->method());
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
 
@@ -30,6 +30,16 @@ class RedirectIfAuthenticated
 
                 return redirect(RouteServiceProvider::HOME);
             }
+        }
+
+        if(preg_match('/\/login/',  $request->url()) && $request->method() == "GET"){
+
+            return redirect("/");
+
+        }else if(preg_match('/\/register/',  $request->url()) && $request->method() == "GET"){
+
+            return redirect("/");
+
         }
 
         return $next($request);

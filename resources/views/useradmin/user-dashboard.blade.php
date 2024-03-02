@@ -280,26 +280,11 @@
                     </div>
                     <!-- dashboard-title end -->
                     <div class="dasboard-wrapper fl-wrap no-pag">
-                        <div class="dasboard-scrollnav-wrap scroll-to-fixed-fixed scroll-init2 fl-wrap">
-                            <ul>
-                                <li><a href="#sec1" class="act-scrlink">Salle</a></li>
-                                <li><a href="#sec2">Photo</a></li>
-                                <li><a href="#sec3">Vidéo</a></li>
-                                <li><a href="#sec4">commodités</a></li>
-                                <li><a href="#sec5">Type de salle</a></li>
-                            </ul>
-                            <div class="progress-indicator">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 34 34">
-                                    <circle cx="16" cy="16" r="15.9155" class="progress-bar__background" />
-                                    <circle cx="16" cy="16" r="15.9155" class="progress-bar__progress 
-                                            js-progress-bar" />
-                                </svg>
-                            </div>
-                        </div>
 
                         <?php
                         if (request()->salleid) {
-                            $salle = App\Models\Salle::find(request()->salleid);
+                        
+                            $salle = $salleid;
                             $editing = isset($salle);
                             $salleSave = $salle;
                         } else $editing = null;
@@ -307,7 +292,7 @@
 
                         <!-- dasboard-widget-title -->
                         <div class="dasboard-widget-title fl-wrap" id="sec1">
-                            <h5><i class="fas fa-info"></i>Enregistrement de salle</h5>
+                            <h5><i class="fas fa-info"></i>Enregistrement d'une annonce</h5>
                         </div>
                         <!-- dasboard-widget-title end -->
                         <!-- dasboard-widget-box  -->
@@ -321,16 +306,23 @@
                                     <input type="hidden" name="user_id" value="{{optional(auth()->user()->compte)->id}}">
                                     <div class="row">
                                         <div class="col-sm-4">
+                                            <label>Liste des type de salles</label>
+                                            <div class="listsearch-input-item">
+                                                <select name="typesalle_id" data-placeholder="Les type de salles" class="chosen-select no-search-select">
+                                                    <!--  -->
+                                                    @foreach(App\Models\TypeSalle::get() as $typesalleIt)
+                                                    <option value="{{$typesalleIt->id}}" {{in_array($typesalleIt->id, array_filter($typeSalle))?'selected':''}}>{{$typesalleIt->libelle}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
                                             <label>Nom de la salle<span class="dec-icon"><i class="far fa-briefcase"></i></span></label>
                                             <input name="nom_salle" type="text" placeholder="Nom de la salle" value="{{old('nom_salle', ($editing ? $salle->nom_salle : ''))}}" />
                                         </div>
                                         <div class="col-sm-4">
-                                            <label>Adresse<span class="dec-icon"><i class="far fa-briefcase"></i></span></label>
+                                            <label>Adresse<span class="dec-icon"><i class="far fa-map-pin"></i></span></label>
                                             <input name="adresse_salle" type="text" placeholder="Adresse" value="{{old('adresse_salle', ($editing ? $salle->adresse_salle : ''))}}" />
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Type<span class="dec-icon"><i class="far fa-briefcase"></i></span></label>
-                                            <input name="type" type="text" placeholder="Type" value="{{old('type', ($editing ? $salle->type : ''))}}" />
                                         </div>
                                         <div class="col-sm-4">
                                             <label>Presentation de la salle</label>
@@ -339,45 +331,38 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
-                                            <label>Capacité de la salle <span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
+                                            <label>Capacité de la salle <span class="dec-icon"><i class="far fa-th"></i></span></label>
                                             <input name="capacite_salle" type="number" min="2" placeholder="" value="{{old('capacite_salle', ($editing ? $salle->capacite_salle : ''))}}" />
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Tarif de la salle<span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
-                                            <input name="tarif_salle" type="number" min="5000" placeholder="" value="{{old('tarif_salle', ($editing ? $salle->tarif_salle : ''))}}" />
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Les accès à la salle<span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
-                                            <input name="acces_salle" type="text" placeholder="{{old('acces_salle', ($editing ? $salle->acces_salle : ''))}}" value="" />
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Quelles sont les logistiques<span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
-                                            <input name="logistique_salle" type="text" placeholder="{{old('logistique_salle', ($editing ? $salle->logistique_salle : ''))}}" value="" />
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Téléphone<span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
+                                            <label>Téléphone<span class="dec-icon"><i class="fas fa-phone-alt"></i></span></label>
                                             <input name="telephone" type="text" placeholder="" value="{{old('telephone', ($editing ? $salle->telephone : ''))}}" />
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Tel Whatsapp<span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
-                                            <input name="tel_whatsapp" type="text" placeholder="" value="{{old('tel_whatsapp', ($editing ? $salle->tel_whatsapp : ''))}}" />
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Email<span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
+                                            <label>Email<span class="dec-icon"><i class="fas fa-envelope"></i></span></label>
                                             <input name="email_salle" type="text" placeholder="" value="{{old('email_salle', ($editing ? $salle->email_salle : ''))}}" />
                                         </div>
                                         <div class="col-sm-4">
-                                            <label>Compte Facebook<span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
+                                            <label>Tarif de la salle(FCFA)<span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
+                                            <input name="tarif_salle" type="number" min="5000" placeholder="" value="{{old('tarif_salle', ($editing ? $salle->tarif_salle : ''))}}" />
+                                            <label>Tel Whatsapp<span class="dec-icon"><i class="fas fa-mobile"></i></span></label>
+                                            <input name="tel_whatsapp" type="text" placeholder="" value="{{old('tel_whatsapp', ($editing ? $salle->tel_whatsapp : ''))}}" />
+                                            <label>Compte Facebook<span class="dec-icon"><i class="far fa-browser"></i></span></label>
                                             <input name="facebook_salle" type="text" placeholder="" value="{{old('facebook_salle', ($editing ? $salle->facebook_salle : ''))}}" />
+                                            
                                         </div>
+                                        <!-- <div class="col-sm-4">
+                                            <label>Les accès à la salle<span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
+                                            <input name="acces_salle" type="text" placeholder="{{old('acces_salle', ($editing ? $salle->acces_salle : ''))}}" value="" />
+                                        </div> -->
+                                        <!-- <div class="col-sm-4">
+                                            <label>Quelles sont les logistiques<span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
+                                            <input name="logistique_salle" type="text" placeholder="{{old('logistique_salle', ($editing ? $salle->logistique_salle : ''))}}" value="" />
+                                        </div> -->
                                         <div class="col-sm-4">
-                                            <label>Site internet<span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
+                                            <label>Site internet<span class="dec-icon"><i class="far fa-browser"></i></span></label>
                                             <input name="site_internet" type="text" placeholder="" value="{{old('site_internet', ($editing ? $salle->site_internet : ''))}}" />
                                         </div>
-                                        <div class="col-sm-4">
+                                        <!-- <div class="col-sm-4">
                                             <label>Date de disponibilité<span class="dec-icon"><i class="far fa-money-bill-wave"></i></span></label>
                                             <input name="date_salle" type="date" placeholder="" value="{{old('date_salle', ($editing ? Carbon\Carbon::parse($salle->date_salle)->format('Y-m-d') : ''))}}" />
-                                        </div>
+                                        </div> -->
                                         
                                         <div class="col-sm-4">
                                             <label>Photo de la salle</label>
@@ -389,6 +374,10 @@
                                                         </div>
                                                     </form> -->
                                                 <input name="photo" type="file" class="upload" multiple>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="listsearch-input-item">
                                                 @if($editing)
                                                 <div style="border-radius: 25px;" >
     
@@ -418,7 +407,7 @@
                                                     <option value="0" data-chained="0">Tous les communes</option>
                                                     @php $lastcommune = ""; @endphp
                                                     @foreach(App\Models\Commune::get() as $comuneIt)
-                                                    @if($lastcommune != $comuneIt?($comuneIt->ville?$comuneIt->ville->nom_ville:''):'')
+                                                    @if($lastcommune != isset($comuneIt)?(isset($comuneIt->ville)?$comuneIt->ville->nom_ville:''):'')
                                                     <option value="0" data-chained="{{ $comuneIt?($comuneIt->ville?$comuneIt->ville->id:''):''}}">-  -  -</option>
                                                     @php $lastcommune = $comuneIt?($comuneIt->ville?$comuneIt->ville->nom_ville:''):''; @endphp
                                                     @endif
@@ -444,6 +433,26 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-sm-12">
+                                            <div class="listsearch-input-item clact">
+                                                <label>Tous types de commodités</label>
+                                                <div class=" fl-wrap filter-tags">
+                                                    @php
+                                                        if($editing){
+                                                            $comoditeli = $salle->comodites->pluck('id')->toArray();
+                                                        }
+                                                    @endphp
+                                                    <ul class="no-list-style">
+                                                    @foreach(App\Models\Comodite::get() as $comoditeIt)
+                                                        <li>
+                                                            <input id="comodite{{ $comoditeIt->id }}" type="checkbox" name="comodite[]" {{  $editing ? (in_array($comoditeIt->id, $comoditeli)? 'checked=true' : ''): ""  }} value="{{ $comoditeIt->id }}">
+                                                            <label for="comodite{{ $comoditeIt->id }}">{{ $comoditeIt->libel }}</label>
+                                                        </li>
+                                                    @endforeach
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <a style="cursor: pointer;" class="btn color-bg float-btn" onclick="(function(){document.querySelector('#salle-register').submit()})();">Soumettre</a>
                                 </div>
@@ -451,222 +460,7 @@
                         </div>
                         <!-- dasboard-widget-box  end-->
                         <!-- dasboard-widget-title -->
-                        <div class="dasboard-widget-title dwb-mar fl-wrap" id="sec2">
-                            <h5><i class="fas fa-street-view"></i>Enregistrement d'image</h5>
-                        </div>
-                        <!-- dasboard-widget-title end -->
-                        <!-- dasboard-widget-box  -->
-                        <div class="dasboard-widget-box fl-wrap">
-                            <form id="salle-register2" action="/send/image/register" method="post" enctype="multipart/form-data">
-                                @csrf
-                                @if($editing)
-                                    <input type="hidden" name="forupdated" value="true">
-                                @endif
-                                <div class="custom-form">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label>Titre de l'image<span class="dec-icon"><i class="far fa-briefcase"></i></span></label>
-                                            <input name="titre_image" type="text" placeholder="" value="" />
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Choix de la salle</label>
-                                            <div class="listsearch-input-item">
-                                                <select name="salle_id" data-placeholder="Apartments" class="chosen-select no-search-select">
-                                                    @foreach(auth()->user()->compte->salles()->get() as $salle)
-                                                        @if($editing )
-                                                        @if($loop->last)<option value="{{$salleSave->id}}">{{$salleSave->nom_salle}}</option>@endif
-                                                        @else
-                                                        <option value="{{$salle->id}}">{{$salle->nom_salle}}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Photo de l'image</label>
-                                            <div class="listsearch-input-item">
-                                                <!-- <form class="fuzone">
-                                                        <div class="fu-text">
-                                                            <span><i class="far fa-cloud-upload-alt"></i>Charger une image</span>
-                                                            <div class="photoUpload-files fl-wrap"></div>
-                                                        </div>
-                                                    </form> -->
-                                                <input name="photo" type="file" class="upload" multiple>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Description de l'image</label>
-                                            <div class="listsearch-input-item">
-                                                <textarea name="description_image" cols="40" rows="3" style="height: 235px" placeholder="" spellcheck="false"></textarea>
-                                            </div>
-                                        </div>
-                                        @if($editing)
-                                        <div class="col-sm-4" style="display: flex; justify-content:center; align-items:center; flex-direction: column; margin: 2% 0;">
-                                            @foreach($salleSave->photosSalles as $photo)
-                                            <div style="display: flex; width: 100%; justify-content: space-evenly; border: 1px solid #eee; padding: 2px 2px;"><span>Élement {{$loop->index+1}}: {{$photo->titre_image}}</span><a href="/user-annonce-detail/{{$salleSave->id}}/{{$photo->id}}/image/del" onclick="confirmDelete(event)" style="color: red;"><i class="fas fa-trash" alt="{{$photo->titre_image}}" title="{{$photo->titre_image}}"></i></a></div>
-                                            @endforeach
-                                        </div>
-                                        @endif
-
-
-                                    </div>
-                                    <a style="cursor: pointer;" class="btn color-bg float-btn" onclick="(function(){document.querySelector('#salle-register2').submit()})();">Soumettre</a>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- dasboard-widget-box  end-->
-                        <!-- dasboard-widget-title -->
-                        <div class="dasboard-widget-title dwb-mar fl-wrap" id="sec3">
-                            <h5><i class="fas fa-image"></i>Enregistrement d'une vidéo</h5>
-                        </div>
-                        <!-- dasboard-widget-title end -->
-                        <!-- dasboard-widget-box  -->
-                        <div class="dasboard-widget-box fl-wrap">
-                            <form id="salle-register3" action="/send/video/register" method="post" enctype="multipart/form-data">
-                                @csrf
-                                @if($editing)
-                                    <input type="hidden" name="forupdated" value="true">
-                                @endif
-                                <div class="custom-form">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label>Lien vidéo<span class="dec-icon"><i class="far fa-briefcase"></i></span></label>
-                                            <input name="lien_video" type="text" placeholder="" value="" />
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Choix de la salle</label>
-                                            <div class="listsearch-input-item">
-                                                <select name="salle_id" data-placeholder="Apartments" class="chosen-select no-search-select">
-                                                    @foreach(auth()->user()->compte->salles()->get() as $salle)
-                                                        @if($editing )
-                                                            @if($loop->last)<option value="{{$salleSave->id}}">{{$salleSave->nom_salle}}</option>@endif
-                                                        @else
-                                                        <option value="{{$salle->id}}">{{$salle->nom_salle}}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Photo de l'image</label>
-                                            <div class="listsearch-input-item">
-                                                <input name="photo" type="file" class="upload" multiple>
-                                            </div>
-                                        </div>
-                                        @if($editing)
-                                        <div class="col-sm-4" style="display: flex; justify-content:center; align-items:center; flex-direction: column; margin: 2% 0;">
-                                            @foreach($salleSave->videoSalles as $video)
-                                            <div style="display: flex; width: 100%; justify-content: space-evenly; border: 1px solid #eee; padding: 2px 2px;"><span>Élement {{$loop->index+1}}: {{$video->lien_video}}</span><a href="/user-annonce-detail/{{$salleSave->id}}/{{$video->id}}/video/del" onclick="confirmDelete(event)" style="color: red;"><i class="fas fa-trash" alt="{{$video->lien_video}}" title="{{$video->lien_video}}"></i></a></div>
-                                            @endforeach
-                                        </div>
-                                        @endif
-
-                                    </div>
-                                    <a style="cursor: pointer;" class="btn color-bg float-btn" onclick="(function(){document.querySelector('#salle-register3').submit()})();">Soumettre</a>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- dasboard-widget-box  end-->
-                        <!-- dasboard-widget-title -->
-                        <div class="dasboard-widget-title dwb-mar fl-wrap" id="sec4">
-                            <h5><i class="fas fa-street-view"></i>Ajout des commodités</h5>
-                        </div>
-                        <!-- dasboard-widget-title end -->
-                        <!-- dasboard-widget-box  -->
-                        <div class="dasboard-widget-box fl-wrap">
-                            <form id="salle-register4" action="/send/comodites/register" method="post" enctype="multipart/form-data">
-                                @csrf
-                                @if($editing)
-                                    <input type="hidden" name="forupdated" value="true">
-                                @endif
-                                <div class="custom-form">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label>Liste des salles</label>
-                                            <div class="listsearch-input-item">
-                                                <select name="salle_id" data-placeholder="Les salles" class="chosen-select no-search-select">
-                                                    @foreach(auth()->user()->compte->salles()->get() as $salle)
-                                                        @if($editing )
-                                                            @if($loop->last)<option value="{{$salleSave->id}}">{{$salleSave->nom_salle}}</option>@endif
-                                                        @else
-                                                        <option value="{{$salle->id}}">{{$salle->nom_salle}}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Liste des commodités</label>
-                                            <div class="listsearch-input-item">
-                                                <select name="comodite_id" data-placeholder="Les salles" class="chosen-select no-search-select">
-                                                    @foreach(App\Models\Comodite::get() as $comodite)
-                                                    <option value="{{$comodite->id}}">{{$comodite->libel}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        @if($editing)
-                                        <div class="col-sm-4" style="display: flex; justify-content:center; align-items:center; flex-direction: column; margin: 2% 0;">
-                                            @foreach($salleSave->comodites as $comodite)
-                                            <div style="display: flex; width: 100%; justify-content: space-evenly; border: 1px solid #eee; padding: 2px 2px;"><span>Élement {{$loop->index+1}}: {{$comodite->libel}}</span><a href="/user-annonce-detail/{{$salleSave->id}}/{{$comodite->id}}/comodite/del" onclick="confirmDelete(event)" style="color: red;"><i class="fas fa-trash" alt="{{$comodite->libel}}" title="{{$comodite->libel}}"></i></a></div>
-                                            @endforeach
-                                        </div>
-                                        @endif
-                                    </div>
-                                    <a class="btn color-bg float-btn" onclick="(function(){document.querySelector('#salle-register4').submit()})();">Soumettre</a>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="dasboard-widget-title dwb-mar fl-wrap" id="sec5">
-                            <h5><i class="fas fa-street-view"></i>Ajout des types de salles</h5>
-                        </div>
-                        <!-- dasboard-widget-title end -->
-                        <!-- dasboard-widget-box  -->
-                        <div class="dasboard-widget-box fl-wrap">
-                            <form id="salle-register5" action="/send/typesalle/register" method="post" enctype="multipart/form-data">
-                                @csrf
-                                @if($editing)
-                                    <input type="hidden" name="forupdated" value="true">
-                                @endif
-                                <div class="custom-form">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <label>Liste des salles</label>
-                                            <div class="listsearch-input-item">
-                                                <select name="salle_id" data-placeholder="Les salles" class="chosen-select no-search-select">
-                                                    @foreach(auth()->user()->compte->salles()->get() as $salle)
-                                                        @if($editing )
-                                                            @if($loop->last)<option value="{{$salleSave->id}}">{{$salleSave->nom_salle}}</option>@endif
-                                                        @else
-                                                        <option value="{{$salle->id}}">{{$salle->nom_salle}}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label>Liste des type de salles</label>
-                                            <div class="listsearch-input-item">
-                                                <select name="typesalle_id" data-placeholder="Les type de salles" class="chosen-select no-search-select">
-                                                    @foreach(App\Models\TypeSalle::get() as $typesalle)
-                                                    <option value="{{$typesalle->id}}">{{$typesalle->libelle}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        @if($editing)
-                                        <div class="col-sm-4" style="display: flex; justify-content:center; align-items:center; flex-direction: column; margin: 2% 0;">
-                                            @foreach($salleSave->typeSalles as $typesalle)
-                                            <div style="display: flex; width: 100%; justify-content: space-evenly; border: 1px solid #eee; padding: 2px 2px;"><span>Élement {{$loop->index+1}}: {{$typesalle->libelle}}</span><a href="/user-annonce-detail/{{$salleSave->id}}/{{$typesalle->id}}/typesalle/del" onclick="confirmDelete(event)" style="color: red;"><i class="fas fa-trash" alt="{{$typesalle->libelle}}" title="{{$typesalle->libelle}}"></i></a></div>
-                                            @endforeach
-                                        </div>
-                                        @endif
-                                    </div>
-                                    <a style="cursor:pointer;" class="btn color-bg float-btn" onclick="(function(){document.querySelector('#salle-register5').submit()})();">Soumettre</a>
-                                </div>
-                            </form>
-                        </div>
+                        
                         <!-- dasboard-widget-box  end-->
                         <!-- dasboard-widget-title -->
 

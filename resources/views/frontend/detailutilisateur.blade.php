@@ -53,7 +53,7 @@
                 <!--  add new  btn -->
                 @if(auth()->user())
                 <div class="add-list_wrap">
-                    <a href="/user-dashboard-profil" class="add-list color-bg" style="background-color: white;color: black;border: 1px solid;padding: 0px 3px;">
+                    <a href="#" class="add-list color-bg" style="background-color: white;color: black;border: 1px solid;padding: 0px 3px;">
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>

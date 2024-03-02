@@ -13,6 +13,52 @@
         <link type="text/css" rel="stylesheet" href="/css/dashboard-style.css">
         <link type="text/css" rel="stylesheet" href="/css/color.css">
         <!--=============== favicons ===============-->
+        <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/cssc/app-limit.css">
+        <link rel="stylesheet" href="/cssc/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="/cssc/responsive.bootstrap4.min.css">
+        <link rel="stylesheet" href="/cssc/buttons.bootstrap4.min.css">
+        <!--=============== favicons ===============-->
+        <style>
+            /* #table1>thead:nth-child(1) {
+                display: none;
+            } */
+
+            #table1>thead>tr:nth-child(1)>th,
+            #table1>thead>tr:nth-child(2)>th {
+                border-right: 0.5px solid #eee !important;
+            }
+
+            #table1>tbody>tr:nth-child(1)>td,
+            #table1>tbody>tr:nth-child(2)>td {
+                border-right: 0.5px solid #eee !important;
+                border-bottom: 0.5px solid #eee !important;
+                border-top: none;
+            }
+
+            #table1>tbody>tr>td {
+                text-align: center;
+                padding: 8px;
+                font-size: 16px;
+            }
+
+            #table1>tbody tr td:first-child {
+                /* Set the width of the first cell to cover both cells */
+                width: 50%;
+                /* Adjust this value based on your table layout */
+            }
+
+            #table1>tbody tr td:not(:first-child) {
+                /* Set the width of the first cell to cover both cells */
+                width: 25%;
+                /* Adjust this value based on your table layout */
+            }
+
+            #table1>tbody>tr>td>a,
+            #table1>tbody>tr>td button {
+                margin-top: 0;
+            }
+        </style>
         <link rel="shortcut icon" href="/images/icone.png">
     </head>
     <body>
@@ -276,7 +322,7 @@
                         <div class="dasboard-wrapper fl-wrap">
                             <div class="dasboard-listing-box fl-wrap">
                                 <div class="dasboard-opt sl-opt fl-wrap">
-                                    <div class="dashboard-search-listing">
+                                    <div class="dashboard-search-listing" style="display: none;">
                                         <form>
                                             <input type="text" onclick="this.select()" name="search" placeholder="Rechercher" value="">
                                             <button type="submit"><i class="far fa-search"></i></button>
@@ -324,55 +370,35 @@
                                 <div class="dashboard-listings-wrap fl-wrap">
                                     <div class="row">
                                         <!-- dashboard-listings-item-->
-                                        @forelse($annonces as $annonce)
-                                        <div class="col-md-4">
-                                            <!--  agent card item -->
-                                            <div class="listing-item">
-                                                <article class="geodir-category-listing fl-wrap">
-                                                    <div class="geodir-category-img fl-wrap  agent_card">
-                                                        <a href="agent-single.html" class="geodir-category-img_item">
-                                                            <img src="{{ asset('storage/'.str_replace('public/', '', $annonce->photo)) }}" alt="">
-                                                        </a>
-                                                        <!-- <div class="listing-rating card-popup-rainingvis" data-starrating2="5"><span class="re_stars-title">Excellent</span></div> -->
-                                                    </div>
-                                                    <div class="geodir-category-content fl-wrap">
-                                                        <div class="card-verified tolt" data-microtip-position="left" data-tooltip="Verified"></div>
-                                                        <div class="agent_card-title fl-wrap">
-                                                            <h4><a href="#" >{{$annonce->nom_salle}}</a></h4>
-                                                            <br>
-                                                            <h4>TARIF: <span>{{$annonce->tarif_salle}} Fcfa</span></h4>
-                                                            <h5><a href="#">{{optional($annonce->ville)->nom_ville!=""?$annonce->ville->nom_ville." > ":""  }}{{optional($annonce->commune)->nom_commune!=""?$annonce->commune->nom_commune." > ":"" }}{{optional($annonce->quartier)->nom_quartier!=""?$annonce->quartier->nom_quartier:""}} | {{$annonce->type}}</a></h5>
-                                                            <br>
-                                                            <h5><a href="#">{{substr($annonce->presentation_salle, 0, 150).'…'}}</a></h5>
-                                                        </div>
-                                                        <div class="agent-card-facts fl-wrap">
-                                                            <ul>
-                                                                @forelse($annonce->comodites as $comodite)
-                                                                <li>{{$comodite->libel}}</li>
-                                                                @empty
-                                                                <li>N/A</li>
-                                                                @endforelse
-                                                            </ul>
-                                                        </div>
-                                                        <div class="geodir-category-footer fl-wrap">
-                                                            <a href="/user-annonce-detail/{{$annonce->id}}" class="btn float-btn color-bg small-btn">Dérouler</a>
-                                                            <form action="/salles/{{$annonce->id}}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimé?')" style="text-align: center;box-sizing: border-box;border: 0;outline: 0;font-weight: inherit;font-style: inherit;font-family: inherit;vertical-align: baseline;padding: 0;text-decoration: none;position: relative;float: right;margin: 3px 0 0 0px;font-size: 16px;color: #878C9F;">
-                                                                <input type="hidden" name="_token" value="{{csrf_token()}}" />
-                                                                <input type="hidden" name="_method" value="DELETE" /> 
-                                                                <button type="submit" class="tolt ftr-btn" data-microtip-position="left" data-tooltip="Supprimer" style="border: none;color: #9ca0b0;background: transparent;font-size: medium;">
-                                                                    <i class="fal fa-trash"></i> 
-                                                                </button>
-                                                            </form>
-                                                            <a href="/user-annonce-detail/{{$annonce->id}}/edit" class="tolt ftr-btn" data-microtip-position="left" data-tooltip="Editer"><i class="fal fa-edit"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </article>
+                                        <div class="card">
+                                            <div class="">
+
+                                                <div class="table-responsive" style="overflow-x: hidden;">
+                                                    <table id="table1" class="table" style="margin: 0px 0px !important; width:100%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-center">
+                                                                    LIBELLÉ ANNONCE
+                                                                </th>
+                                                                <th class="text-center">
+                                                                    DATE D'AJOUT
+                                                                </th>
+                                                                <th class="text-right">
+                                                                    ACTIONS
+                                                                </th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                        </tbody>
+                                                        <tfoot>
+
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
                                             </div>
-                                            <!--  agent card item end -->										
                                         </div>
-                                        @empty
-                                        <h2 style="padding: 20px 0px;">PAS D'ANNONCE DISPONIBLE / SI VOUS AVEZ UNE ANNONCE ENREGISTRÉE, ELLE EST EN COUR DE VALIDATION</h2>
-                                        @endforelse
                                         <!-- dashboard-listings-item end-->												
                                     </div>
                                 </div>
@@ -387,27 +413,6 @@
                                 <a href="#">4</a>
                                 <a href="#" class="nextposts-link"><i class="fa fa-caret-right"></i></a>
                             </div> -->
-                            <div class="pagination float-pagination">
-                                @if ($annonces->onFirstPage())
-                                    <a href="#" class="prevposts-link"><i class="fa fa-caret-left"></i></a>
-                                @else
-                                    <a href="{{ $annonces->previousPageUrl() }}" class="prevposts-link"><i class="fa fa-caret-left"></i></a>
-                                @endif
-
-                                @foreach ($annonces->getUrlRange(1, $annonces->lastPage()) as $page => $url)
-                                    @if ($page == $annonces->currentPage())
-                                        <a class="current-page">{{ $page }}</a>
-                                    @else
-                                        <a href="{{ $url }}">{{ $page }}</a>
-                                    @endif
-                                @endforeach
-
-                                @if ($annonces->hasMorePages())
-                                    <a href="{{ $annonces->nextPageUrl() }}" class="nextposts-link"><i class="fa fa-caret-right"></i></a>
-                                @else
-                                    <a href="#" class="nextposts-link"><i class="fa fa-caret-right"></i></a>
-                                @endif
-                            </div>
 
                             <!-- pagination end-->	
                         </div>
@@ -434,10 +439,196 @@
             <!-- wrapper end -->
         </div>
         <!-- Main end -->
+        <div class="modal fade" id="modalGallerySalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalCenterTitle">LISTE D'IMAGE DE VOTRE ANNONCE</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="photo-atito-content" class="modal-content lightgallery">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="modalVideoSalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalCenterTitle">VIDEO D'ANNONCE</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="video-atito-content" class="modal-content">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--=============== scripts  ===============-->
         <script src="/js/jquery.min.js"></script>
         <script src="/js/plugins.js"></script>
         <script src="/js/scripts.js"></script>
         <script src="/js/dashboard.js"></script>
+
+        <script src="/js/charts.js"></script>
+
+        <script src="/jsc/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+        <script src="/jsc/jquery.dataTables.min.js"></script>
+        <script src="/jsc/dataTables.bootstrap4.min.js"></script>
+        <script src="/jsc/dataTables.responsive.min.js"></script>
+        <script src="/jsc/responsive.bootstrap4.min.js"></script>
+        <script src="/jsc/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
+        <script src="/jsc/buttons.bootstrap4.min.js"></script>
+        <script src="/jsc/jszip.min.js"></script>
+        <script src="/jsc/pdfmake.min.js"></script>
+        <script src="/jsc/vfs_fonts.js"></script>
+        <script src="/jsc/buttons.html5.min.js"></script>
+        <script src="/jsc/buttons.print.min.js"></script>
+        <script src="/jsc/buttons.colVis.min.js"></script>
+        <script>
+            $(function() {
+
+                // $('#table1 thead tr')
+                //     .clone(true)
+                //     .addClass('filters')
+                //     .appendTo('#table1 thead');
+
+                var table = $('#table1').DataTable({
+                    dom: 'Bfrtp',
+                    info: false,
+                    bInfo: false,
+                    initComplete: function() {
+                        $('.btnshowsallephoto').on('click', function(e) {
+                            console.log(e);
+                            let salleId = $(e.target).data("salleid"); // Change this to the actual salle_id value you want to pass
+                            console.log(salleId);
+                            $.ajax({
+                                url: '/api/render/photo/salles?salle_id=' + salleId+'&u_id={{auth()->user()->id}}',
+                                method: 'GET',
+                                success: function(data) {
+                                    // Handle successful response
+                                    $("#photo-atito-content").html(data);
+                                },
+                                error: function(xhr, status, error) {
+                                    // Handle error
+                                    console.error(xhr.responseText);
+                                }
+                            });
+                        });
+                        $('.btnshowsvideo').on('click', function(e) {
+                            console.log(e);
+                            let salleId = $(e.target).data("salleid"); // Change this to the actual salle_id value you want to pass
+                            console.log(salleId);
+                            $.ajax({
+                                url: '/api/render/video/salles?salle_id=' + salleId+'&u_id={{auth()->user()->id}}',
+                                method: 'GET',
+                                success: function(data) {
+                                    // Handle successful response
+                                    $("#video-atito-content").html(data);
+                                },
+                                error: function(xhr, status, error) {
+                                    // Handle error
+                                    console.error(xhr.responseText);
+                                }
+                            });
+                        });
+
+                        var api = this.api();
+
+                        // For each column
+                        api.columns()
+                            .eq(0)
+                            .each(function (colIdx) {
+                                // Set the header cell to contain the input element
+                                var cell = $('.filters th').eq(
+                                    $(api.column(colIdx).header()).index()
+                                );
+                                var title = $(cell).text();
+                                $(cell).html('<input type="text" placeholder="..." style="min-width: 40px;width: 100%;border: 1px solid #c1bdbd;border-radius: 7px;" />');
+            
+                                // On every keypress in this input
+                                $(
+                                    'input',
+                                    $('.filters th').eq($(api.column(colIdx).header()).index())
+                                )
+                                    .off('keyup change')
+                                    .on('change', function (e) {
+                                        // Get the search value
+                                        $(this).attr('title', $(this).val());
+                                        var regexr = '({search})'; //$(this).parents('th').find('select').val();
+            
+                                        var cursorPosition = this.selectionStart;
+                                        // Search the column for that value
+                                        api
+                                            .column(colIdx)
+                                            .search(
+                                                this.value != ''
+                                                    ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                                    : '',
+                                                this.value != '',
+                                                this.value == ''
+                                            )
+                                            .draw();
+                                    })
+                                    .on('keyup', function (e) {
+                                        e.stopPropagation();
+            
+                                        $(this).trigger('change');
+                                        $(this)
+                                            .focus()[0]
+                                            .setSelectionRange(cursorPosition, cursorPosition);
+                                    });
+                            });
+                    },
+                    processing: true,
+                    serverSide: true,
+                    ajax: "/annonces/0/data",
+                    columns: [{
+                            data: 'nom_salle',
+                            name: 'nom_salle'
+                        },
+                        {
+                            data: 'createdat',
+                            name: 'createdat'
+                        },
+                        {
+                            data: 'actions',
+                            name: 'actions'
+                        },
+                    ],
+                    columnDefs: [{
+                            "targets": [0],
+                            "rowspan": 4
+                        },
+                        {
+                            "targets": [1],
+                            "colspan": 1
+                        },
+                        {
+                            "targets": [2],
+                            "rowspan": 1
+                        }
+                    ],
+                    language: {
+                        url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/fr-FR.json',
+                    },
+                    buttons: [],
+                    // searching: true,
+                    order: [
+                        [0, 'desc']
+                    ],
+                    responsive: true,
+                }).buttons().container().enable();
+
+            });
+        </script>
     </body>
 </html>

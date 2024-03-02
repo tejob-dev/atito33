@@ -50,6 +50,8 @@ Route::post('/contacts/newsletter', [ContactController::class, 'store_front_news
 Route::post('/register/custom', [UserController::class, 'register_user']);
 //Route::get('/administration', [HomeController::class, 'index'])->name('home');
 
+//Route::redirect('/login', '/', 302, ['GET']);
+
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/administration', function () {
         //dd(auth()->user()->roles);
@@ -87,7 +89,10 @@ Route::prefix('/')
 
         });
         Route::get('/user-annonce-detail/{salleid}', function($salleid){
-            return view("useradmin.user-dashboard", compact("salleid"));
+            $salleid = Salle::findOrFail($salleid);
+            $typeSalle = $salleid->typeSalles()->get()->pluck("id")->toArray();
+            //dd($salleid->typeSalles()->get()->pluck("id")->toArray());
+            return view("useradmin.user-dashboard", compact("salleid", "typeSalle"));
         });
         Route::get('/user-annonce-detail/{salleid}/edit', function(){
             return view("useradmin.user-dashboard");

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\User;
 use App\Models\Salle;
 use App\Models\PhotosSalle;
 use Illuminate\Http\Request;
@@ -33,8 +34,33 @@ class PhotosSalleController extends Controller
         if($salle){
             $photosSalles = $salle->photosSalles;
             $salle_id = $salle->id;
+            $authuser = $request->u_id;
             //dd($photosSalles);
-            $content = View::make("useradmin.gallery-photo-model", compact("photosSalles", "salle_id"))->render();
+            $content = View::make("useradmin.gallery-photo-model", compact("photosSalles", "salle_id", "authuser"))->render();
+        }
+        return $content;
+    }
+    
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function render_video_salle(Request $request)
+    {
+        $salle = null;
+
+        if($request->salle_id){
+            $salle = Salle::find($request->salle_id);
+        }
+
+        $content = "";
+
+        if($salle){
+            $videoSalles = $salle->videoSalles;
+            $salle_id = $salle->id;
+            $authuser = $request->u_id;
+            //dd($photosSalles);
+            $content = View::make("useradmin.salle-video-model", compact("videoSalles", "salle_id", "authuser"))->render();
         }
         return $content;
     }
@@ -89,11 +115,19 @@ class PhotosSalleController extends Controller
             "salleId"=>"integer"
         ]);
         //dd($validated);
-        $salle = Salle::find($request->salleId);
-        //dd($salle);
-        if(!empty($salle)){
-            //dd($salle->photosSalles()->where('id', $request->photoId)->get());
-            $salle->photosSalles()->where('id', $request->photoId)->delete();
+        $salle = null;
+        if($request->uid){
+            $compteid = User::where("id", $request->uid)->first()->compte;
+            $salles = $compteid->salles()->where("id", $request->salleId)->get();
+            //$salle = Salle::find($request->salleId);
+            //dd($salle);
+            if(sizeof($salles) > 0){
+                //dd($salle->photosSalles()->where('id', $request->photoId)->get());
+                $salle = $salles->first();
+                if($salle){
+                    $salle->photosSalles()->where('id', $request->photoId)->delete();
+                }
+            }
         }
 
         return new SalleResource([optional($salle)->id]);
