@@ -37,7 +37,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 Route::get('/', function () {
     if(!empty(auth()->user())){
         
-        return redirect("/administration");
+        if(auth()->user()->hasRole("super-admin") == true)  return redirect("/administration");
 
     }
     return view('welcome');
@@ -60,6 +60,7 @@ Route::post('/register/custom', [UserController::class, 'register_user']);
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/administration', function () {
         //dd(auth()->user()->roles);
+        //dd("there sanctum");
         if(auth()->user()->hasRole("super-admin") == false){
             return redirect("/");
         }
@@ -73,9 +74,10 @@ Route::prefix('/')
     ->group(function () {
         Route::get('/user-dashboard', [UserDashboardController::class, "index"]);
         Route::get('/user-dashboard-profil', function(){
+            //dd("there dashboard");
             if(!empty(auth()->user())){
         
-                return redirect("/administration");
+                if(auth()->user()->hasRole("super-admin") == true) return redirect("/administration");
         
             }
             return view("useradmin.dashboard-myprofile");

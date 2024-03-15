@@ -328,7 +328,7 @@
                                             <button type="submit"><i class="far fa-search"></i></button>
                                         </form>
                                     </div>
-                                    <a href="/user-dashboard-add-annonce" class="gradient-bg dashboard-addnew_btn show-popup-form">Nouveau <i class="fal fa-plus"></i></a>	
+                                    <a href="/user-dashboard-add-annonce" onclick="this.preventDefault(); window.location.href = '/user-dashboard-add-annonce';" class="gradient-bg dashboard-addnew_btn">Nouveau <i class="fal fa-plus"></i></a>	
                                     <!-- price-opt-->
                                     <!-- <div class="price-opt">
                                         <span class="price-opt-title">Sort   by:</span>

@@ -282,10 +282,12 @@
                     <div class="dasboard-wrapper fl-wrap no-pag">
 
                         <?php
+                        $typeSalle = [];
                         if (request()->salleid) {
                         
                             $salle = $salleid;
                             $editing = isset($salle);
+                            $typeSalle = $salleid->typeSalles()->get()->pluck("id")->toArray();
                             $salleSave = $salle;
                         } else $editing = null;
                         ?>

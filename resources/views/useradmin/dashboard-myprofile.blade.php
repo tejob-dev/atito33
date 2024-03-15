@@ -296,7 +296,10 @@
                                                 <h3>Description</h3>
                                             </div> -->
                                             <div class="list-single-main-item_content fl-wrap">
-                                                <p>{{auth()->user()->compte->description_compte}}</p>
+                                                <p style="font-size: large;">{{auth()->user()->compte->description_compte}}</p>
+                                                <!-- <div class="list-single-tags fl-wrap tags-stylwrap" style="margin-top: 20px;">
+                                                    <span style="display: flex;">Description: &nbsp;&nbsp;&nbsp; <h3>{{auth()->user()->compte->description_compte}}</h3></span>
+                                                </div> -->
                                                 <div class="list-single-tags fl-wrap tags-stylwrap" style="margin-top: 20px;">
                                                     <span>Je propose:</span>
                                                     @php

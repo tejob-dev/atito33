@@ -110,6 +110,7 @@ class CompteController extends Controller
             'nom_entreprise' => ['nullable', 'max:255', 'string'],
             'siteweb_compte' => ['nullable', 'max:255', 'string'],
             'activite_compte' => ['nullable', 'max:255', 'string'],
+            'description_compte' => ['nullable', 'max:255', 'string'],
             'logo_entreprise' => ['image', 'max:1024', 'nullable'],
             'photo' => ['image', 'max:1024', 'nullable'],
         ]);
