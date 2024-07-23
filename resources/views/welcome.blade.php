@@ -249,8 +249,19 @@
                     </div>
                     <!-- breadcrumbs end -->
                     <!-- section -->
-                    <section class="gray-bg small-padding" style="padding: 10px 0;">
+                    <section class="gray-bg small-padding">
                         <div class="container">
+
+                            @php
+                            
+                                //$salles = App\Models\Salle::with("typeSalles")->promote()->get();
+                                $typeSalles = App\Models\TypeSalle::where(function($query) {
+                                        $query->where("libelle", "like", "%séminaire%")
+                                            ->orWhere("libelle", "like", "%mariage%")
+                                            ->orWhere("libelle", "like", "%cowork%");
+                                    })->with("salles")->get();
+                                //dd($salles->count());
+                            @endphp
 
                             <div class="row">
                                 <div class="col-md-4">
@@ -508,7 +519,7 @@
                         </div>
                     </section>
                     <!-- section end-->
-                    <section class="gray-bg small-padding">
+                    <section class="gray-bg small-padding" style="padding: 10px 0;">
                     <div class="container">
 
                         <div class="row">
