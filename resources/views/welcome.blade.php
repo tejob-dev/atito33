@@ -299,11 +299,18 @@
                                                             <div class="overlay"></div>
                                                         </a>
                                                         <div class="geodir-category-location">
-                                                        <a href="/voir/detail/{{$salle->id}}/annonce" class="single-map-item tolt" data-newlatitude="40.72956781" data-newlongitude="-73.99726866"   data-microtip-position="top-left" data-tooltip="Localisation"><i class="fas fa-map-marker-alt"></i> <span>{{$salle->adresse_salle}}</span></a>
+                                                        <a href="/voir/detail/{{$salle->id}}/annonce" class="single-map-item tolt" data-newlatitude="40.72956781" data-newlongitude="-73.99726866"   data-microtip-position="top-left" data-tooltip="Localisation">
+                                                            @if($annonce->commune) <i class="fas fa-map-marker-alt fontawe-icon-size"></i> @endif <span>{{ optional($annonce->commune)->nom_commune??'' }}</span>
+                                                            @if($annonce->ville) <i class="far fa-angle-right fontawe-icon-size"></i> @endif <span>{{ optional($annonce->ville)->nom_ville }}</span>
+                                                        </a>
                                                         </div>
                                                         <ul class="list-single-opt_header_cat">
-        <!--                                                    <li><a href="#" class="cat-opt blue-bg">Sale</a></li>
-        -->                                                    <li><a href="#" class="cat-opt color-bg">{{$salle->type}}</a></li>
+                                                            @forelse($salle->typeSalles as $typeSalleId)
+                                                            <li><a href="#" class="cat-opt blue-bg">{{$typeSalleId->libelle}}</a></li>
+                                                            @php if($loop->first) break; @endphp
+                                                            @empty
+                                                            <li>N/A</li>
+                                                            @endforelse
                                                         </ul>
                                                     
                                                         <div class="geodir-category-listing_media-list">
@@ -312,7 +319,7 @@
                                                     </div>
                                                     <div class="geodir-category-content fl-wrap">
                                                         <h3 class="title-sin_item"><a href="/voir/detail/{{$salle->id}}/annonce">{{$salle->nom_salle}}</a></h3>
-                                                        <div class="geodir-category-content_price">{{$salle->tarif_salle}},OO FCFA</div>
+                                                        <div class="geodir-category-content_price">{{empty($annonce->tarif_salle)?"NOUS CONSULTEZ !":$annonce->tarif_salle.",OO FCFA"}}</div>
                                                         <p>{{$salle->presentation_salle}}</p>
                                                         
                                                         
