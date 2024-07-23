@@ -511,7 +511,7 @@
                     
                     <!-- section end-->	 
                     <!-- section -->
-                    <section class="gray-bg ">
+                    <section class="gray-bg" style="padding: 10px 0;">
                         
                         <div class="clearfix"></div>
                         <div class="testimonials-slider-wrap">
@@ -526,7 +526,7 @@
 
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="section-title fl-wrap">
+                                <div class="section-title fl-wrap" style="margin-bottom: 0px;">
                                     <!-- <h4>Nos meilleures offres</h4> -->
                                     <h2>Des nouveautés</h2>
                                 </div>
