@@ -547,10 +547,8 @@
                                         </a>
                                         <div class="geodir-category-location">
                                             <a href="#" class="single-map-item tolt" data-microtip-position="top-left" data-tooltip="Adresse de l'annonce">
-                                                <i class="fas fa-map-marker-alt"></i> 
                                                 @if($annonce->commune) <i class="fas fa-map-marker-alt fontawe-icon-size"></i> @endif <span>{{ optional($annonce->commune)->nom_commune??'' }}</span>
                                                 @if($annonce->ville) <i class="far fa-angle-right fontawe-icon-size"></i> @endif <span>{{ optional($annonce->ville)->nom_ville }}</span>
-                                                @if($annonce->quartier) <i class="far fa-angle-right fontawe-icon-size"></i> @endif <span>{{ optional($annonce->quartier)->nom_quartier }}</span>
                                             </a>
                                         </div>
                                         <ul class="list-single-opt_header_cat">
