@@ -520,7 +520,99 @@
                     </section>
                     <!-- section end-->
                 </div>
-                <!-- content end -->	
+                <!-- content end -->
+                <section class="gray-bg small-padding">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="section-title fl-wrap">
+                                    <!-- <h4>Nos meilleures offres</h4> -->
+                                    <h2>Des nouveautés</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!-- grid-item-holder-->	
+                        <div class="listing-item-container three-columns-grid  box-list_ic fl-wrap">
+                            <!-- listing-item -->
+                            @forelse(App\Models\Salle::latest() as $annonce)
+
+                            <div class="listing-item">
+                                <article class="geodir-category-listing fl-wrap">
+                                    <div class="geodir-category-img fl-wrap">
+                                        <a href="/voir/detail/{{$annonce->id}}/annonce" class="geodir-category-img_item">
+                                            <img src="{{ asset('storage/'.str_replace('public/', '', $annonce->photo)) }}" alt="image de salle" style="width: 392px; height:259px; " />
+                                            <div class="overlay"></div>
+                                        </a>
+                                        <div class="geodir-category-location">
+                                            <a href="#" class="single-map-item tolt" data-microtip-position="top-left" data-tooltip="Adresse de l'annonce"><i class="fas fa-map-marker-alt"></i> <span> {{ $annonce->adresse_salle }} </span></a>
+                                        </div>
+                                        <ul class="list-single-opt_header_cat">
+                                            @forelse($annonce->typeSalles as $typeSalleId)
+                                            <li><a href="#" class="cat-opt blue-bg">{{$typeSalleId->libelle}}</a></li>
+                                            @php if($loop->first) break; @endphp
+                                            @empty
+                                            <li>N/A</li>
+                                            @endforelse
+                                        </ul>
+                                        <div class="geodir-category-listing_media-list">
+                                            <span><i class="fas fa-camera"></i> {{ $annonce->photosSalles->count() }} </span>
+                                        </div>
+                                    </div>
+                                    <div class="geodir-category-content fl-wrap">
+                                        <h3 class="title-sin_item"><a href="/voir/detail/{{$annonce->id}}/annonce">{{$annonce->nom_salle}}</a></h3>
+                                        <div class="geodir-category-content_price">{{empty($annonce->tarif_salle)?"NOUS CONSULTEZ !":$annonce->tarif_salle." FCFA"}}</div>
+                                        <p>{{substr($annonce->presentation_salle, 0, 150)}}</p>
+                                        <div class="geodir-category-content-details">
+                                            <ul>
+                                                @forelse($annonce->comodites as $comoditeId)
+                                                <li><i class="{{$comoditeId->comodite_icon}} fontawe-icon-size" style="font-size: 13px;"></i><span>{{$comoditeId->libel}}</span></li>
+                                                @empty
+                                                <li>N/A</li>
+                                                @endforelse
+                                            </ul>
+                                            @if($annonce->visites->count() > 100)
+                                            <ul>
+                                                <li><i class="far fa-user fontawe-icon-size"></i><span>{{ $annonce->visites->count() }} vue(s)</span></li>
+                                            </ul>
+                                            @endif
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <div class="geodir-category-content-details">
+                                            <ul>
+                                                <li> @if($annonce->commune) <i class="fas fa-map-marker-alt fontawe-icon-size"></i> @endif <span>{{ optional($annonce->commune)->nom_commune??'' }}</span></li>
+                                                <li> @if($annonce->ville) <i class="far fa-angle-right fontawe-icon-size"></i> @endif <span>{{ optional($annonce->ville)->nom_ville }}</span></li>
+                                                <li> @if($annonce->quartier) <i class="far fa-angle-right fontawe-icon-size"></i> @endif <span>{{ optional($annonce->quartier)->nom_quartier }}</span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="geodir-category-footer fl-wrap">
+                                            <?php
+
+                                            $compte = optional($annonce->comptes())->with('user')->first() ?? null;
+                                            $user = optional($compte)->user ?? null;
+
+                                            ?>
+                                            <a href="/voir/detail/{{optional($compte)->id}}/utilisateur" class="gcf-company make-space-between-item"><img src="{{asset('storage/'.str_replace('public/', '', optional($compte)->photo??'' ))}}" alt=""> <span class="modal-open" onclick="document.querySelector('#hid_compte_id').value = {{optional($compte)->id??null}};" data-modalid="message-box" data-backmodalid="back-message-box" data-overmodalid="over-message-box"> <i class="fas fa-mailbox fontawe-icon-size"></i> Envoyer un message</span> </a> 
+
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            @empty
+                            <h1>AUCUNE ANNONNCE DE DISPONIBLE !!</h1>
+                            @endforelse
+                            <!-- listing-item end-->
+                        </div>
+                        <!-- grid-item-holder-->	
+                        <!--<a href="listing.html" class="btn float-btn small-btn color-bg">View All Properties</a>-->
+                    </div>
+                </section>
+                <!-- section end-->	
                 <!-- subscribe-wrap -->	
                 @include("layouts.footer")
             <!--map-modal end --> 			
