@@ -538,7 +538,7 @@
                         <!-- grid-item-holder-->	
                         <div class="listing-item-container three-columns-grid  box-list_ic fl-wrap">
                             <!-- listing-item -->
-                            @forelse(App\Models\Salle::latest() as $annonce)
+                            @forelse(App\Models\Salle::latest()->get() as $annonce)
 
                             <div class="listing-item">
                                 <article class="geodir-category-listing fl-wrap">
