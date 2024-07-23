@@ -300,8 +300,8 @@
                                                         </a>
                                                         <div class="geodir-category-location">
                                                         <a href="/voir/detail/{{$salle->id}}/annonce" class="single-map-item tolt" data-newlatitude="40.72956781" data-newlongitude="-73.99726866"   data-microtip-position="top-left" data-tooltip="Localisation">
-                                                            @if($annonce->commune) <i class="fas fa-map-marker-alt fontawe-icon-size"></i> @endif <span>{{ optional($annonce->commune)->nom_commune??'' }}</span>
-                                                            @if($annonce->ville) <i class="far fa-angle-right fontawe-icon-size"></i> @endif <span>{{ optional($annonce->ville)->nom_ville }}</span>
+                                                            @if($salle->commune) <i class="fas fa-map-marker-alt fontawe-icon-size"></i> @endif <span>{{ optional($salle->commune)->nom_commune??'' }}</span>
+                                                            @if($salle->ville) <i class="far fa-angle-right fontawe-icon-size"></i> @endif <span>{{ optional($salle->ville)->nom_ville }}</span>
                                                         </a>
                                                         </div>
                                                         <ul class="list-single-opt_header_cat">
