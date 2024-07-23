@@ -319,7 +319,7 @@
                                                     </div>
                                                     <div class="geodir-category-content fl-wrap">
                                                         <h3 class="title-sin_item"><a href="/voir/detail/{{$salle->id}}/annonce">{{$salle->nom_salle}}</a></h3>
-                                                        <div class="geodir-category-content_price">{{empty($annonce->tarif_salle)?"NOUS CONSULTEZ !":$annonce->tarif_salle.",OO FCFA"}}</div>
+                                                        
                                                         <p>{{$salle->presentation_salle}}</p>
                                                         
                                                         
