@@ -519,16 +519,14 @@
                         </div>
                     </section>
                     <!-- section end-->
-                </div>
-                <!-- content end -->
-                <section class="gray-bg small-padding">
+                    <section class="gray-bg small-padding">
                     <div class="container">
 
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="section-title fl-wrap" style="margin-bottom: 0px;">
                                     <!-- <h4>Nos meilleures offres</h4> -->
-                                    <h2>Des nouveautés</h2>
+                                    <h2>Dernières annonces</h2>
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -589,6 +587,9 @@
                     </div>
                 </section>
                 <!-- section end-->	
+                </div>
+                <!-- content end -->
+                
                 <!-- subscribe-wrap -->	
                 @include("layouts.footer")
             <!--map-modal end --> 			
