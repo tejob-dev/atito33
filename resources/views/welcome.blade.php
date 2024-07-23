@@ -564,32 +564,8 @@
                                     </div>
                                     <div class="geodir-category-content fl-wrap">
                                         <h3 class="title-sin_item"><a href="/voir/detail/{{$annonce->id}}/annonce">{{$annonce->nom_salle}}</a></h3>
-                                        <div class="geodir-category-content_price">{{empty($annonce->tarif_salle)?"NOUS CONSULTEZ !":$annonce->tarif_salle." FCFA"}}</div>
                                         <p>{{substr($annonce->presentation_salle, 0, 150)}}</p>
-                                        <div class="geodir-category-content-details">
-                                            <ul>
-                                                @forelse($annonce->comodites as $comoditeId)
-                                                <li><i class="{{$comoditeId->comodite_icon}} fontawe-icon-size" style="font-size: 13px;"></i><span>{{$comoditeId->libel}}</span></li>
-                                                @empty
-                                                <li>N/A</li>
-                                                @endforelse
-                                            </ul>
-                                            @if($annonce->visites->count() > 100)
-                                            <ul>
-                                                <li><i class="far fa-user fontawe-icon-size"></i><span>{{ $annonce->visites->count() }} vue(s)</span></li>
-                                            </ul>
-                                            @endif
-                                        </div>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <div class="geodir-category-content-details">
-                                            <ul>
-                                                <li> @if($annonce->commune) <i class="fas fa-map-marker-alt fontawe-icon-size"></i> @endif <span>{{ optional($annonce->commune)->nom_commune??'' }}</span></li>
-                                                <li> @if($annonce->ville) <i class="far fa-angle-right fontawe-icon-size"></i> @endif <span>{{ optional($annonce->ville)->nom_ville }}</span></li>
-                                                <li> @if($annonce->quartier) <i class="far fa-angle-right fontawe-icon-size"></i> @endif <span>{{ optional($annonce->quartier)->nom_quartier }}</span></li>
-                                            </ul>
-                                        </div>
+                                        
                                         <div class="geodir-category-footer fl-wrap">
                                             <?php
 
