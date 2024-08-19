@@ -174,7 +174,10 @@
                             @foreach($currentSalle->photosSalles as $sallephoto)
                             <div class="slick-slide-item">
                                 <div class="box-item">
-                                    <img  src="{{ asset('storage/'.str_replace('public/', '', $sallephoto->photo)) }}" class="gal-link popup-image popup-corou-info "  alt="photos de la salles">
+                                    <img  src="{{ asset('storage/'.str_replace('public/', '', $sallephoto->photo)) }}" alt="photos de la salles">
+                                    <a style="background: none;" href="{{ asset('storage/'.str_replace('public/', '', $sallephoto->photo)) }}" class="gal-link popup-image popup-corou-info ">
+                                        <!-- <i class="far fa-search-plus"  ></i> -->
+                                    </a>
                                     
                                 </div>
                             </div>
@@ -183,14 +186,16 @@
                             <div class="slick-slide-item">
                                 <div class="box-item">
                                     <img  src="/fichiers/Image_haut_accueil.JPG"   alt="Bella salle">
-                                    <a href="/fichiers/Image_haut_accueil.JPG" class="gal-link popup-image"><i class="fal fa-search"  ></i></a>
-                                    <div class="show-info">
+                                    <a style="background: none;" href="/fichiers/Image_haut_accueil.JPG" class="gal-link popup-image">
+                                        <!-- <i class="fal fa-search"  ></i> -->
+                                    </a>
+                                    <!-- <div class="show-info">
                                         <span><i class="fas fa-info"></i></span>
                                         <div class="tooltip-info">
                                             <h5>Bella salle</h5>
                                             <p>Différentiel de durabilité</p>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <!-- slick-slide-item end -->
