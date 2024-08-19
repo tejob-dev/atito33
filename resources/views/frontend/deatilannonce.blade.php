@@ -269,10 +269,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <a class="host-avatar-wrap" href="agent-single.html">
-                                                    <span>Par : {{ optional(optional($currentSalle->comptes)->first())->nom_compte  }} {{ optional(optional($currentSalle->comptes)->first())->prenom_compte  }}</span>
-                                                    <img src="{{ asset('storage/'.str_replace('public/', '', optional(optional($currentSalle->comptes)->first())->photo)) }}" alt="">
-                                                    </a>
                                                 </div>
                                             </div>
                                             <div class="list-single-header-footer fl-wrap">

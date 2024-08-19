@@ -32,8 +32,8 @@
     <!-- subscribe-wrap end -->
     <!-- footer -->
     <footer class="main-footer fl-wrap">
-        <hr style="color: #bdbdbf;">
-        <br>
+        <!-- <hr style="color: #bdbdbf;">
+        <br> -->
         <br>
         <div class="footer-inner fl-wrap">
             <div class="container">

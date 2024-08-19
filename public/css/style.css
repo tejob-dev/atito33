@@ -3711,8 +3711,8 @@ section.single-par2 .scroll-down-wrap {
 }
 
 .three-columns-grid .listing-item {
-    width: 32.3%;
-    padding: 0 4px !important;
+    width: 33.3%;
+    padding: 8px 16px 8px 0!important;
 }
 
 .three-columns-grid .listing-item.has_one_column .geodir-category-listing {
