@@ -174,16 +174,8 @@
                             @foreach($currentSalle->photosSalles as $sallephoto)
                             <div class="slick-slide-item">
                                 <div class="box-item">
-                                    <img  src="{{ asset('storage/'.str_replace('public/', '', $sallephoto->photo)) }}"   alt="photos de la salles">
-                                    <a href="{{ asset('storage/'.str_replace('public/', '', $sallephoto->photo)) }}" class="gal-link popup-image popup-corou-info ">
-                                        <i class="far fa-search-plus"  ></i></a>
-                                    <div class="show-info">
-                                        <span><i class="fas fa-info"></i></span>
-                                        <div class="tooltip-info">
-                                            <h5>{{ $sallephoto->titre_image }}</h5>
-                                            <p>{{ $sallephoto->description_image }}</p>
-                                        </div>
-                                    </div>
+                                    <img  src="{{ asset('storage/'.str_replace('public/', '', $sallephoto->photo)) }}" class="gal-link popup-image popup-corou-info "  alt="photos de la salles">
+                                    
                                 </div>
                             </div>
                             @endforeach
@@ -273,7 +265,7 @@
                                             </div>
                                             <div class="list-single-header-footer fl-wrap">
                                                 <div class="list-single-header-price" data-propertyprise=""><strong>Forfait dès:</strong>{{empty($currentSalle->tarif_salle)?"NOUS CONSULTEZ !":$currentSalle->tarif_salle." FCFA"}}</div>
-                                                <div class="list-single-header-date"><span>Date de poste:</span>{{ Carbon\Carbon::parse($currentSalle->created_date)->format("d/m/Y") }}</div>
+                                                <div class="list-single-header-date"><span>Mise en ligne:</span>{{ Carbon\Carbon::parse($currentSalle->created_date)->format("d/m/Y") }}</div>
                                                 <div class="list-single-stats">
                                                     <ul class="no-list-style">
                                                         @if( (optional(optional($currentSalle->visites)->first())->counter??0) > 50 ) <li><span class="viewed-counter"><i class="fas fa-eye"></i> Visites :  {{ optional(optional($currentSalle->visites)->first())->counter??'0' }} </span></li> @endif

@@ -4767,6 +4767,10 @@ section.single-par2 .scroll-down-wrap {
 .list-single-main-item {
     padding: 35px 30px;
     border-bottom: 1px solid #eee;
+    background: #fff;
+    border: 1px solid #eee;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
 }
 
 .list-single-main-item.fw-lmi {
