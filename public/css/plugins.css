@@ -10298,7 +10298,8 @@ canvas {
     display: none;
     float: left;
     height: 100%;
-    min-height: 1px
+    min-height: 1px;
+    border: 1px solid white;
 }
 
 [dir='rtl'] .slick-slide {
@@ -11430,7 +11431,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     pointer-events: auto;
     -webkit-transform: scale(1) translateY(0);
     -ms-transform: scale(1) translateY(0);
-    transform: scale(1) translateY(0)
+    transform: scale(1) translateY(0);
 }
 
 .nice-select.disabled {
@@ -11502,6 +11503,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     z-index: 9
 }
 
+.main-search-input-item:nth-child(1) .nice-select .list {
+    width: 248%;
+}
+
 .nice-select .option {
     cursor: pointer;
     font-weight: 400;
@@ -11513,7 +11518,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     padding-right: 29px;
     text-align: left;
     -webkit-transition: all .2s;
-    transition: all .2s
+    transition: all .2s;
+    border: 0.5px solid #eee;
 }
 
 .nice-select .option:hover,
@@ -11547,6 +11553,16 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     border-radius: 0 0 5px 5px;
     max-height: 210px;
     overflow-y: scroll;
+    padding: 52px 0 0
+}
+
+.main-search-input-item:nth-child(1) .nice-select .list {
+    margin-top: 5px;
+    top: 100%;
+    border-top: 0;
+    border-radius: 0 0 5px 5px;
+    /* max-height: 210px;
+    overflow-y: scroll; */
     padding: 52px 0 0
 }
 

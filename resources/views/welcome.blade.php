@@ -430,17 +430,17 @@
                                         <div class="services-opions fl-wrap">
                                             <ul>
                                                 <li>
-                                                    <i class="fal fa-headset"></i>
+                                                    <i class="far fa-search-location"></i>
                                                     <h4>Recherchez le lieu idéal  </h4>
                                                     <p>Faites votre recherche d'espace en renseignant le type (Type d’évenement, lieu, Nombre de personnes... etc) la localité.</p>
                                                 </li>
                                                 <li>
-                                                    <i class="fal fa-users-cog"></i>
+                                                    <i class="fas fa-users"></i>
                                                     <h4>Echangez et réservez avec l'annonceur</h4>
                                                     <p>Il suffit juste de faire une recherche rapide en 2 clics sur les types ou commodités de salles.</p>
                                                 </li>
                                                 <li>
-                                                    <i class="fal fa-phone-laptop"></i>
+                                                    <i class="far fa-glass-cheers"></i>
                                                     <h4>Faites votre Évènement</h4>
                                                     <p>En créant un compte sur ATITO, vous obtenez le droit de d'ajouter une annonce.</p>
                                                 </li>
