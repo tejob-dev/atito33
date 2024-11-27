@@ -11566,6 +11566,13 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     padding: 52px 0 0
 }
 
+.main-search-input-item:nth-child(1) .nice-select .list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns of equal width */
+    gap: 1px;
+}
+
 .nice-select.has-multiple span.current {
     float: left;
     font-size: 10px;
