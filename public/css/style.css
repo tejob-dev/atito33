@@ -3015,6 +3015,7 @@ section.single-par2 .scroll-down-wrap {
     bottom: 0;
     width: 30%;
     z-index: 1;
+    border-right: 1px solid white;
 }
 
 .half-carousel-title-item {
