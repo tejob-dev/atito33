@@ -177,17 +177,17 @@
                                 <div class="slideshow-container" >
                                     <!-- slideshow-item -->
                                    <div class="slideshow-item">
-                                        <div class="bg"  data-bg="images/bg/highlight 1.jpg"></div>
+                                        <div class="bg"  data-bg="images/bg/highlight1.jpg"></div>
                                     </div>
                                     <!--  slideshow-item end  -->
                                     <!-- slideshow-item -->
                                    <div class="slideshow-item">
-                                        <div class="bg"  data-bg="images/bg/highlight 2.jpg"></div>
+                                        <div class="bg"  data-bg="images/bg/highlight2.jpg"></div>
                                     </div>
                                     <!--  slideshow-item end  -->
                                     <!-- slideshow-item -->
                                     <div class="slideshow-item">
-                                        <div class="bg"  data-bg="images/bg/highlight 3.jpg"></div>
+                                        <div class="bg"  data-bg="images/bg/highlight3.jpg"></div>
                                     </div>
                                     <!--  slideshow-item end  -->
                                 </div>
