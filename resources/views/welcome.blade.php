@@ -177,17 +177,17 @@
                                 <div class="slideshow-container" >
                                     <!-- slideshow-item -->
                                    <div class="slideshow-item">
-                                        <div class="bg"  data-bg="images/bg/img2.jpg"></div>
+                                        <div class="bg"  data-bg="images/bg/highlight 1.jpg"></div>
                                     </div>
                                     <!--  slideshow-item end  -->
                                     <!-- slideshow-item -->
-                                   <!-- <div class="slideshow-item">
-                                        <div class="bg"  data-bg="images/bg/1.jpg"></div>
-                                    </div>-->
+                                   <div class="slideshow-item">
+                                        <div class="bg"  data-bg="images/bg/highlight 2.jpg"></div>
+                                    </div>
                                     <!--  slideshow-item end  -->
                                     <!-- slideshow-item -->
                                     <div class="slideshow-item">
-                                        <div class="bg"  data-bg="images/bg/img1.jpg"></div>
+                                        <div class="bg"  data-bg="images/bg/highlight 3.jpg"></div>
                                     </div>
                                     <!--  slideshow-item end  -->
                                 </div>
@@ -432,17 +432,17 @@
                                                 <li>
                                                     <i class="far fa-search-location"></i>
                                                     <h4>Recherchez le lieu idéal  </h4>
-                                                    <p>Faites votre recherche d'espace en renseignant le type (Type d’évenement, lieu, Nombre de personnes... etc) la localité.</p>
+                                                    <p>Faites votre recherche d'espace en renseignant le type type événement, le lieu, le nombre de personnes... etc</p>
                                                 </li>
                                                 <li>
                                                     <i class="fas fa-users"></i>
                                                     <h4>Echangez et réservez avec l'annonceur</h4>
-                                                    <p>Il suffit juste de faire une recherche rapide en 2 clics sur les types ou commodités de salles.</p>
+                                                    <p>Par mail, appel ou whatsapp, discuter et finaliser la réservation de la salle avec l’annonceur.</p>
                                                 </li>
                                                 <li>
                                                     <i class="far fa-glass-cheers"></i>
-                                                    <h4>Faites votre Évènement</h4>
-                                                    <p>En créant un compte sur ATITO, vous obtenez le droit de d'ajouter une annonce.</p>
+                                                    <h4>Vous êtes prêt !</h4>
+                                                    <p>Célébrez votre événement en toute sérénité</p>
                                                 </li>
                                             </ul>
                                         </div>
