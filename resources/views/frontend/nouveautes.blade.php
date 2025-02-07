@@ -92,7 +92,7 @@
                 <nav>
                     <ul class="no-list-style">
                         <li>
-                            <a href="/" class="act-link">Accueil</a>
+                            <a href="/" class="">Accueil</a>
                             <!--second level -->
 
                         </li>
@@ -101,7 +101,7 @@
 
                         </li>
                         <li>
-                            <a href="/nouvelles/annonces">Nouveautés</a>
+                            <a href="/nouvelles/annonces" class="act-link">Nouveautés</a>
 
                         </li>
 
@@ -310,7 +310,9 @@
                         <div class="list-main-wrap-header box-list-header fl-wrap">
                             <!-- list-main-wrap-title-->
                             <div class="list-main-wrap-title">
-                                <h2>Les dernières sorties <span></strong></h2>
+                                <h2 style="
+    color: #3270FC;
+">Les dernières sorties <span></strong></h2>
                             </div>
                             <!-- list-main-wrap-title end-->
                             <!-- list-main-wrap-opt-->

@@ -92,7 +92,7 @@
                 <nav>
                     <ul class="no-list-style">
                         <li>
-                            <a href="/" class="act-link">Accueil</a>
+                            <a href="/" class="">Accueil</a>
                             <!--second level -->
 
                         </li>
@@ -106,7 +106,7 @@
                         </li>
 
                         <li>
-                            <a href="/voir/bureauxcowork">Bureaux & Coworking</a>
+                            <a href="/voir/bureauxcowork" class="act-link">Bureaux & Coworking</a>
 
                         </li>
 

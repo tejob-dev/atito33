@@ -96,7 +96,7 @@
                                 
                             </li>
                             <li>
-                                <a href="/recherche/promotions">Promotions </a>
+                                <a href="/recherche/promotions">Promotions</a>
                                 
                             </li>
                             <li>

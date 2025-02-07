@@ -173,7 +173,7 @@
                                                 <label for="check-a2">J'accepte la <a href="#">Politique de confidentialité</a> & <a href="#">Conditions générales</a></label>
                                             </div>
                                             <div class="clearfix"></div>
-                                            <button type="submit" class="log_btn color-bg"> S'enrégister </button>
+                                            <button type="submit" class="log_btn color-bg"> Valider </button>
                                         </form>
                                     </div>
                                 </div>

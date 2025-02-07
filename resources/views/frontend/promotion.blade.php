@@ -92,12 +92,12 @@
                 <nav>
                     <ul class="no-list-style">
                         <li>
-                            <a href="/" class="act-link">Accueil</a>
+                            <a href="/" class="">Accueil</a>
                             <!--second level -->
 
                         </li>
                         <li>
-                            <a href="/recherche/promotions">Promotions </a>
+                            <a href="/recherche/promotions" class="act-link">Promotions </a>
 
                         </li>
                         <li>
@@ -312,7 +312,7 @@
                         <div class="list-main-wrap-header box-list-header fl-wrap">
                             <!-- list-main-wrap-title-->
                             <div class="list-main-wrap-title">
-                                <h2>Resultat pour : <span> {{ $search?$search:"Tous les éléments promotions" }} | {{ $typesalle != "0"?$typesalle:"" }} </span><strong> {{ $annonces->count() }} </strong></h2>
+                                <h2>Resultat pour : <span> {{ $search?$search:"Salles et espaces en promotions" }} | {{ $typesalle != "0"?$typesalle:"" }} </span><strong> {{ $annonces->count() }} </strong></h2>
                             </div>
                             <!-- list-main-wrap-title end-->
                             <!-- list-main-wrap-opt-->
