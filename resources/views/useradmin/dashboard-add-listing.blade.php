@@ -336,7 +336,7 @@
                             <h3>Main</h3>
                             <ul class="no-list-style">
                                 <li><a href="dashboard.html"><i class="fal fa-chart-line"></i>Dashboard</a></li>
-                                <li><a href="dashboard-myprofile.html"><i class="fal fa-user-edit"></i> Edit profile</a></li>
+                                <li><a href="dashboard-myprofile.html"><i class="fal fa-user-edit"></i> Edit le profil</a></li>
                                 <li><a href="dashboard-messages.html"><i class="fal fa-envelope"></i> Messages</a></li>
                                 <li><a href="dashboard-agents.html"><i class="fal fa-users"></i> Agents List</a></li>
                                 <li>
@@ -786,7 +786,7 @@
                                         <!-- content-widget-switcher -->	
                                         <div class="col-md-4">
                                             <div class="content-widget-switcher fl-wrap">
-                                                <span class="content-widget-switcher-title">Video Presentation</span>
+                                                <span class="content-widget-switcher-title">Video Présentation</span>
                                                 <div class="onoffswitch">
                                                     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitchmc" checked>
                                                     <label class="onoffswitch-label" for="myonoffswitchmc">

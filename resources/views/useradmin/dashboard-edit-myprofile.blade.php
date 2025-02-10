@@ -256,7 +256,7 @@
                     <div class="container dasboard-container">
                         <!-- dashboard-title -->	
                             <div class="dashboard-title fl-wrap">
-                            <div class="dashboard-title-item"><span>Edition du profile</span></div>
+                            <div class="dashboard-title-item"><span>Edition du profil</span></div>
                             <div class="dashbard-menu-header">
                                 <div class="dashbard-menu-avatar fl-wrap">
                                     <img src="{{asset('storage/'.str_replace('public/', '', auth()->user()->compte->photo))}}" alt="">
@@ -313,7 +313,7 @@
                                             </div>
                                             <div class="change-photo-btn cpb-2  ">
                                                 <div class="photoUpload color-bg">
-                                                    <span> <i class="far fa-camera"></i> Charger image profile </span>
+                                                    <span> <i class="far fa-camera"></i> Charger image de profil </span>
                                                     <input type="file" class="upload" name="photo">
                                                 </div>
                                             </div>

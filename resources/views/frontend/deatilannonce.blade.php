@@ -474,7 +474,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="profile-widget-footer fl-wrap">
-                                                    <a href="/voir/detail/{{optional(optional($currentSalle->comptes)->first())->id}}/utilisateur" class="btn float-btn color-bg small-btn">Voir le profile</a>
+                                                    <a href="/voir/detail/{{optional(optional($currentSalle->comptes)->first())->id}}/utilisateur" class="btn float-btn color-bg small-btn">Voir le profil</a>
                                                     <!-- <a href="#sec-contact" class="custom-scroll-link tolt" data-microtip-position="left"  data-tooltip="Viewing Property"><i class="fal fa-paper-plane"></i></a> -->
                                                 </div>
                                             </div>
@@ -491,7 +491,7 @@
                                         <div class="box-widget-title fl-wrap">Documentation</div>
                                         <div class="box-widget-content fl-wrap">
                                             <div class="bwc_download-list">
-                                                <a href="#" download><span><i class="fal fa-file-pdf"></i></span>Property Presentation</a>
+                                                <a href="#" download><span><i class="fal fa-file-pdf"></i></span>Property Présentation</a>
                                                 <a href="#" download><span><i class="fal fa-file-word"></i></span>Energetic Certificate</a>
                                                 <a href="#" download><span><i class="fal fa-file-pdf"></i></span>Property Plans</a>
                                             </div>

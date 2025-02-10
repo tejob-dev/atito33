@@ -263,7 +263,7 @@
                             </div>
                             <!--Tariff Plan menu-->
                             <div class="tfp-det-container">
-                                <div   class="tfp-btn"><span>Votre status : </span> <strong>Gratuit</strong></div>
+                                <div   class="tfp-btn"><span>Votre statut : </span> <strong>Gratuit</strong></div>
                                 <!-- <div class="tfp-det">
                                     <p>You Are on <a href="#">Extended</a> . Use link bellow to view details or upgrade. </p>
                                     <a href="#" class="tfp-det-btn color-bg">Details</a>

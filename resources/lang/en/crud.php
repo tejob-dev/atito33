@@ -87,7 +87,7 @@ return [
             'type' => 'Type',
             'nom_salle' => 'Nom Salle',
             'adresse_salle' => 'Adresse Salle',
-            'presentation_salle' => 'Presentation Salle',
+            'presentation_salle' => 'Présentation Salle',
             'capacite_salle' => 'Capacite Salle',
             'tarif_salle' => 'Tarif Salle',
             'acces_salle' => 'Acces Salle',

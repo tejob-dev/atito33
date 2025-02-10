@@ -257,7 +257,7 @@
                 <div class="container dasboard-container">
                     <!-- dashboard-title -->
                     <div class="dashboard-title fl-wrap">
-                        <div class="dashboard-title-item"><span>Composé une annonce</span></div>
+                        <div class="dashboard-title-item"><span>Ajouter une annonce</span></div>
                         <div class="dashbard-menu-header">
                             <div class="dashbard-menu-avatar fl-wrap">
                                 <img src="{{asset('storage/'.str_replace('public/', '', auth()->user()->compte->photo))}}" alt="">
@@ -327,7 +327,7 @@
                                             <input name="adresse_salle" type="text" placeholder="Adresse" value="{{old('adresse_salle', ($editing ? $salle->adresse_salle : ''))}}" />
                                         </div>
                                         <div class="col-sm-4">
-                                            <label>Presentation de la salle</label>
+                                            <label>Présentation de la salle</label>
                                             <div class="listsearch-input-item">
                                                 <textarea name="presentation_salle" cols="40" rows="3" style="height: 235px" placeholder="" spellcheck="false">{{old('presentation_salle', ($editing ? $salle->presentation_salle : ''))}}</textarea>
                                             </div>

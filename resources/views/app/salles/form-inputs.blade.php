@@ -36,7 +36,7 @@
     <x-inputs.group class="w-full">
         <x-inputs.textarea
             name="presentation_salle"
-            label="Presentation Salle"
+            label="Présentation Salle"
             maxlength="255"
             >{{ old('presentation_salle', ($editing ? $salle->presentation_salle
             : '')) }}</x-inputs.textarea
