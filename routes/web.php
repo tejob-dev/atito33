@@ -47,7 +47,7 @@ Route::get('/', function () {
 
 Route::get('/test_send_mail', function () {
 
-    Mail::to("tchimouj66@gmail.com")->send(new VerificationMail('DANGNINY THIERY', 'https://google.com'));
+    Mail::to("goorebis@gmail.com")->send(new VerificationMail('DANGNINY THIERY', 'https://google.com'));
 
     return new JsonResponse(["success"=>true, 'message' => 'Verification email sent successfully']);
 });
