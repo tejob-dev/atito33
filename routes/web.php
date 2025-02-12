@@ -1,6 +1,10 @@
 <?php
 
 use App\Models\Salle;
+use App\Mail\VerificationMail;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Providers\RouteServiceProvider;
 use App\Http\Controllers\RoleController;
@@ -12,16 +16,14 @@ use App\Http\Controllers\VisiteController;
 use App\Http\Controllers\CommuneController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ComoditeController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\QuartierController;
 use App\Http\Controllers\TexteJourController;
 use App\Http\Controllers\TypeSalleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\VideoSalleController;
 use App\Http\Controllers\PhotosSalleController;
-use App\Http\Controllers\UserDashboardController;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Controllers\UserDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,13 @@ Route::get('/', function () {
 
     }
     return view('welcome');
+});
+
+Route::get('/test_send_mail', function () {
+
+    Mail::to("tchimouj66@gmail.com")->send(new VerificationMail('DANGNINY THIERY', 'https://google.com'));
+
+    return new JsonResponse(["success"=>true, 'message' => 'Verification email sent successfully']);
 });
 
 Route::get('/recherche/salles', [SalleController::class, "search_page"]);
