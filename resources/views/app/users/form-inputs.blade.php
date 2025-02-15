@@ -33,6 +33,17 @@
         ></x-inputs.password>
     </x-inputs.group>
 
+    <x-inputs.group class="w-full">
+        <x-inputs.number
+            name="enabled"
+            label="Activation"
+            :value="old('enabled', ($editing ? $user->enabled : ''))"
+            maxlength="255"
+            placeholder="0 desactivation et 1 activation"
+            required
+        ></x-inputs.number>
+    </x-inputs.group>
+
     <div class="px-4 my-4">
         <h4 class="font-bold text-lg text-gray-700">
             Assign @lang('crud.roles.name')
