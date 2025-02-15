@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Compte;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\VerificationMail;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 
@@ -53,6 +56,7 @@ class UserController extends Controller
         
         $validated['name'] = $validated['nom']." ".$validated["prenom"];
         $validated['password'] = Hash::make($request->password);
+        $validated['verification_token'] = Str::random(64);
         
         //dd($validated);
         $user = User::create($validated);
@@ -71,11 +75,13 @@ class UserController extends Controller
         //Auth::login($user);
         if($user){
             ///SEND MAIL PRO TO USER
+            $verificationUrl = url("/verify-email/".$validated['verification_token']);
             //AND SHOW SUCCESS DIALOG
+            Mail::to($user->email)->send(new VerificationMail(strtoupper($compte->nom_compte." ".$compte->prenom_compte), $verificationUrl));
         }
 
 
-        return redirect('/');
+        return redirect('/')->withErrors("Votre compte a été crée avec succès, veuillez consulter votre boite mail ou spam pour l'activation !");
     }
 
     /**

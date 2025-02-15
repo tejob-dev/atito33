@@ -1,4 +1,8 @@
-/vendor/
+/vendor/*
+!/vendor/laravel/
+/vendor/laravel/*
+!/vendor/laravel/fortify/
+
 node_modules/
 npm-debug.log
 yarn-error.log
