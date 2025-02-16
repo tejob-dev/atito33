@@ -67,20 +67,7 @@ Route::post('/register/custom', [UserController::class, 'register_user']);
 
 //Route::redirect('/login', '/', 302, ['GET']);
 
-Route::get('/verify-email/{token}', function ($token) {
-    $user = User::where('verification_token', $token)->first();
-
-    if (!$user) {
-        return response("/")->withErrors("Ouups, votre compte n'a pas pu être activé, veuillez contacter: services@atito.net");
-    }
-
-    // Enable the user account
-    $user->enabled = true;
-    $user->verification_token = null; // Clear the token
-    $user->save();
-
-    return response("/")->withErrors("Votre compte a été correctement activé, veuillez vous connecter pour ajouter une annonce !");
-});
+Route::get('/verify-email/{token}', [UserController::class, 'verify_user']);
 
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/administration', function () {

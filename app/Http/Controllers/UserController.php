@@ -41,6 +41,22 @@ class UserController extends Controller
         return view('frontend.detailutilisateur', compact('compteId'));
     }
 
+    public function verify_user(Request $request, $token){
+        $user = User::where('verification_token', $token)->first();
+    
+        if (!$user) {
+            return redirect("/")->withErrors("Ouups, votre compte n'a pas pu être activé, veuillez contacter: services@atito.net");
+        }
+    
+        // Enable the user account
+        $user->enabled = true;
+        $user->verification_token = null; // Clear the token
+        $user->save();
+    
+        return redirect("/")->withErrors("Votre compte a été correctement activé, veuillez vous connecter pour ajouter une annonce !");
+    }
+
+
     public function register_user(Request $request){
 
         //dd( $request->all());
@@ -60,6 +76,9 @@ class UserController extends Controller
         
         //dd($validated);
         $user = User::create($validated);
+
+        // $user->verification_token = $validated['verification_token'];
+        // $user->save();
 
         $compte = Compte::create([
             "nom_compte"=>$validated['nom'],
