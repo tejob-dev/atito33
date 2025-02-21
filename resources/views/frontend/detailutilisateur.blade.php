@@ -320,7 +320,7 @@
                                                                         <a href="/voir/detail/{{$userSalle->id}}/annonce">{{$userSalle->nom_salle}}</a>
                                                                     </h3>
                                                                     <div class="geodir-category-content_price">{{$userSalle->tarif_salle}},OO FCFA</div>
-                                                                    <p>{{$userSalle->presentation_salle}}</p>
+                                                                    <h5 style="font-size: 13px; text-align: left; color: #878C9F;">{{$userSalle->presentation_salle}}</h5>
                                                                     <div class="geodir-category-content-details">
                                                                         <ul>
                                                                             @foreach($userSalle->comodites as $comoditeid)

@@ -374,7 +374,7 @@
                                     <div class="geodir-category-content fl-wrap">
                                         <h3 class="title-sin_item"><a href="/voir/detail/{{$annonce->id}}/annonce">{{$annonce->nom_salle}}</a></h3>
                                         <div class="geodir-category-content_price">{{empty($annonce->tarif_salle)?"NOUS CONSULTEZ !":$annonce->tarif_salle." FCFA"}}</div>
-                                        <p>{{substr($annonce->presentation_salle, 0, 150)}}</p>
+                                        <h5 style="font-size: 13px; text-align: left; color: #878C9F;">{{substr($annonce->presentation_salle, 0, 150)}}</h5>
                                         <div class="geodir-category-content-details">
                                             <ul>
                                                 @forelse($annonce->comodites as $comoditeId)

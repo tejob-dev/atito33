@@ -305,7 +305,7 @@
                                                     <h3>Description</h3>
                                                 </div>
                                                 <div class="list-single-main-item_content fl-wrap">
-                                                    <p> {{ $currentSalle->presentation_salle }} </p>
+                                                    <h5 style="font-size: 13px; text-align: left; color: #878C9F;"> {{ $currentSalle->presentation_salle }} </h5>
                                                     @if(!empty($currentSalle->site_internet))
                                                     <a href="{{$currentSalle->site_internet}}" class="btn float-btn color-bg">Voir le site web</a>
                                                     @endif
@@ -597,7 +597,7 @@
                                                 <div class="geodir-category-content fl-wrap">
                                                     <h3 class="title-sin_item"><a href="/voir/detail/{{$itemsc->id}}/annonce">{{$itemsc->nom_salle}}</a></h3>
                                                     <div class="geodir-category-content_price">{{empty($itemsc->tarif_salle)?"NOUS CONSULTEZ !":$itemsc->tarif_salle." FCFA"}}</div>
-                                                    <p>{{$itemsc->presentation_salle}}</p>
+                                                    <h5 style="font-size: 13px; text-align: left; color: #878C9F;">{{$itemsc->presentation_salle}}</h5>
                                                     
                                                     
                                                 </div>
