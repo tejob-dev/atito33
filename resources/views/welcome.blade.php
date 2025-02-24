@@ -323,7 +323,7 @@
                                         <div class="geodir-category-content fl-wrap">
                                             <h3 class="title-sin_item"><a href="/voir/detail/{{$salle->id}}/annonce">{{$salle->nom_salle}}</a></h3>
 
-                                            <h5 style="font-size: 13px; text-align: left; color: #878C9F;"> {{substr($annonceId->presentation_salle, 0, 150)."…"}} </h5>
+                                            <h5 style="font-size: 13px; text-align: left; color: #878C9F;"> {{substr($salle->presentation_salle, 0, 150)."…"}} </h5>
 
 
                                         </div>
