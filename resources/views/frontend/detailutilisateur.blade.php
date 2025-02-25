@@ -169,7 +169,7 @@
                     <div class="breadcrumbs fw-breadcrumbs smpar fl-wrap">
                         <div class="container">
                             <div class="breadcrumbs-list">
-                                <a href="#">Menu</a><a href="#">Detail</a><a href="#">Utilisateur</a><span>{{$currentUser->nom_compte}} {{$currentUser->prenom_compte}}</span>
+                                <a href="#">Menu</a><a href="#">Détails</a><a href="#">Utilisateur</a><span>{{$currentUser->nom_compte}} {{$currentUser->prenom_compte}}</span>
                             </div>
                         </div>
                     </div>

@@ -164,6 +164,7 @@
                     <!--  carousel--> 
                     @php
                          $currentSalle = App\Models\Salle::findOrFail($salleid);
+                         $onlyphoto = $currentSalle->photosSalles->first();
                     @endphp
                     @if($currentSalle->photosSalles->count() > 0)
                     <div class="list-single-carousel-wrap carousel-wrap fl-wrap" id="sec1">
@@ -185,10 +186,17 @@
 
                             <div class="slick-slide-item">
                                 <div class="box-item">
-                                    <img  src="/fichiers/Image_haut_accueil.JPG"   alt="Bella salle">
-                                    <a style="background: none;" href="/fichiers/Image_haut_accueil.JPG" class="gal-link popup-image">
+                                    @if(isset($onlyphoto))
+                                    <img  src="{{ asset('storage/'.str_replace('public/', '', $onlyphoto->photo)) }}"   alt="Bella salle">
+                                    <a style="background: none;" href="{{ asset('storage/'.str_replace('public/', '', $onlyphoto->photo)) }}" class="gal-link popup-image">
                                         <!-- <i class="fal fa-search"  ></i> -->
                                     </a>
+                                    @else
+                                    <img  src="/fichiers/Image_haut_accueil.jpg"   alt="Bella salle">
+                                    <a style="background: none;" href="/fichiers/Image_haut_accueil.jpg" class="gal-link popup-image">
+                                        <!-- <i class="fal fa-search"  ></i> -->
+                                    </a>
+                                    @endif
                                     <!-- <div class="show-info">
                                         <span><i class="fas fa-info"></i></span>
                                         <div class="tooltip-info">
@@ -209,7 +217,7 @@
                     <div class="breadcrumbs fw-breadcrumbs smpar fl-wrap">
                         <div class="container">
                             <div class="breadcrumbs-list">
-                                <a href="#">Menu</a><a href="#">Detail</a><span>{{$currentSalle->nom_salle}}</span>
+                                <a href="#">Menu</a><a href="#">Détails</a><span>{{$currentSalle->nom_salle}}</span>
                             </div>
                         </div>
                     </div>
@@ -261,7 +269,12 @@
                                                 <div class="col-md-8">
                                                     <h1> {{ $currentSalle->nom_salle }} <span class="verified-badge tolt" data-microtip-position="bottom"  data-tooltip="Verified"><i class="fas fa-check"></i></span></h1>
                                                     <div class="geodir-category-location fl-wrap">
-                                                        <a href="#"><i class="fas fa-map-marker-alt"></i>  {{ $currentSalle->adresse_salle }} </a> 
+                                                        <a href="tel:{{ $currentSalle->telephone }}"><i class="fas fa-phone"></i>{{ $currentSalle->telephone }}</a>
+                                                        <a href="https://web.whatsapp.com/send?phone={{ $currentSalle->tel_whatsapp }}&text=Bonjour, je vous contacte depuis ATITO.NET !"><i class="fab fa-whatsapp"></i>{{ $currentSalle->tel_whatsapp }}</a>
+                                                        <a href="mailto:{{ $currentSalle->email_salle }}"><i class="fas fa-envelope"></i>{{ $currentSalle->email_salle }} </a>
+                                                        <a target="_blank" href="{{ $currentSalle->facebook_salle }}"><i class="fab fa-facebook"></i>{{ $currentSalle->facebook_salle }}</a>
+                                                        <a target="_blank" href="{{ $currentSalle->site_internet }}"><i class="fas fa-globe"></i>{{ $currentSalle->site_internet }}</a>
+                                                        <a href="https://www.google.com/maps/place/{{ $currentSalle->adresse_salle }} "><i class="fas fa-map-marker-alt"></i>  {{ $currentSalle->adresse_salle }} </a> 
                                                         <!-- <div class="listing-rating card-popup-rainingvis" data-starrating2="4"><span class="re_stars-title">Good</span></div> -->
                                                     </div>
                                                 </div>
@@ -307,7 +320,7 @@
                                                 <div class="list-single-main-item_content fl-wrap">
                                                     <h5 style="font-size: 13px; text-align: left; color: #878C9F;"> {{ $currentSalle->presentation_salle }} </h5>
                                                     @if(!empty($currentSalle->site_internet))
-                                                    <a href="{{$currentSalle->site_internet}}" class="btn float-btn color-bg">Voir le site web</a>
+                                                    <a target="_blank" href="{{$currentSalle->site_internet}}" class="btn float-btn color-bg">Voir le site web</a>
                                                     @endif
                                                 </div>
                                             </div>
@@ -445,7 +458,9 @@
                                         <div class="profile-widget">
                                             <div class="profile-widget-header color-bg smpar fl-wrap">
                                                 <div class="pwh_bg"><img src="{{ asset('storage/'.str_replace('public/', '', optional(optional($currentSalle->comptes)->first())->logo_entreprise)) }}" alt="{{ $currentSalle->nom_salle }}"></div>
-                                                <div class="call-btn"><a href="tel:{{ $currentSalle->telephone }}" class="tolt color-bg" data-microtip-position="right"  data-tooltip="Lancer un appel"><i class="fas fa-phone-alt"></i> {{ $currentSalle->telephone }}</a></div>
+                                                <div class="call-btn">
+                                                    
+                                                </div>
                                                 <div class="box-widget-menu-btn smact"><i class="far fa-ellipsis-h"></i></div>
                                                 <!-- <div class="show-more-snopt-tooltip bxwt">
                                                     <a href="#"> <i class="fas fa-comment-alt"></i> Write a review</a>
@@ -467,10 +482,10 @@
                                             <div class="profile-widget-content fl-wrap">
                                                 <div class="contats-list fl-wrap">
                                                     <ul class="no-list-style">
-                                                        <li><span><i class="fal fa-phone"></i> Téléphone :</span> <a href="#">{{ optional(optional($currentSalle->comptes)->first())->telephone_compte  }}</a></li>
-                                                        <li><span><i class="fal fa-phone"></i> Whatsapp :</span> <a href="#">{{ optional(optional($currentSalle->comptes)->first())->whatsapp_compte  }}</a></li>
-                                                        <li><span><i class="fal fa-envelope"></i> Email :</span> <a href="#">{{ optional(optional(optional($currentSalle->comptes)->first())->user)->email  }}</a></li>
-                                                        <li><span><i class="fal fa-browser"></i> Site Web :</span> <a href="#">{{ optional(optional($currentSalle->comptes)->first())->siteweb_compte  }}</a></li>
+                                                        <li><span><i class="fal fa-phone"></i> Téléphone :</span> <a href="tel:{{ optional(optional($currentSalle->comptes)->first())->telephone_compte }}">{{ optional(optional($currentSalle->comptes)->first())->telephone_compte  }}</a></li>
+                                                        <li><span><i class="fab fa-whatsapp"></i> Whatsapp :</span> <a href="https://web.whatsapp.com/send?phone={{ optional(optional($currentSalle->comptes)->first())->whatsapp_compte }}&text=Bonjour, je vous contacte depuis ATITO.NET !">{{ optional(optional($currentSalle->comptes)->first())->whatsapp_compte  }}</a></li>
+                                                        <li><span><i class="fal fa-envelope"></i> Email :</span> <a href="mailto:{{ optional(optional(optional($currentSalle->comptes)->first())->user)->email }}">{{ optional(optional(optional($currentSalle->comptes)->first())->user)->email  }}</a></li>
+                                                        <li><span><i class="fal fa-browser"></i> Site Web :</span> <a target="_blank" style="font-size: 12px;" href="{{ optional(optional($currentSalle->comptes)->first())->siteweb_compte  }}">{{ optional(optional($currentSalle->comptes)->first())->siteweb_compte  }}</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="profile-widget-footer fl-wrap">

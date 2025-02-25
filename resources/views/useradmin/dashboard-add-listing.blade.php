@@ -400,7 +400,7 @@
                                     <li><a href="#sec1" class="act-scrlink">Info</a></li>
                                     <li><a href="#sec2">Location</a></li>
                                     <li><a href="#sec3">Media</a></li>
-                                    <li><a href="#sec4">Details</a></li>
+                                    <li><a href="#sec4">Détails</a></li>
                                     <li><a href="#sec5">Rooms</a></li>
                                     <li><a href="#sec6">Plans</a></li>
                                     <li><a href="#sec7">Widgets</a></li>

@@ -321,9 +321,9 @@
                                             </div>
                                         </div>
                                         <div class="geodir-category-content fl-wrap">
-                                            <h3 class="title-sin_item"><a href="/voir/detail/{{$salle->id}}/annonce">{{$salle->nom_salle}}</a></h3>
+                                            <h3 class="title-sin_item"><a href="/voir/detail/{{$salle->id}}/annonce">{{adjustPresentation($salle->nom_salle, 33)}}</a></h3>
 
-                                            <h5 style="font-size: 13px; text-align: left; color: #878C9F;"> {{substr($salle->presentation_salle, 0, 150)."…"}} </h5>
+                                            <h5 style="font-size: 13px; text-align: left; color: #878C9F;"> {{adjustPresentation($salle->presentation_salle)}} </h5>
 
 
                                         </div>
@@ -574,8 +574,8 @@
                                         </div>
                                     </div>
                                     <div class="geodir-category-content fl-wrap">
-                                        <h3 class="title-sin_item"><a href="/voir/detail/{{$annonceId->id}}/annonce">{{$annonceId->nom_salle}}</a></h3>
-                                        <h5 style="font-size: 13px; text-align: left; color: #878C9F;">{{substr($annonceId->presentation_salle, 0, 150)."…"}}</h5>
+                                        <h3 class="title-sin_item"><a href="/voir/detail/{{$annonceId->id}}/annonce">{{adjustPresentation($annonceId->nom_salle, 33)}}</a></h3>
+                                        <h5 style="font-size: 13px; text-align: left; color: #878C9F;">{{adjustPresentation($annonceId->presentation_salle)}}</h5>
 
                                         <div class="geodir-category-footer fl-wrap">
                                             <?php
