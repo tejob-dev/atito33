@@ -31,7 +31,7 @@ if (!function_exists('adjustpresentation2')) {
          // Longueur d'une ligne
          // Nombre maximum de lignes
         $currentLength = mb_strlen($text, 'UTF-8');
-        $text = str_replace("\n", " ", $text);
+        $text = preg_replace('/\s+/', ' ', $text);
     
         if ($currentLength < $maxLength) {
             // Calcul du nombre de lignes actuelles
