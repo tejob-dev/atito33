@@ -323,7 +323,7 @@
                                         <div class="geodir-category-content fl-wrap">
                                             <h3 class="title-sin_item"><a href="/voir/detail/{{$salle->id}}/annonce">{!!adjustpresentation2($salle->nom_salle, 33, 33, 1)!!}</a></h3>
 
-                                            <h5 style="height: auto; font-size: 13px; text-align: left; color: #878C9F; white-space: pre-line;">{!!adjustpresentation2($salle->presentation_salle)!!}</h5>
+                                            <h5 style="height: auto; font-size: 13px; text-align: left; color: #878C9F; white-space: pre-line;">{!!adjustpresentation2($salle->presentation_salle, 150, 50, 4, true, 1)!!}</h5>
 
 
                                         </div>

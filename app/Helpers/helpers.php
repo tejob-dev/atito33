@@ -27,7 +27,7 @@ if (!function_exists('adjustpresentation')) {
 }
 
 if (!function_exists('adjustpresentation2')) {
-    function adjustpresentation2($text, $maxLength = 150, $lineLength = 50, $maxLines = 4, $subs = true) {
+    function adjustpresentation2($text, $maxLength = 150, $lineLength = 50, $maxLines = 4, $subs = true, $rebr = 0) {
          // Longueur d'une ligne
          // Nombre maximum de lignes
         $currentLength = mb_strlen($text, 'UTF-8');
@@ -41,6 +41,7 @@ if (!function_exists('adjustpresentation2')) {
             $brNeeded = $maxLines - $lines;
             if ($brNeeded > 0) {
                 $text .= str_repeat('<br>', $brNeeded);
+                $text .= str_repeat('<br>', $rebr);
             }
         } elseif ($currentLength > $maxLength) {
             // Tronquer à 192 caractères et ajouter "…"
