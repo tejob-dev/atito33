@@ -269,12 +269,13 @@
                                                 <div class="col-md-8">
                                                     <h1> {{ $currentSalle->nom_salle }} <span class="verified-badge tolt" data-microtip-position="bottom"  data-tooltip="Verified"><i class="fas fa-check"></i></span></h1>
                                                     <div class="geodir-category-location fl-wrap">
+                                                        <a href="https://www.google.com/maps/place/{{ $currentSalle->adresse_salle }} "><i class="fas fa-map-marker-alt"></i>  {{ $currentSalle->adresse_salle }} </a><br><br><br>
                                                         <a href="tel:{{ $currentSalle->telephone }}"><i class="fas fa-phone"></i>{{ $currentSalle->telephone }}</a> <br>
                                                         <a href="https://web.whatsapp.com/send?phone={{ $currentSalle->tel_whatsapp }}&text=Bonjour, je vous contacte depuis ATITO.NET !"><i class="fab fa-whatsapp"></i>{{ $currentSalle->tel_whatsapp }}</a><br>
                                                         <a href="mailto:{{ $currentSalle->email_salle }}"><i class="fas fa-envelope"></i>{{ $currentSalle->email_salle }} </a><br>
                                                         <a target="_blank" href="{{ $currentSalle->facebook_salle }}"><i class="fab fa-facebook"></i>{{ $currentSalle->facebook_salle }}</a><br>
                                                         <a target="_blank" href="{{ $currentSalle->site_internet }}"><i class="fas fa-globe"></i>{{ $currentSalle->site_internet }}</a><br>
-                                                        <a href="https://www.google.com/maps/place/{{ $currentSalle->adresse_salle }} "><i class="fas fa-map-marker-alt"></i>  {{ $currentSalle->adresse_salle }} </a> 
+                                                        
                                                         <!-- <div class="listing-rating card-popup-rainingvis" data-starrating2="4"><span class="re_stars-title">Good</span></div> -->
                                                     </div>
                                                 </div>

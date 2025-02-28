@@ -41,7 +41,6 @@ if (!function_exists('adjustpresentation2')) {
             $brNeeded = $maxLines - $lines;
             if ($brNeeded > 0) {
                 $text .= str_repeat('<br>', $brNeeded);
-                $text .= str_repeat('<br>', $brNeeded);
             }
         } elseif ($currentLength > $maxLength) {
             // Tronquer à 192 caractères et ajouter "…"
