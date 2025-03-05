@@ -8991,3 +8991,66 @@ i.fontawe-icon-size {
     background-color: #d7d7d745;
     display: inline!important;
 }
+
+/* custom css for checkbox */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 10px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #7d93b2;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.checkbox-item input[type="checkbox"]:checked {
+    background-color: #7d93b2;
+}
+
+.checkbox-item input[type="checkbox"]:checked::after {
+    content: '✔';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+}
+
+.checkbox-item label {
+    cursor: pointer;
+}
+
+.listsearch-input-item .filter-tags2 li {
+    width: 100%;
+}
+
+.listsearch-input-item .filter-tags2{
+  border: 1px solid #e5e7f2;
+  background: #F5F7FB;
+  width: 100%;
+  padding: 1px 2px 1px 7px;
+  border-radius: 4px;
+  color: #7d93b2;
+  font-size: 12px;
+  -webkit-appearance: none;
+  outline: none;
+  overflow: hidden;
+  font-weight: 400;
+  margin: 0;
+  height: 235px;
+}

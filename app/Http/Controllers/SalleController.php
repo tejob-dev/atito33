@@ -433,7 +433,7 @@ class SalleController extends Controller
     public function save_salle(SalleStoreRequest $request)
     {
 
-        //dd($request->all());
+        // dd($request->all());
         if(isset($request->forupdated)){
 
             $salle = Salle::find($request->forupdated);
@@ -456,7 +456,8 @@ class SalleController extends Controller
                 'commune_id' => ['required', 'exists:communes,id'],
                 'ville_id' => ['required', 'exists:villes,id'],
                 'quartier_id' => ['nullable', 'exists:quartiers,id'],
-                'comodite' => ['required', 'max:255', 'array'],
+                'comodite' => ['required', 'array'],
+                'typesalle' => ['array'],
                 'type' => ['nullable', 'max:255', 'string'],
                 'acces_salle' => ['nullable', 'max:255', 'string'],
                 'logistique_salle' => ['nullable', 'max:255', 'string'],
@@ -496,6 +497,15 @@ class SalleController extends Controller
                 $salle->typeSalles()->detach($lidata);
                 $salle->typeSalles()->attach($request->typesalle_id, []);
             }
+
+            if ($request->has('typesalle_id')) {
+                if(sizeof($request->typesalle) > 0){
+                    $typesalleLi = array_values(array_filter($request->typesalle, function ($value) use ($request) {
+                        return $value != $request->typesalle_id;
+                    }));
+                    $salle->typeSalles()->attach($typesalleLi, []);                
+                }
+            }
             
             if ($request->has('comodite')) {
                 $lidata = $salle->comodites->pluck("id")->toArray();
@@ -507,7 +517,7 @@ class SalleController extends Controller
     
             $salle->update($data);
 
-            return redirect()->back();
+            return redirect()->back()->withErrors("La salle a été bien mise à jour !");
         }
 
         $this->authorize('create', Salle::class);
@@ -530,7 +540,8 @@ class SalleController extends Controller
             'commune_id' => ['required', 'exists:communes,id'],
             'ville_id' => ['required', 'exists:villes,id'],
             'quartier_id' => ['nullable', 'exists:quartiers,id'],
-            'comodite' => ['required', 'max:255', 'array'],
+            'comodite' => ['required', 'array'],
+            'typesalle' => ['array'],
             'type' => ['nullable', 'max:255', 'string'],
             'acces_salle' => ['nullable', 'max:255', 'string'],
             'logistique_salle' => ['nullable', 'max:255', 'string'],
@@ -567,6 +578,15 @@ class SalleController extends Controller
         if ($request->has('typesalle_id')) {
             $salle->typeSalles()->attach($request->typesalle_id, []);
         }
+
+        if ($request->has('typesalle_id')) {
+            if(sizeof($request->typesalle) > 0){
+                $typesalleLi = array_values(array_filter($request->typesalle, function ($value) use ($request) {
+                    return $value != $request->typesalle_id;
+                }));
+                $salle->typeSalles()->attach($typesalleLi, []);                
+            }
+        }
         
         if ($request->has('comodite')) {
             if(sizeof($request->comodite) > 0){
@@ -576,7 +596,7 @@ class SalleController extends Controller
 
         auth()->user()->compte->salles()->attach($salle->id);
 
-        return redirect()->to("/user-dashboard-annonce");
+        return redirect()->to("/user-dashboard-annonce")->withErrors("La salle a été bien crée !");
     }
 
     public function save_photo(PhotosSalleStoreRequest $request){

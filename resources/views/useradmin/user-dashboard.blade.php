@@ -308,7 +308,7 @@
                                     <input type="hidden" name="user_id" value="{{optional(auth()->user()->compte)->id}}">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <label>Liste des type de salles</label>
+                                            <label>Type principal de salle</label>
                                             <div class="listsearch-input-item">
                                                 <select name="typesalle_id" data-placeholder="Les type de salles" class="chosen-select no-search-select">
                                                     <!--  -->
@@ -325,6 +325,26 @@
                                         <div class="col-sm-4">
                                             <label>Adresse<span class="dec-icon"><i class="far fa-map-pin"></i></span></label>
                                             <input name="adresse_salle" type="text" placeholder="Adresse" value="{{old('adresse_salle', ($editing ? $salle->adresse_salle : ''))}}" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="listsearch-input-item">
+                                                <label style="padding-bottom: 0px;">Autres fonctions de salles</label>
+                                                <div class="fl-wrap filter-tags filter-tags2">
+                                                    @php
+                                                        if($editing){
+                                                            $typeSallesli = $salle->typeSalles->pluck('id')->toArray();
+                                                        }
+                                                    @endphp
+                                                    <ul class="no-list-style checkbox-grid">
+                                                    @foreach(App\Models\TypeSalle::get() as $typeSallesIt)
+                                                        <li>
+                                                            <input id="typesalle{{ $typeSallesIt->id }}" type="checkbox" name="typesalle[]" {{  $editing ? (in_array($typeSallesIt->id, $typeSallesli)? 'checked=true' : ''): ""  }} value="{{ $typeSallesIt->id }}">
+                                                            <label for="typesalle{{ $typeSallesIt->id }}" style="font-size: 10px;padding: 1px;" alt="{{ $typeSallesIt->libelle }}" title="{{ $typeSallesIt->libelle }}">{{ substr($typeSallesIt->libelle, 0, 9) }}</label>
+                                                        </li>
+                                                    @endforeach
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <label>Présentation de la salle</label>
