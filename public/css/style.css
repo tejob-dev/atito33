@@ -8012,7 +8012,7 @@ section.single-par2 .scroll-down-wrap {
 }
 
 .lws_mobile {
-    display: block
+    display: block !important;
 }
 
 .mob-nav-content-btn {
