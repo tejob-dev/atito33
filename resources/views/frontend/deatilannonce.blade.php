@@ -586,38 +586,7 @@
                                     @foreach($curSallCollectEnd as $itemsc )
                                     <div class="slick-slide-item">
                                         <!-- listing-item -->
-                                        <div class="listing-item">
-                                            <article class="geodir-category-listing fl-wrap">
-                                                <div class="geodir-category-img fl-wrap">
-                                                    <a href="/voir/detail/{{$itemsc->id}}/annonce" class="geodir-category-img_item">
-                                                        <img src="{{asset('storage/'.str_replace('public/', '', $itemsc->photo))}}" alt="image type de salle" style="height: 250px;width: 390px;">
-                                                        <div class="overlay"></div>
-                                                    </a>
-                                                    <div class="geodir-category-location">
-                                                    <a href="/voir/detail/{{$itemsc->id}}/annonce" class="single-map-item tolt" data-newlatitude="40.72956781" data-newlongitude="-73.99726866"   data-microtip-position="top-left" data-tooltip="Localisation"><i class="fas fa-map-marker-alt"></i> <span>{{$itemsc->adresse_salle}}</span></a>
-                                                    </div>
-                                                    <ul class="list-single-opt_header_cat">
-    <!--                                                    <li><a href="#" class="cat-opt blue-bg">Sale</a></li>
-    -->                                                    
-                                                        @foreach($itemsc->typeSalles as $typeSalleId)
-                                                        <li><a href="#" class="cat-opt color-bg">{{$typeSalleId->libelle}}</a></li>
-                                                        @php if($loop->first) break; @endphp
-                                                        @endforeach
-                                                    </ul>
-                                                
-                                                    <div class="geodir-category-listing_media-list">
-                                                        <span><i class="fas fa-camera"></i> {{ $itemsc->photosSalles->count() }}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="geodir-category-content fl-wrap">
-                                                    <h3 class="title-sin_item"><a href="/voir/detail/{{$itemsc->id}}/annonce">{{$itemsc->nom_salle}}</a></h3>
-                                                    <div class="geodir-category-content_price">{{empty($itemsc->tarif_salle)?"NOUS CONSULTEZ !":$itemsc->tarif_salle." FCFA"}}</div>
-                                                    <h5 style="font-size: 13px; text-align: left; color: #878C9F;">{{$itemsc->presentation_salle}}</h5>
-                                                    
-                                                    
-                                                </div>
-                                            </article>
-                                        </div>
+                                        @include('components.salle-item', ['salle' => $itemsc])
                                         <!-- listing-item end-->							
                                     </div>
                                     @endforeach
