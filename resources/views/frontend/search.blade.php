@@ -353,71 +353,11 @@
                             <!-- listing-item -->
                             @foreach($annonces as $annonce)
 
-                            <div class="listing-item">
-                                <article class="geodir-category-listing fl-wrap">
-                                    <div class="geodir-category-img fl-wrap">
-                                        <a href="/voir/detail/{{$annonce->id}}/annonce" class="geodir-category-img_item">
-                                            <img src="{{ asset('storage/'.str_replace('public/', '', $annonce->photo)) }}" alt="image de salle" style="width: 392px; height:259px; " />
-                                            <div class="overlay"></div>
-                                        </a>
-                                        <div class="geodir-category-location">
-                                            <a href="#" class="single-map-item tolt" data-microtip-position="top-left" data-tooltip="Adresse de l'annonce"><i class="fas fa-map-marker-alt"></i> <span> {{ $annonce->adresse_salle }} </span></a>
-                                        </div>
-                                        <ul class="list-single-opt_header_cat">
-                                            @forelse($annonce->typeSalles as $typeSalleId)
-                                            <li><a href="#" class="cat-opt blue-bg">{{$typeSalleId->libelle}}</a></li>
-                                            @php if($loop->first) break; @endphp
-                                            @empty
-                                            <li>N/A</li>
-                                            @endforelse
-                                        </ul>
-                                        <div class="geodir-category-listing_media-list">
-                                            <span><i class="fas fa-camera"></i> {{ $annonce->photosSalles->count() }} </span>
-                                        </div>
-                                    </div>
-                                    <div class="geodir-category-content fl-wrap">
-                                        <h3 class="title-sin_item"><a href="/voir/detail/{{$annonce->id}}/annonce">{!!adjustpresentation2($annonce->nom_salle, 33, 33 , 1)!!}</a></h3>
-                                        <div class="geodir-category-content_price">{{empty($annonce->tarif_salle)?"NOUS CONSULTEZ !":$annonce->tarif_salle." FCFA"}}</div>
-                                        <h5 style="font-size: 13px; text-align: left; color: #878C9F;">{!!adjustpresentation2($annonce->presentation_salle)!!}</h5>
-                                        <div class="geodir-category-content-details">
-                                            <ul>
-                                                @forelse($annonce->comodites as $comoditeId)
-                                                <li><i class="{{$comoditeId->comodite_icon}} fontawe-icon-size" style="font-size: 13px;"></i><span>{{$comoditeId->libel}}</span></li>
-                                                @empty
-                                                <li>N/A</li>
-                                                @endforelse
-                                            </ul>
-                                            @if($annonce->visites->count() > 100)
-                                            <ul>
-                                                <li><i class="far fa-user fontawe-icon-size"></i><span>{{ $annonce->visites->count() }} vue(s)</span></li>
-                                            </ul>
-                                            @endif
-                                        </div>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <div class="geodir-category-content-details">
-                                            <ul>
-                                                <li> @if($annonce->commune) <i class="fas fa-map-marker-alt fontawe-icon-size"></i> @endif <span>{{ optional($annonce->commune)->nom_commune??'' }}</span></li>
-                                                <li> @if($annonce->ville) <i class="far fa-angle-right fontawe-icon-size"></i> @endif <span>{{ optional($annonce->ville)->nom_ville }}</span></li>
-                                                <li> @if($annonce->quartier) <i class="far fa-angle-right fontawe-icon-size"></i> @endif <span>{{ optional($annonce->quartier)->nom_quartier }}</span></li>
-                                            </ul>
-                                        </div>
-                                        <div class="geodir-category-footer fl-wrap">
-                                            <?php
+                            @include('components.salle-item', ['salle' => $annonce])
 
-                                            $compte = optional($annonce->comptes())->with('user')->first() ?? null;
-                                            $user = optional($compte)->user ?? null;
-
-                                            ?>
-                                            <a href="/voir/detail/{{optional($compte)->id}}/utilisateur" class="gcf-company make-space-between-item"><img src="{{asset('storage/'.str_replace('public/', '', optional($compte)->photo??'' ))}}" alt=""> <span class="modal-open" onclick="document.querySelector('#hid_compte_id').value = {{optional($compte)->id??null}};" data-modalid="message-box" data-backmodalid="back-message-box" data-overmodalid="over-message-box"> <i class="fas fa-mailbox fontawe-icon-size"></i> Envoyer un message</span> </a> 
-
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-
-                            @endforeach
+                            @empty
+                            <h1>AUCUNE ANNONNCE DISPONIBLE !!</h1>
+                            @endforelse
                             <!-- listing-item end-->
                         </div>
                         <!-- listing-item-wrap end-->
