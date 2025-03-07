@@ -67,11 +67,17 @@ class ContactController extends Controller
 
         if($compteid){
             $contact = Contact::create($request->all());
-            $user = $contact->user;
+            $user = $compteid->user;
+
+            // dd($user, $request->all());
 
             //SEND MAIL TO USER FOR THIS ACTION
-            Mail::to($request->email)->send(new ContactMail(strtoupper($request->nom_prenom_c), $user->email));
-            Mail::to($user->email)->send(new PokeMail(strtoupper($request->nom_prenom_c), $request->email, $request->message));
+            if(isset($request->email)){
+                Mail::to($request->email)->send(new ContactMail(strtoupper($request->nom_prenom_c), $user->email));
+            }
+            if($user->email){
+                Mail::to($user->email)->send(new PokeMail(strtoupper($request->nom_prenom_c), $request->email, $request->message));
+            }
         }
 
         return redirect()->back()->withErrors("Votre message a été bien envoyé ");
