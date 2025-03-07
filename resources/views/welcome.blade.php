@@ -294,41 +294,7 @@
                             @php $currentCat = sizeof(explode(' ', $typSalle->libelle)) > 1?explode(' ', $typSalle->libelle)[sizeof(explode(' ', $typSalle->libelle))-1]:explode(' ', $typSalle->libelle)[0]; @endphp
                             <div class="gallery-item {{ $currentCat }} {{ $typFirst != $currentCat?'hid-input':'' }}">
                                 <!-- listing-item -->
-                                <div class="listing-item">
-                                    <article class="geodir-category-listing fl-wrap">
-                                        <div class="geodir-category-img fl-wrap">
-                                            <a href="/voir/detail/{{$salle->id}}/annonce" class="geodir-category-img_item">
-                                                <img src="{{asset('storage/'.str_replace('public/', '', $salle->photo))}}" alt="image type de salle" style="height: 250px;width: 390px;">
-                                                <div class="overlay"></div>
-                                            </a>
-                                            <div class="geodir-category-location">
-                                                <a href="/voir/detail/{{$salle->id}}/annonce" class="single-map-item tolt" data-newlatitude="40.72956781" data-newlongitude="-73.99726866" data-microtip-position="top-left" data-tooltip="Localisation">
-                                                    @if($salle->commune) <i class="fas fa-map-marker-alt fontawe-icon-size"></i> @endif <span>{{ optional($salle->commune)->nom_commune??'' }}</span>
-                                                    @if($salle->ville) <i class="far fa-angle-right fontawe-icon-size"></i> @endif <span>{{ optional($salle->ville)->nom_ville }}</span>
-                                                </a>
-                                            </div>
-                                            <ul class="list-single-opt_header_cat">
-                                                @forelse($salle->typeSalles as $typeSalleId)
-                                                <li><a href="#" class="cat-opt blue-bg">{{$typeSalleId->libelle}}</a></li>
-                                                @php if($loop->first) break; @endphp
-                                                @empty
-                                                <li>N/A</li>
-                                                @endforelse
-                                            </ul>
-
-                                            <div class="geodir-category-listing_media-list">
-                                                <span><i class="fas fa-camera"></i> {{ $salle->photosSalles->count() }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="geodir-category-content fl-wrap">
-                                            <h3 class="title-sin_item"><a href="/voir/detail/{{$salle->id}}/annonce">{!!adjustpresentation2($salle->nom_salle, 33, 33, 1)!!}</a></h3>
-
-                                            <h5 style="height: auto; font-size: 13px; text-align: left; color: #878C9F; white-space: pre-line;">{!!adjustpresentation2($salle->presentation_salle, 150, 50, 4, true, 1)!!}</h5>
-
-
-                                        </div>
-                                    </article>
-                                </div>
+                                @include('components.salle-item', ['salle' => $salle])
                                 <!-- listing-item end-->
                             </div>
 
