@@ -351,7 +351,7 @@
                         <!-- listing-item-wrap-->
                         <div class="listing-item-container three-columns-grid  box-list_ic fl-wrap">
                             <!-- listing-item -->
-                            @foreach($annonces as $annonce)
+                            @forelse($annonces as $annonce)
 
                             @include('components.salle-item', ['salle' => $annonce])
 
