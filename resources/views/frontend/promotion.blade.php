@@ -210,15 +210,26 @@
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <div class="listsearch-input-item">
-                                                <select id="selville" name="ville" data-placeholder="Tous les villes" class="nice-select on-radius no-search-select">
-                                                    <option value="0">Tous les villes</option>
-                                                    @foreach(App\Models\Ville::get() as $villeIt)
-                                                    <option value="{{ $villeIt->nom_ville }}" {{ $ville?($ville == $villeIt->nom_ville?"selected":""):"" }}>{{ $villeIt->nom_ville }}</option>
+                                                <select id="seltypesalle" name="typesalle" data-placeholder="Tous types de salles" class="nice-select on-radius no-search-select">
+                                                    <option value="0">Tous types de salles</option>
+                                                    @foreach(App\Models\TypeSalle::get() as $typesalleIt)
+                                                    <option value="{{ $typesalleIt->libelle }}">{{ $typesalleIt->libelle }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
-
+                                        
+                                        <div class="col-sm-3">
+                                            <div class="listsearch-input-item">
+                                                <select id="selville" name="ville" data-placeholder="Tous les villes" class="nice-select on-radius no-search-select">
+                                                    <option value="0">Tous les villes</option>
+                                                    @foreach(App\Models\Ville::get() as $villeIt)
+                                                    <option value="{{ $villeIt->nom_ville }}">{{ $villeIt->nom_ville }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+    
                                         <div class="col-sm-3">
                                             <div class="listsearch-input-item">
                                                 <select id="selcommune" name="commune" data-placeholder="Tous les communes" class="nice-select on-radius no-search-select">
@@ -229,12 +240,12 @@
                                                     <option value="0" data-chained="{{ $comuneIt?($comuneIt->ville?$comuneIt->ville->nom_ville:''):''}}">-  -  -</option>
                                                     @php $lastcommune = $comuneIt?($comuneIt->ville?$comuneIt->ville->nom_ville:''):''; @endphp
                                                     @endif
-                                                    <option value="{{ $comuneIt->nom_commune }}" data-chained="{{ $comuneIt?($comuneIt->ville?$comuneIt->ville->nom_ville:''):''}}" {{ $commune?($commune == $comuneIt->nom_commune?"selected":""):"" }}>{{ $comuneIt->nom_commune }}</option>
+                                                    <option value="{{ $comuneIt->nom_commune }}" data-chained="{{ $comuneIt?($comuneIt->ville?$comuneIt->ville->nom_ville:''):''}}">{{ $comuneIt->nom_commune }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
-
+    
                                         <div class="col-sm-3">
                                             <div class="listsearch-input-item">
                                                 <select id="selquartier" name="quartier" data-placeholder="Tous les quartiers" class="nice-select on-radius no-search-select">
@@ -245,18 +256,21 @@
                                                     <option value="0" data-chained="{{optional(optional($quartierIt)->commune)->nom_commune}}">-  -  -</option>
                                                     @php $lastquartier = optional(optional($quartierIt)->commune)->nom_commune; @endphp
                                                     @endif
-                                                    <option value="{{ $quartierIt->nom_quartier }}" data-chained="{{optional(optional($quartierIt)->commune)->nom_commune}}" {{ $quartier?($quartier == $quartierIt->nom_quartier?"selected":""):"" }}>{{ $quartierIt->nom_quartier }}</option>
+                                                    <option value="{{ $quartierIt->nom_quartier }}" data-chained="{{optional(optional($quartierIt)->commune)->nom_commune}}">{{ $quartierIt->nom_quartier }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
-
-                                        
                                         <!-- listsearch-input-item -->
-
+    
+                                    </div>
+    
+                                    <br>
+    
+                                    <div class="row">
                                         <div class="col-sm-3">
-                                            <div class="listsearch-input-item  ">
-                                                <input name="nbrinvite" type="text" placeholder="Nombre d'invité(s), 50" value="" />
+                                            <div class="listsearch-input-item">
+                                                <input name="nbrinvite" type="text" placeholder="Nombre d'invité(s), 50" value="">
                                             </div>
                                         </div>
                                     </div>
