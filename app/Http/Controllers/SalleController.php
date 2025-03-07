@@ -81,7 +81,7 @@ class SalleController extends Controller
         $typesalle = $request->get('typesalle', '');
         $comodite = $request->get('comodite', '');
 
-        if(empty($typesalle) || $typesalle = "0"){
+        if($typesalle == "0"){
             return redirect()->back()->withErrors("Aucun type de salle n'a été selectionné !");
         }
 
@@ -179,7 +179,8 @@ class SalleController extends Controller
         
         $salleObj = $salleObj->promote()->with('commune','ville','quartier','typeSalles', 'comodites');
 
-        if(empty($typesalle) || $typesalle = "0"){
+        // dd($typesalle);
+        if($typesalle == "0"){
             return redirect()->back()->withErrors("Aucun type de salle n'a été selectionné !");
         }
 
@@ -275,7 +276,7 @@ class SalleController extends Controller
 
         $salleObj = $salleObj->with('commune','ville','quartier','typeSalles', 'comodites');
 
-        if(empty($typesalle) || $typesalle = "0"){
+        if($typesalle == "0"){
             return redirect()->back()->withErrors("Aucun type de salle n'a été selectionné !");
         }
 
@@ -369,7 +370,7 @@ class SalleController extends Controller
         
         $salleObj = $salleObj->burocowork()->with('commune','ville','quartier','typeSalles', 'comodites');
 
-        if(empty($typesalle) || $typesalle = "0"){
+        if($typesalle == "0"){
             return redirect()->back()->withErrors("Aucun type de salle n'a été selectionné !");
         }
 
