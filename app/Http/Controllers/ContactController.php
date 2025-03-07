@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PokeMail;
 use App\Models\Compte;
 use App\Models\Contact;
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\ContactStoreRequest;
 use App\Http\Requests\ContactUpdateRequest;
 
@@ -64,11 +67,14 @@ class ContactController extends Controller
 
         if($compteid){
             $contact = Contact::create($request->all());
+            $user = $contact->user;
 
             //SEND MAIL TO USER FOR THIS ACTION
+            Mail::to($request->email)->send(new ContactMail(strtoupper($request->nom_prenom_c), $user->email));
+            Mail::to($user->email)->send(new PokeMail(strtoupper($request->nom_prenom_c), $request->email, $request->message));
         }
 
-        return redirect()->back();
+        return redirect()->back()->withErrors("Votre message a été bien envoyé ");
 
     }
     

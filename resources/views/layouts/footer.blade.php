@@ -208,6 +208,17 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="listsearch-input-item">
+                                            <select id="seltypesalle" name="typesalle" data-placeholder="Tous types de salles" class="nice-select on-radius no-search-select">
+                                                <option value="0">Tous types de salles</option>
+                                                @foreach(App\Models\TypeSalle::get() as $typesalleIt)
+                                                <option value="{{ $typesalleIt->libelle }}">{{ $typesalleIt->libelle }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-sm-3">
+                                        <div class="listsearch-input-item">
                                             <select id="selville" name="ville" data-placeholder="Tous les villes" class="nice-select on-radius no-search-select">
                                                 <option value="0">Tous les villes</option>
                                                 @foreach(App\Models\Ville::get() as $villeIt)
@@ -248,16 +259,20 @@
                                             </select>
                                         </div>
                                     </div>
-
-                                    
                                     <!-- listsearch-input-item -->
 
+                                </div>
+
+                                <br>
+
+                                <div class="row">
                                     <div class="col-sm-3">
-                                        <div class="listsearch-input-item  ">
-                                            <input name="nbrinvite" type="text" placeholder="Nombre d'invité(s), 50" value="" />
+                                        <div class="listsearch-input-item">
+                                            <input name="nbrinvite" type="text" placeholder="Nombre d'invité(s), 50" value="">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="clearfix"></div>
                                 <div >
                                     <div class="listsearch-input-item clact">
@@ -280,13 +295,6 @@
                                     <!-- listsearch-input-item -->
                                     <!-- listsearch-input-item -->
                                     <!-- listsearch-input-item -->
-                                    <div class="col-sm-6">
-                                        <div class="listsearch-input-item">
-                                            <select id="seltypesalle" name="typesalle" data-placeholder="Tous types de salles" class="nice-select on-radius no-search-select">
-                                                <option value="0">Tous types de salles</option>
-                                            </select>
-                                        </div>
-                                    </div>
 
                                     <div class="col-sm-6">
                                         <div class="listsearch-input-item">

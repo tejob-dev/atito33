@@ -628,10 +628,10 @@
                 $("#selcommune").chained("#selville");
                 $("#selquartier").chained("#selcommune");
 
-                $("#seltypesalle").remoteChained({
-                    parents: "#selquartier",
-                    url: "/api/typesalle"
-                });
+                // $("#seltypesalle").remoteChained({
+                //     parents: "#selquartier",
+                //     url: "/api/typesalle"
+                // });
             });
         </script>
 

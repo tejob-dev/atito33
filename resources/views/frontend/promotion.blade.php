@@ -282,13 +282,6 @@
                                         <!-- listsearch-input-item -->
                                         <!-- listsearch-input-item -->
                                         <!-- listsearch-input-item -->
-                                        <div class="col-sm-6">
-                                            <div class="listsearch-input-item">
-                                                <select id="seltypesalle" name="typesalle" data-placeholder="Tous types de salles" class="nice-select on-radius no-search-select">
-                                                    <option value="0">Tous types de salles</option>
-                                                </select>
-                                            </div>
-                                        </div>
 
                                         <div class="col-sm-6">
                                             <div class="listsearch-input-item">
@@ -464,10 +457,10 @@
             $("#selcommune").chained("#selville");
             $("#selquartier").chained("#selcommune");
 
-            $("#seltypesalle").remoteChained({
-                parents : "#selquartier",
-                url : "/api/typesalle"
-            });
+            // $("#seltypesalle").remoteChained({
+            //     parents : "#selquartier",
+            //     url : "/api/typesalle"
+            // });
         });
         
     </script>
