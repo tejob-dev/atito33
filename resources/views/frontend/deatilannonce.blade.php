@@ -165,6 +165,7 @@
                     @php
                          $currentSalle = App\Models\Salle::findOrFail($salleid);
                          $onlyphoto = $currentSalle->photosSalles->first();
+                        //  dd($currentSalle);
                     @endphp
                     @if($currentSalle->photosSalles->count() > 0)
                     <div class="list-single-carousel-wrap carousel-wrap fl-wrap" id="sec1">
@@ -318,7 +319,7 @@
                                                     <h3>Description</h3>
                                                 </div>
                                                 <div class="list-single-main-item_content fl-wrap">
-                                                    <h5 style="font-size: 13px; text-align: left; color: #878C9F;"> {{ $currentSalle->presentation_salle }} </h5>
+                                                    <p> {!! str_replace("\n", "<br>", str_replace("\r", "", $currentSalle->presentation_salle)) !!} </p>
                                                     @if(!empty($currentSalle->site_internet))
                                                     <a target="_blank" href="{{$currentSalle->site_internet}}" class="btn float-btn color-bg">Voir le site web</a>
                                                     @endif

@@ -60,7 +60,7 @@ class SalleController extends Controller
 
         //$salleid = Salle::findOrFail($salle);
         $salleid = $salle;
-
+        
         return view("frontend.deatilannonce", compact("salleid"));
     }
 
@@ -462,11 +462,11 @@ class SalleController extends Controller
                 'nom_salle' => ['required', 'max:255', 'string'],
                 'adresse_salle' => ['required', 'max:255', 'string'],
                 'presentation_salle' => ['required','max:1550', 'string'],
-                'capacite_salle' => ['numeric'],
+                'capacite_salle' => ['string'],
                 'telephone' => ['required', 'max:255', 'string'],
                 'email_salle' => ['required', 'max:255', 'string'],
                 'tarif_salle' => ['nullable', 'max:255', 'string'],
-                'tel_whatsapp' => ['required', 'max:255', 'string'],
+                'tel_whatsapp' => ['max:255', 'string'],
                 'facebook_salle' => ['required', 'max:255', 'string'],
                 'site_internet' => ['required', 'max:255', 'string'],
                 'photo' => ['image', 'nullable'],
@@ -546,11 +546,11 @@ class SalleController extends Controller
             'nom_salle' => ['required', 'max:255', 'string'],
             'adresse_salle' => ['required', 'max:255', 'string'],
             'presentation_salle' => ['required','max:1550', 'string'],
-            'capacite_salle' => ['numeric'],
+            'capacite_salle' => ['string'],
             'telephone' => ['required', 'max:255', 'string'],
             'email_salle' => ['required', 'max:255', 'string'],
             'tarif_salle' => ['nullable', 'max:255', 'string'],
-            'tel_whatsapp' => ['required', 'max:255', 'string'],
+            'tel_whatsapp' => ['max:255', 'string'],
             'facebook_salle' => ['required', 'max:255', 'string'],
             'site_internet' => ['required', 'max:255', 'string'],
             'photo' => ['image', 'nullable'],
@@ -779,7 +779,7 @@ class SalleController extends Controller
             'nom_salle' => ['required', 'max:255', 'string'],
             'adresse_salle' => ['required', 'max:255', 'string'],
             'presentation_salle' => ['nullable','max:1550', 'string'],
-            'capacite_salle' => ['numeric'],
+            'capacite_salle' => ['string'],
             'tarif_salle' => ['nullable', 'max:255', 'string'],
             'acces_salle' => ['nullable', 'max:255', 'string'],
             'logistique_salle' => ['nullable', 'max:255', 'string'],
