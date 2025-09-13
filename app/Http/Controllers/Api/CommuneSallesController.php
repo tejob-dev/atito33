@@ -44,7 +44,7 @@ class CommuneSallesController extends Controller
             'nom_salle' => ['required', 'max:255', 'string'],
             'adresse_salle' => ['required', 'max:255', 'string'],
             'presentation_salle' => ['nullable', 'string'],
-            'capacite_salle' => ['numeric'],
+            'capacite_salle' => ['string'],
             'tarif_salle' => ['required', 'max:255', 'string'],
             'acces_salle' => ['nullable', 'max:255', 'string'],
             'logistique_salle' => ['nullable', 'max:255', 'string'],

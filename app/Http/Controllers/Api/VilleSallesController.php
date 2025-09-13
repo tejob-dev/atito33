@@ -43,7 +43,7 @@ class VilleSallesController extends Controller
             'type' => ['nullable', 'max:255', 'string'],
             'nom_salle' => ['required', 'max:255', 'string'],
             'adresse_salle' => ['required', 'max:255', 'string'],
-            'presentation_salle' => ['nullable', 'max:1550', 'string'],
+            'presentation_salle' => ['nullable', 'string'],
             'capacite_salle' => ['numeric'],
             'tarif_salle' => ['required', 'max:255', 'string'],
             'acces_salle' => ['nullable', 'max:255', 'string'],

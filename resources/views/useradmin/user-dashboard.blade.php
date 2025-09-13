@@ -309,13 +309,32 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label>Type principal de salle</label>
+                                            <style>
+                                                .custom-scroll-select {
+                                                    overflow-y: auto;
+                                                    scrollbar-width: thin;
+                                                    scrollbar-color: #888 #f1f1f1;
+                                                    max-height: 120px;
+                                                }
+                                                .custom-scroll-select::-webkit-scrollbar {
+                                                    width: 2px;
+                                                }
+                                                .custom-scroll-select::-webkit-scrollbar-thumb {
+                                                    background: #888;
+                                                    border-radius: 2px;
+                                                }
+                                                .custom-scroll-select::-webkit-scrollbar-track {
+                                                    background: #f1f1f1;
+                                                }
+                                            </style>
                                             <div class="listsearch-input-item">
-                                                <select name="typesalle_id" data-placeholder="Les type de salles" class="chosen-select no-search-select">
-                                                    <!--  -->
-                                                    @foreach(App\Models\TypeSalle::get() as $typesalleIt)
-                                                    <option value="{{$typesalleIt->id}}" {{in_array($typesalleIt->id, array_filter($typeSalle))?'selected':''}}>{{$typesalleIt->libelle}}</option>
-                                                    @endforeach
-                                                </select>
+                                                <div class="custom-scroll-select" style="position:relative;">
+                                                    <select name="typesalle_id" data-placeholder="Les type de salles" class="chosen-select no-search-select" size="6" style="width:100%;">
+                                                        @foreach(App\Models\TypeSalle::get() as $typesalleIt)
+                                                        <option value="{{$typesalleIt->id}}" {{in_array($typesalleIt->id, array_filter($typeSalle))?'selected':''}}>{{$typesalleIt->libelle}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">

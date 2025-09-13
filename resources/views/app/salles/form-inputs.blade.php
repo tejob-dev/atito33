@@ -37,7 +37,6 @@
         <x-inputs.textarea
             name="presentation_salle"
             label="Présentation Salle"
-            maxlength="255"
             >{{ old('presentation_salle', ($editing ? $salle->presentation_salle
             : '')) }}</x-inputs.textarea
         >
@@ -48,9 +47,8 @@
             name="capacite_salle"
             label="Capacite Salle"
             :value="old('capacite_salle', ($editing ? $salle->capacite_salle : ''))"
-            max="255"
+            max="1000"
             placeholder="Capacite Salle"
-            required
         ></x-inputs.number>
     </x-inputs.group>
 
