@@ -11543,7 +11543,21 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .nice-select .list::-webkit-scrollbar {
-    width: 0
+    width: 8px
+}
+
+.nice-select .list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.nice-select .list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.nice-select .list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
 }
 
 .nice-select .list {
@@ -11553,7 +11567,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     border-radius: 0 0 5px 5px;
     max-height: 210px;
     overflow-y: scroll;
-    padding: 52px 0 0
+    padding: 52px 0 0;
+    /* Firefox scrollbar styles */
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #f1f1f1;
 }
 
 .main-search-input-item:nth-child(1) .nice-select .list {
