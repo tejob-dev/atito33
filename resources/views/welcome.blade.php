@@ -15,6 +15,7 @@
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="/images/icone.png">
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6654529976862434" crossorigin="anonymous"></script>
 </head>
 
 <body>
