@@ -3623,7 +3623,7 @@ section.single-par2 .scroll-down-wrap {
 }
 
 .pagination a {
-    display: inline-block;
+    display: table;
     width: 44px;
     height: 44px;
     line-height: 44px;
@@ -4852,6 +4852,13 @@ section.single-par2 .scroll-down-wrap {
 .fw-carousel .slick-current .box-item a.gal-link,
 .fw-carousel .slick-current .box-item .show-info span {
     opacity: 1;
+    width: 25px;
+    height: 33px;
+    border-radius: 4px;
+}
+
+ul.pagination li {
+    display: inline-block;
 }
 
 .list-single-carousel-wrap .sw-btn,
