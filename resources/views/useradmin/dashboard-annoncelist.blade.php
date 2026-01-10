@@ -579,6 +579,7 @@
                 // Utiliser la délégation d'événements sur la table (parent stable)
                 // Cette méthode fonctionne même après que DataTables recharge les données via AJAX
                 $('#table1').on('click', '.btnshowsallephoto', function(e) {
+                    console.log("btnshowsallephoto clicked", e);
                     e.preventDefault();
                     e.stopPropagation();
                     

@@ -43,7 +43,7 @@ class SalleController extends Controller
                 })
                 ->addColumn('actions', function($row) use($del, $del2, $single){
                     if($single == 0){
-                        $phototag = '<a class="btnshowsallephoto btn btn-light text-info" data-salleid="'.$row->id.'" data-toggle="modal" data-target="#modalGallerySalle" title="Voir les photos"><i class="fas fa-images" data-salleid="'.$row->id.'"></i></a>&nbsp;';
+                        $phototag = '<a class="btnshowsallephoto btn btn-light text-info" data-salleid="'.$row->id.'" title="Voir les photos"><i class="fas fa-images" data-salleid="'.$row->id.'"></i></a>&nbsp;';
                         $videotag = '<a href="" data-salleid="'.$row->id.'" class="btnshowsvideo btn btn-light text-info" data-toggle="modal" data-target="#modalVideoSalle" title="Voir les vidéos"><i class="fas fa-video" data-salleid="'.$row->id.'"></i></a>&nbsp;';
                         $edittag = '&nbsp;<a href="/user-annonce-detail/'.$row->id.'" class="btn btn-light text-warning" title="Modifier"><i class="fas fa-paint-brush"></i></a>';
                         $actionBtn = $phototag.$videotag.$edittag.''.$del.$row->id.$del2;
