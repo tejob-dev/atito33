@@ -519,11 +519,12 @@
                     initComplete: function() {
                         // Fonction pour charger les photos d'une salle
                         function loadPhotosSalle(salleId) {
+                            console.log("loadPhotosSalle", salleId);
                             // Afficher le loader et masquer le contenu/erreur
                             $("#photo-loading").show();
                             $("#photo-error").hide();
                             $("#photo-atito-content").hide();
-                            
+                            console.log("loadPhotosSalle ajax start");
                             $.ajax({
                                 url: '/api/render/photo/salles?salle_id=' + salleId + '&u_id={{auth()->user()->id}}',
                                 method: 'GET',
@@ -556,17 +557,20 @@
                         }
                         
                         $('.btnshowsallephoto').on('click', function(e) {
+                            console.log("btnshowsallephoto clicked", e);
                             e.preventDefault();
                             // Récupérer salleId depuis le bouton (a) ou l'icône (i)
                             let salleId = $(this).data("salleid") || $(e.target).closest('[data-salleid]').data("salleid") || $(e.target).data("salleid");
                             
                             if (salleId) {
+                                console.log("salleId", salleId);
                                 loadPhotosSalle(salleId);
                             } else {
                                 console.error("Impossible de récupérer l'ID de la salle");
                                 $("#photo-error-message").text("Erreur: ID de salle manquant.");
                                 $("#photo-error").show();
                             }
+                            console.log("btnshowsallephoto clicked end");
                         });
                         $('.btnshowsvideo').on('click', function(e) {
                             console.log(e);
