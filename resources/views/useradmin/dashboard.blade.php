@@ -525,9 +525,9 @@
                 bInfo: false,
                 initComplete: function() {
                     $('.btnshowsallephoto').on('click', function(e) {
-                        console.log(e);
+                        console.log("btnshowsallephoto clicked", e);
                         let salleId = $(e.target).data("salleid"); // Change this to the actual salle_id value you want to pass
-                        console.log(salleId);
+                        console.log("salleId", salleId);
                         $.ajax({
                             url: '/api/render/photo/salles?salle_id=' + salleId+'&u_id={{auth()->user()->id}}',
                             method: 'GET',

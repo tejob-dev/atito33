@@ -558,7 +558,7 @@
                         
                         $('.btnshowsallephoto').on('click', function(e) {
                             console.log("btnshowsallephoto clicked", e);
-                            e.preventDefault();
+                            // e.preventDefault();
                             // Récupérer salleId depuis le bouton (a) ou l'icône (i)
                             let salleId = $(this).data("salleid") || $(e.target).closest('[data-salleid]').data("salleid") || $(e.target).data("salleid");
                             
