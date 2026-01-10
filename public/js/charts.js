@@ -105,9 +105,19 @@ var config = {
 var ctx = document.getElementById("canvas-chart");
 var myLegendContainer = document.getElementById("myChartLegend");
 
-var myChart = new Chart(ctx, config);
-myLegendContainer.innerHTML = myChart.generateLegend();
-var legendItems = myLegendContainer.getElementsByTagName('li');
-for (var i = 0; i < legendItems.length; i += 1) {
-    legendItems[i].addEventListener("click", legendClickCallback, false);
-}
+// Vérifier si les éléments existent avant de créer le chart
+// if (ctx && myLegendContainer) {
+//     try {
+//         var myChart = new Chart(ctx, config);
+//         myLegendContainer.innerHTML = myChart.generateLegend();
+//         var legendItems = myLegendContainer.getElementsByTagName('li');
+//         for (var i = 0; i < legendItems.length; i += 1) {
+//             legendItems[i].addEventListener("click", legendClickCallback, false);
+//         }
+//     } catch (error) {
+//         console.warn('Erreur lors de l\'initialisation du graphique:', error);
+//     }
+// } else {
+//     // Les éléments canvas-chart ou myChartLegend n'existent pas sur cette page
+//     // C'est normal pour les pages qui n'utilisent pas de graphique
+// }

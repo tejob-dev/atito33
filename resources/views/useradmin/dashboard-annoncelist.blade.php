@@ -487,7 +487,7 @@
         <script src="/js/scripts.js"></script>
         <script src="/js/dashboard.js"></script>
 
-        <script src="/js/charts.js"></script>
+        <script defer async type="text/javascript" charset="utf-8" src="/js/charts.js"></script>
 
         <script src="/jsc/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
