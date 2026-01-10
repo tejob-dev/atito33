@@ -678,8 +678,5 @@
             });
         </script>
 
-
-        
-     <script src="/js/charts.js"></script>
     </body>
 </html>
