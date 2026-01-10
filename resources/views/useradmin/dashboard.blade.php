@@ -498,7 +498,7 @@
     </div>
     <!--=============== scripts  ===============-->
     <script src="/js/jquery.min.js"></script>
-    <script src="/js/charts.js"></script>
+    
     <script src="/js/dashboard.js"></script>
 
     <script src="/jsc/bootstrap.bundle.min.js"></script>
