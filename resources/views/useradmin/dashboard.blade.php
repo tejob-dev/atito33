@@ -466,7 +466,7 @@
     </script>
 
     <div class="modal fade" id="modalGallerySalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalCenterTitle">LISTE D'IMAGE DE VOTRE ANNONCE</h3>
@@ -474,8 +474,19 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div id="photo-atito-content" class="modal-content lightgallery">
-                    
+                <div class="modal-body" style="position: relative; min-height: 200px;">
+                    <div id="photo-loading" class="text-center" style="display: none; padding: 40px;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Chargement...</span>
+                        </div>
+                        <p class="mt-2">Chargement des images...</p>
+                    </div>
+                    <div id="photo-error" class="alert alert-danger" style="display: none;">
+                        <strong>Erreur:</strong> <span id="photo-error-message">Impossible de charger les images. Vérifiez votre connexion internet.</span>
+                    </div>
+                    <div id="photo-atito-content" class="lightgallery">
+                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -519,45 +530,109 @@
     <script>
         $(function() {
 
+            // Fonction pour charger les photos d'une salle
+            function loadPhotosSalle(salleId) {
+                // Afficher le loader et masquer le contenu/erreur
+                $("#photo-loading").show();
+                $("#photo-error").hide();
+                $("#photo-atito-content").hide();
+                
+                $.ajax({
+                    url: '/api/render/photo/salles?salle_id=' + salleId + '&u_id={{auth()->user()->id}}',
+                    method: 'GET',
+                    timeout: 30000, // 30 secondes de timeout
+                    success: function(data) {
+                        $("#photo-loading").hide();
+                        $("#photo-error").hide();
+                        $("#photo-atito-content").html(data).show();
+                    },
+                    error: function(xhr, status, error) {
+                        $("#photo-loading").hide();
+                        var errorMessage = "Impossible de charger les images.";
+                        
+                        if (status === "timeout") {
+                            errorMessage = "Le chargement a pris trop de temps. Vérifiez votre connexion internet.";
+                        } else if (xhr.status === 0) {
+                            errorMessage = "Pas de connexion internet. Vérifiez votre connexion réseau.";
+                        } else if (xhr.status >= 500) {
+                            errorMessage = "Erreur serveur. Veuillez réessayer plus tard.";
+                        } else if (xhr.status === 404) {
+                            errorMessage = "Ressource non trouvée.";
+                        }
+                        
+                        $("#photo-error-message").text(errorMessage);
+                        $("#photo-error").show();
+                        $("#photo-atito-content").hide();
+                        console.error("Erreur chargement photos:", status, error, xhr.responseText);
+                    }
+                });
+            }
+
+            // Fonction pour charger les vidéos d'une salle
+            function loadVideosSalle(salleId) {
+                $.ajax({
+                    url: '/api/render/video/salles?salle_id=' + salleId + '&u_id={{auth()->user()->id}}',
+                    method: 'GET',
+                    timeout: 30000,
+                    success: function(data) {
+                        $("#video-atito-content").html(data);
+                    },
+                    error: function(xhr, status, error) {
+                        var errorMessage = "Impossible de charger les vidéos.";
+                        
+                        if (status === "timeout") {
+                            errorMessage = "Le chargement a pris trop de temps. Vérifiez votre connexion internet.";
+                        } else if (xhr.status === 0) {
+                            errorMessage = "Pas de connexion internet. Vérifiez votre connexion réseau.";
+                        }
+                        
+                        alert(errorMessage);
+                        console.error("Erreur chargement vidéos:", status, error, xhr.responseText);
+                    }
+                });
+            }
+
+            // Utiliser la délégation d'événements sur la table (parent stable)
+            // Cette méthode fonctionne même après que DataTables recharge les données via AJAX
+            $('#table1').on('click', '.btnshowsallephoto', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Récupérer salleId depuis le bouton (a) ou l'icône (i)
+                let salleId = $(this).data("salleid") || $(e.target).closest('[data-salleid]').data("salleid") || $(e.target).data("salleid");
+                
+                if (salleId) {
+                    loadPhotosSalle(salleId);
+                } else {
+                    console.error("Impossible de récupérer l'ID de la salle");
+                    $("#photo-error-message").text("Erreur: ID de salle manquant.");
+                    $("#photo-error").show();
+                }
+            });
+
+            $('#table1').on('click', '.btnshowsvideo', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Récupérer salleId depuis le bouton (a) ou l'icône (i)
+                let salleId = $(this).data("salleid") || $(e.target).closest('[data-salleid]').data("salleid") || $(e.target).data("salleid");
+                
+                if (salleId) {
+                    loadVideosSalle(salleId);
+                } else {
+                    console.error("Impossible de récupérer l'ID de la salle");
+                    alert("Erreur: ID de salle manquant.");
+                }
+            });
+
             var table = $('#table1').DataTable({
                 dom: '',
                 info: false,
                 bInfo: false,
-                initComplete: function() {
-                    $('.btnshowsallephoto').on('click', function(e) {
-                        console.log("btnshowsallephoto clicked", e);
-                        let salleId = $(e.target).data("salleid"); // Change this to the actual salle_id value you want to pass
-                        console.log("salleId", salleId);
-                        $.ajax({
-                            url: '/api/render/photo/salles?salle_id=' + salleId+'&u_id={{auth()->user()->id}}',
-                            method: 'GET',
-                            success: function(data) {
-                                // Handle successful response
-                                $("#photo-atito-content").html(data);
-                            },
-                            error: function(xhr, status, error) {
-                                // Handle error
-                                console.error(xhr.responseText);
-                            }
-                        });
-                    });
-                    $('.btnshowsvideo').on('click', function(e) {
-                        console.log(e);
-                        let salleId = $(e.target).data("salleid"); // Change this to the actual salle_id value you want to pass
-                        console.log(salleId);
-                        $.ajax({
-                            url: '/api/render/video/salles?salle_id=' + salleId+'&u_id={{auth()->user()->id}}',
-                            method: 'GET',
-                            success: function(data) {
-                                // Handle successful response
-                                $("#video-atito-content").html(data);
-                            },
-                            error: function(xhr, status, error) {
-                                // Handle error
-                                console.error(xhr.responseText);
-                            }
-                        });
-                    });
+                // drawCallback s'exécute après chaque redessin de la table (après chaque chargement AJAX)
+                drawCallback: function(settings) {
+                    // Les événements sont déjà gérés via la délégation d'événements ci-dessus
+                    // Cette fonction peut être utilisée pour d'autres initialisations si nécessaire
                 },
                 processing: true,
                 serverSide: true,
