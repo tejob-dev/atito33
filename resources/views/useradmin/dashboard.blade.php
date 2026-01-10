@@ -595,8 +595,11 @@
             // Utiliser la délégation d'événements sur la table (parent stable)
             // Cette méthode fonctionne même après que DataTables recharge les données via AJAX
             $('#table1').on('click', '.btnshowsallephoto', function(e) {
+                console.log("btnshowsallephoto clicked", e);
                 e.preventDefault();
-                e.stopPropagation();
+                // e.stopPropagation();
+                console.log("modalGallerySalle modal shown");
+                $("#modalGallerySalle").modal("show"); // data-toggle="modal" data-target="#modalGallerySalle"
                 
                 // Récupérer salleId depuis le bouton (a) ou l'icône (i)
                 let salleId = $(this).data("salleid") || $(e.target).closest('[data-salleid]').data("salleid") || $(e.target).data("salleid");
@@ -612,7 +615,9 @@
 
             $('#table1').on('click', '.btnshowsvideo', function(e) {
                 e.preventDefault();
-                e.stopPropagation();
+                // e.stopPropagation();
+                console.log("modalVideoSalle modal shown");
+                $("#modalVideoSalle").modal("show"); // data-toggle="modal" data-target="#modalVideoSalle"
                 
                 // Récupérer salleId depuis le bouton (a) ou l'icône (i)
                 let salleId = $(this).data("salleid") || $(e.target).closest('[data-salleid]').data("salleid") || $(e.target).data("salleid");
