@@ -160,7 +160,7 @@
                     searching: true,
                     order: [[0, 'desc']],
                     // responsive: true,
-                }).buttons().container().enable();
+                }).buttons().container();
                 
               });
         </script>
